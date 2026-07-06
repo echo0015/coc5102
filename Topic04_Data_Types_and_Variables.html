@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 04 — DATA TYPES AND VARIABLES
+     16-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 04 — Data Types and Variables | Programming 1</title>
+<meta name="description" content="Learn how Python stores and labels information using variables and different data types." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+    <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_Python_Operators.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">Python Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic07_Control_Flow.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic08_Python_Loops.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Python_Functions.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 16</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></div>
+          <h1>Data Types and Variables</h1>
+          <p class="topic-label">Topic 04 &middot; How Python Stores Information</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Define what a variable is and how to create one in Python.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Identify Python's core data types: int, float, str, and bool.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Explain the rules for naming variables correctly.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Convert values between different data types.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS A VARIABLE -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is a Variable">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-box" aria-hidden="true"></i></span> What is a Variable?</h2>
+          <p class="slide-subtitle">A variable is simply a labeled box that holds a piece of information for later use.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> A variable is a name that refers to a value stored in the computer's memory.</span></li>
+                <li><i class="fa-solid fa-box-open" aria-hidden="true"></i><span><strong>Analogy:</strong> Think of a variable as a labeled storage box — the label is the name, and the value inside is the data.</span></li>
+                <li><i class="fa-solid fa-rotate" aria-hidden="true"></i><span><strong>Reusable:</strong> Once stored, a variable's value can be used again and again, or changed later.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-box" aria-hidden="true"></i></span>
+                <p class="caption">A variable is like a labeled box holding a value.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — VARIABLE NAMING RULES -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Variable Naming Rules">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-ruler" aria-hidden="true"></i> Rules to Remember</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-tag" aria-hidden="true"></i></span> Variable Naming Rules</h2>
+          <p class="slide-subtitle">Python has strict rules for what makes a valid variable name.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Rule</th><th>Valid Example</th><th>Invalid Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Must start with a letter or underscore</td><td><code>age</code>, <code>_score</code></td><td><code>1age</code></td></tr>
+                <tr><td>Can contain letters, numbers, underscores</td><td><code>student_1</code></td><td><code>student-1</code></td></tr>
+                <tr><td>Case-sensitive</td><td><code>Name</code> &ne; <code>name</code></td><td>&mdash;</td></tr>
+                <tr><td>Cannot be a reserved keyword</td><td><code>total</code></td><td><code>class</code>, <code>for</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>Use clear, descriptive names like <code>student_name</code> instead of vague ones like <code>x</code> or <code>data1</code>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — ASSIGNING VALUES -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Assigning Values">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-equals" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-pen" aria-hidden="true"></i></span> Assigning Values to Variables</h2>
+          <p class="slide-subtitle">The equals sign (=) is used to store a value inside a variable — this is called assignment.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">variables.py</span>
+            </div>
+            <pre><code class="language-python">age = 18
+name = "Maria"
+is_student = True
+
+print(name, "is", age, "years old.")</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>In Python, <code>=</code> means "assign," not "equals" like in math. We'll cover the true equality check (<code>==</code>) in a later topic.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — WHAT IS A DATA TYPE -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: What is a Data Type">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-shapes" aria-hidden="true"></i></span> What is a Data Type?</h2>
+          <p class="slide-subtitle">A data type tells Python what <em>kind</em> of value a variable is holding, and what you can do with it.</p>
+
+          <div class="diagram">
+            <div class="diagram-box"><i class="fa-solid fa-hashtag" aria-hidden="true"></i><span>int</span></div>
+            <div class="diagram-box"><i class="fa-solid fa-percent" aria-hidden="true"></i><span>float</span></div>
+            <div class="diagram-box highlight"><i class="fa-solid fa-font" aria-hidden="true"></i><span>str</span></div>
+            <div class="diagram-box"><i class="fa-solid fa-toggle-on" aria-hidden="true"></i><span>bool</span></div>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>You can add two numbers together, but adding a number and a word together doesn't make sense — data types help Python catch that mistake.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — NUMERIC TYPES -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Numeric Types">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hashtag" aria-hidden="true"></i> Data Type</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span> Numeric Types: int and float</h2>
+          <p class="slide-subtitle">Python has two main types for storing numbers.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Type</th><th>Stores</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>int</code></td><td>Whole numbers (no decimal point)</td><td><code>age = 18</code></td></tr>
+                <tr><td><code>float</code></td><td>Numbers with a decimal point</td><td><code>price = 19.99</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">numbers.py</span>
+            </div>
+            <pre><code class="language-python">quantity = 5        # int
+price = 12.50       # float
+total = quantity * price
+print(total)</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — STRING TYPE -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: String Type">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-font" aria-hidden="true"></i> Data Type</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-quote-left" aria-hidden="true"></i></span> String Type (str)</h2>
+          <p class="slide-subtitle">A string is any text, surrounded by quotation marks.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-quote-right" aria-hidden="true"></i><span>Strings can use single quotes <code>'like this'</code> or double quotes <code>"like this"</code>.</span></li>
+            <li><i class="fa-solid fa-link" aria-hidden="true"></i><span><strong>Concatenation:</strong> The <code>+</code> operator joins two strings together.</span></li>
+          </ul>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">strings.py</span>
+            </div>
+            <pre><code class="language-python">first_name = "Juan"
+last_name = "Dela Cruz"
+full_name = first_name + " " + last_name
+print(full_name)   # Juan Dela Cruz</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — BOOLEAN TYPE -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Boolean Type">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-toggle-on" aria-hidden="true"></i> Data Type</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-check-double" aria-hidden="true"></i></span> Boolean Type (bool)</h2>
+          <p class="slide-subtitle">A boolean can only ever be one of two values: True or False.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Used to represent yes/no, on/off, or true/false situations.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Very important for decision-making in code, which we'll explore in Control Flow.</span></li>
+              </ul>
+
+              <div class="code-block">
+                <div class="code-block-header">
+                  <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                  <span class="filename">booleans.py</span>
+                </div>
+                <pre><code class="language-python">is_raining = True
+is_weekend = False
+print(is_raining)</code></pre>
+              </div>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-toggle-on" aria-hidden="true"></i></span>
+                <p class="caption">Booleans are like a light switch: only ON or OFF.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — CHECKING DATA TYPE -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Checking Data Type">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Tool</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></span> Checking a Variable's Data Type</h2>
+          <p class="slide-subtitle">The type() function tells you exactly what data type a value is.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">check_type.py</span>
+            </div>
+            <pre><code class="language-python">age = 18
+print(type(age))       # &lt;class 'int'&gt;
+
+price = 19.99
+print(type(price))     # &lt;class 'float'&gt;
+
+name = "Maria"
+print(type(name))      # &lt;class 'str'&gt;</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>Use <code>type()</code> whenever you're unsure what kind of value a variable holds — it's a great debugging habit.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — TYPE CONVERSION -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Type Conversion">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-right-left" aria-hidden="true"></i></span> Type Conversion (Casting)</h2>
+          <p class="slide-subtitle">Sometimes you need to convert a value from one data type to another.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Function</th><th>Converts To</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>int()</code></td><td>Whole number</td><td><code>int("5")</code> &rarr; <code>5</code></td></tr>
+                <tr><td><code>float()</code></td><td>Decimal number</td><td><code>float("5.5")</code> &rarr; <code>5.5</code></td></tr>
+                <tr><td><code>str()</code></td><td>Text</td><td><code>str(5)</code> &rarr; <code>"5"</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>Input from users always arrives as text (str) — you often need <code>int()</code> to convert it before doing math with it.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — EXAMPLE SCENARIO -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Example Scenario">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-receipt" aria-hidden="true"></i></span> Example: A Simple Receipt Program</h2>
+          <p class="slide-subtitle">Let's combine several data types in one small program.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">receipt.py</span>
+            </div>
+            <pre><code class="language-python">item_name = "Notebook"      # str
+price = 45.50                # float
+quantity = 3                 # int
+on_sale = True                # bool
+
+total = price * quantity
+print(item_name, "x", quantity, "=", total)</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Notice how each variable stores a different data type, yet they all work together in the same program.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — SUMMARY -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-box" aria-hidden="true"></i><span>A variable is a labeled box that stores a value.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-shapes" aria-hidden="true"></i><span>Python's core data types are int, float, str, and bool.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-tag" aria-hidden="true"></i><span>Variable names must follow specific naming rules.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i><span>int(), float(), and str() convert values between types.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> Which data type would <code>19.99</code> be?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">int</button>
+              <button class="quiz-option" data-correct="true">float</button>
+              <button class="quiz-option" data-correct="false">str</button>
+              <button class="quiz-option" data-correct="false">bool</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> Which variable name is invalid in Python?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">student_name</button>
+              <button class="quiz-option" data-correct="false">_score</button>
+              <button class="quiz-option" data-correct="true">1st_place</button>
+              <button class="quiz-option" data-correct="false">total2</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> Which function converts a value into an integer?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">int()</button>
+              <button class="quiz-option" data-correct="false">str()</button>
+              <button class="quiz-option" data-correct="false">bool()</button>
+              <button class="quiz-option" data-correct="false">num()</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> A boolean variable can only hold...</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Any whole number</button>
+              <button class="quiz-option" data-correct="false">Any text</button>
+              <button class="quiz-option" data-correct="true">True or False</button>
+              <button class="quiz-option" data-correct="false">Decimal numbers</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — MINI ACTIVITY -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Guess the Data Type</h2>
+          <p class="slide-subtitle">For each value, guess its data type before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Look at each value below and think about which of the four data types it belongs to.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> <code>"Hello there!"</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>str</strong> (string) — it's wrapped in quotation marks.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> <code>25</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>int</strong> — a whole number with no decimal point.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> <code>False</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>bool</strong> — one of only two possible boolean values.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 — FUN FACTS -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Data Types</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-infinity" aria-hidden="true"></i><h4>No Size Limit</h4><p>Unlike many languages, Python's int can grow as large as your computer's memory allows.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-toggle-on" aria-hidden="true"></i><h4>Booleans Are Numbers</h4><p>In Python, True actually equals 1 and False equals 0 behind the scenes.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-magic" aria-hidden="true"></i><h4>Dynamic Typing</h4><p>Python figures out a variable's type automatically — you never have to declare it yourself.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-globe" aria-hidden="true"></i><h4>Unicode Strings</h4><p>Python strings can store emojis and characters from almost every language in the world.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 — END OF TOPIC -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 04</h2>
+          <p class="slide-subtitle">You now understand how Python stores and labels information using variables and data types.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can create variables and assign values to them.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can identify int, float, str, and bool values.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can convert values between data types.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 05</h4>
+              <p>Python Operators — arithmetic, relational, and logical operators for building expressions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

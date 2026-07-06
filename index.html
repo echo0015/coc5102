@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     PROGRAMMING 1 — COURSE HOMEPAGE
+     Landing page linking out to every Topic##_*.html slide deck.
+     ===================================================================== -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programming 1 — Course Home</title>
+  <meta name="description" content="Programming 1 — an interactive first-year course covering computer fundamentals and Python programming." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+  <!-- Google Fonts (Poppins for headings, Inter for body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="home-body">
+
+  <!-- ============================== TOP BAR ============================== -->
+  <header class="home-topbar">
+    <div class="sidebar-brand">
+      <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+      <div>
+        <h2 style="margin:0;">Programming 1</h2>
+        <span>Interactive Course Slides</span>
+      </div>
+    </div>
+    <button id="darkModeToggle" class="icon-btn" aria-label="Toggle dark mode">
+      <i class="fa-solid fa-moon" aria-hidden="true"></i>
+    </button>
+  </header>
+
+  <!-- ============================== HERO ============================== -->
+  <section class="home-hero">
+    <span class="eyebrow"><i class="fa-solid fa-sparkles" aria-hidden="true"></i> First-Year College Course</span>
+    <h1>Welcome to <span>Programming 1</span></h1>
+
+    <div class="course-meta">
+      <span><i class="fa-solid fa-hashtag" aria-hidden="true"></i> CoC5102</span>
+      <span><i class="fa-solid fa-building-columns" aria-hidden="true"></i> College of Computer Studies</span>
+      <span><i class="fa-solid fa-school" aria-hidden="true"></i> The Lewis College</span>
+    </div>
+
+    <p class="lead">
+      A beginner-friendly journey from how computers work to writing real Python programs.
+      Every topic is a self-contained slide deck with examples, diagrams, and quizzes —
+      fully offline, no installation required.
+    </p>
+
+    <div class="home-stats">
+      <div class="home-stat">
+        <div class="num">11</div>
+        <div class="label">Topics</div>
+      </div>
+      <div class="home-stat">
+        <div class="num">160+</div>
+        <div class="label">Slides Total</div>
+      </div>
+      <div class="home-stat">
+        <div class="num">100%</div>
+        <div class="label">Offline Ready</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== TOPICS GRID ============================== -->
+  <main>
+    <section class="topics-grid" aria-label="Course topics">
+
+      <!-- Topic 00 — READY -->
+      <a class="topic-card" href="Topic00_Course_Introduction.html" style="animation-delay:0s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 00</span>
+        <h3>Course Introduction</h3>
+        <p>Meet your instructor, understand the grading system, preview the topic roadmap, and review classroom rules.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+      <!-- Topic 01 — READY -->
+      <a class="topic-card" href="Topic01_Basic_Computer_Structure.html" style="animation-delay:.02s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-solid fa-desktop" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 01</span>
+        <h3>Basic Computer Structure</h3>
+        <p>Hardware, software, the CPU, memory, and how input becomes output — the foundation of everything else in this course.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+      <!-- Topic 02 -->
+      <a class="topic-card" href="Topic02_Types_of_Programming_Languages.html" style="animation-delay:.06s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 02</span>
+        <h3>Types of Programming Languages</h3>
+        <p>Low-level vs. high-level languages, compiled vs. interpreted, and where Python fits in.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+      <!-- Topic 03 -->
+      <a class="topic-card" href="Topic03_Basics_of_Python.html" style="animation-delay:.1s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-brands fa-python" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 03</span>
+        <h3>Basics of Python</h3>
+        <p>Python's history, features, and setting up your first environment.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+      <!-- Topic 04 -->
+      <a class="topic-card" href="Topic04_Data_Types_and_Variables.html" style="animation-delay:.14s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 04</span>
+        <h3>Data Types and Variables</h3>
+        <p>Storing and labeling information: numbers, text, booleans, and more.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+      <!-- Topic 05 -->
+      <a class="topic-card" href="Topic05_Python_Operators.html" style="animation-delay:.18s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-solid fa-calculator" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 05</span>
+        <h3>Python Operators</h3>
+        <p>Arithmetic, relational, and logical operators for building expressions.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+      <!-- Topic 06 -->
+      <a class="topic-card" href="Topic06_Flowchart_Fundamentals.html" style="animation-delay:.22s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 06</span>
+        <h3>Flowchart Fundamentals</h3>
+        <p>Visualizing logic with flowchart symbols before writing any code.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+      <!-- Topic 07 -->
+      <a class="topic-card" href="Topic07_Control_Flow.html" style="animation-delay:.26s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 07</span>
+        <h3>Control Flow</h3>
+        <p>Making decisions in code with if, if-else, and nested conditions.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+      <!-- Topic 08 -->
+      <a class="topic-card" href="Topic08_Python_Loops.html" style="animation-delay:.3s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 08</span>
+        <h3>Python Loops</h3>
+        <p>Repeating actions efficiently with for loops and while loops.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+      <!-- Topic 09 -->
+      <a class="topic-card" href="Topic09_Python_Functions.html" style="animation-delay:.34s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-solid fa-cubes" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 09</span>
+        <h3>Python Functions</h3>
+        <p>Organizing code into reusable, well-named blocks with parameters and return values.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+      <!-- Topic 10 -->
+      <a class="topic-card" href="Topic10_Python_File_Stream.html" style="animation-delay:.38s">
+        <div class="card-top">
+          <div class="card-icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></div>
+          <span class="badge ready">Ready</span>
+        </div>
+        <span class="card-num">TOPIC 10</span>
+        <h3>Python File Stream</h3>
+        <p>Reading from and writing to files to make programs remember data.</p>
+        <div class="card-cta"><span>Start Lesson</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </a>
+
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <p>Programming 1 (CoC5102) &middot; College of Computer Studies, The Lewis College &middot; Works fully offline</p>
+  </footer>
+
+  <!-- Shared script (theme toggle only needed here; slide engine no-ops safely) -->
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

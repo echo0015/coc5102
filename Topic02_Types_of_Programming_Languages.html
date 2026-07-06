@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 02 — TYPES OF PROGRAMMING LANGUAGES
+     16-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 02 — Types of Programming Languages | Programming 1</title>
+<meta name="description" content="Discover how humans give instructions to computers using different kinds of programming languages." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+    <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_Python_Operators.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">Python Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic07_Control_Flow.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic08_Python_Loops.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Python_Functions.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 16</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div>
+          <h1>Types of Programming Languages</h1>
+          <p class="topic-label">Topic 02 &middot; How Humans Talk to Computers</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Explain the difference between low-level and high-level languages.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Describe compiled languages versus interpreted languages.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Identify examples of popular programming languages and their common uses.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Explain where Python fits among other programming languages.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS A PROGRAMMING LANGUAGE -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is a Programming Language">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></span> What is a Programming Language?</h2>
+          <p class="slide-subtitle">Computers only understand electrical signals. Programming languages let humans give them clear, structured instructions.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> A programming language is a set of rules and words used to write instructions that a computer can follow.</span></li>
+                <li><i class="fa-solid fa-language" aria-hidden="true"></i><span><strong>Like a real language:</strong> It has its own vocabulary (keywords) and grammar (syntax) that must be followed exactly.</span></li>
+                <li><i class="fa-solid fa-child-reaching" aria-hidden="true"></i><span><strong>Simple explanation:</strong> If a computer only understands 0s and 1s, a programming language is the translator that turns human ideas into those 0s and 1s.</span></li>
+              </ul>
+
+              <div class="info-box tip">
+                <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+                <div><span class="info-label">Tip</span>Every app, website, and game you've ever used was written in one or more programming languages.</div>
+              </div>
+            </div>
+
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></span>
+                <p class="caption">Programming languages are how humans and computers "talk" to each other.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — LOW-LEVEL LANGUAGES -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Low-Level Languages">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-microchip" aria-hidden="true"></i></span> Low-Level Languages</h2>
+          <p class="slide-subtitle">Low-level languages speak in a way that is very close to what the computer's hardware understands.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-1" aria-hidden="true"></i><span><strong>Machine Language:</strong> Pure binary code (0s and 1s). This is the only language the CPU truly executes.</span></li>
+            <li><i class="fa-solid fa-2" aria-hidden="true"></i><span><strong>Assembly Language:</strong> Uses short human-readable codes (like <code>MOV</code>, <code>ADD</code>) that map directly to machine instructions.</span></li>
+            <li><i class="fa-solid fa-bolt" aria-hidden="true"></i><span><strong>Very fast and efficient</strong> because they are so close to the hardware — but hard for humans to read and write.</span></li>
+          </ul>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">machine-vs-assembly.txt</span>
+            </div>
+            <pre><code class="language-plaintext">Machine Language:   10110000 01100001
+Assembly Language:   MOV AL, 61h</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Beginners rarely write low-level code directly — but it's good to know it exists underneath every program.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — HIGH-LEVEL LANGUAGES -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: High-Level Languages">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></span> High-Level Languages</h2>
+          <p class="slide-subtitle">High-level languages read much closer to plain English, making them easier for humans to learn and write.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span><strong>Readable syntax:</strong> Words like <code>if</code>, <code>print</code>, and <code>for</code> are used instead of raw binary codes.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span><strong>Portable:</strong> The same code can often run on different types of computers with little or no change.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span><strong>Examples:</strong> Python, Java, C++, JavaScript, and many more.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-brands fa-python" aria-hidden="true"></i></span>
+                <p class="caption">print("Hello!") reads almost like plain English.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>Writing <code>print("Hello!")</code> in Python is far easier than writing the equivalent instructions in raw machine code.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — LOW-LEVEL VS HIGH-LEVEL -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: Low-Level vs High-Level">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Comparison</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i></span> Low-Level vs. High-Level</h2>
+          <p class="slide-subtitle">Each type trades off readability for speed, or speed for readability.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Aspect</th><th>Low-Level Language</th><th>High-Level Language</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Readability</td><td>Hard for humans to read</td><td>Easy for humans to read</td></tr>
+                <tr><td>Speed</td><td>Very fast</td><td>Slightly slower</td></tr>
+                <tr><td>Portability</td><td>Tied to specific hardware</td><td>Runs on many machines</td></tr>
+                <tr><td>Examples</td><td>Machine code, Assembly</td><td>Python, Java, C++</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>As a beginner, you will almost always start with a high-level language — that's exactly why this course uses Python.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — COMPILED VS INTERPRETED -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Compiled vs Interpreted">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-gears" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span> Compiled vs. Interpreted Languages</h2>
+          <p class="slide-subtitle">High-level code must be translated into machine code before (or while) it runs. There are two ways this happens.</p>
+
+          <div class="diagram">
+            <div class="diagram-box"><i class="fa-solid fa-file-code" aria-hidden="true"></i><span>Source Code</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box highlight"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Compiler / Interpreter</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-microchip" aria-hidden="true"></i><span>Machine Code</span></div>
+          </div>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-box" aria-hidden="true"></i><span><strong>Compiled:</strong> The entire program is translated into machine code first, producing a separate executable file, then run.</span></li>
+            <li><i class="fa-solid fa-forward" aria-hidden="true"></i><span><strong>Interpreted:</strong> Code is translated and run line-by-line, on the spot, with no separate executable file.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — COMPILED LANGUAGES -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Compiled Languages">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-box" aria-hidden="true"></i> Translation Method</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-hammer" aria-hidden="true"></i></span> Compiled Languages</h2>
+          <p class="slide-subtitle">A compiler translates the whole program at once, before it ever runs.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Code is checked for errors <strong>all at once</strong>, before execution begins.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Produces a standalone executable file (like <code>program.exe</code>) that can run without the original source code.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Tends to run very fast once compiled.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span><strong>Examples:</strong> C, C++, Rust.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-file-zipper" aria-hidden="true"></i></span>
+                <p class="caption">Compiling is like translating an entire book before handing it to the reader.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — INTERPRETED LANGUAGES -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Interpreted Languages">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-forward" aria-hidden="true"></i> Translation Method</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-brands fa-python" aria-hidden="true"></i></span> Interpreted Languages</h2>
+          <p class="slide-subtitle">An interpreter translates and runs code one line at a time, as the program executes.</p>
+
+          <div class="content-grid reverse">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>No separate executable file — you need the interpreter installed to run the code.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Easier to test and debug, since you can run code immediately without a separate compile step.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Usually a little slower than compiled code, since translation happens while running.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span><strong>Examples:</strong> Python, JavaScript.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-language" aria-hidden="true"></i></span>
+                <p class="caption">Interpreting is like a live translator repeating each sentence as it's spoken.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Python is an interpreted language — that's part of why it's so beginner-friendly and quick to test.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — POPULAR PROGRAMMING LANGUAGES -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Popular Programming Languages">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Real-World Skill</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></span> Popular Programming Languages</h2>
+          <p class="slide-subtitle">Different languages are popular for different kinds of jobs.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Language</th><th>Type</th><th>Commonly Used For</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Python</td><td>High-level, Interpreted</td><td>Data science, AI, automation, web apps, beginners</td></tr>
+                <tr><td>Java</td><td>High-level, Compiled*</td><td>Mobile apps, enterprise business systems</td></tr>
+                <tr><td>C</td><td>High-level, Compiled</td><td>Operating systems, embedded devices</td></tr>
+                <tr><td>C++</td><td>High-level, Compiled</td><td>Games, high-performance software</td></tr>
+                <tr><td>JavaScript</td><td>High-level, Interpreted</td><td>Interactive websites and web apps</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>*Java actually compiles to an in-between "bytecode" that is then interpreted — many modern languages blend both approaches.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — WHY PYTHON -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Why Python">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-heart" aria-hidden="true"></i> Why It Matters</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-brands fa-python" aria-hidden="true"></i></span> Why This Course Uses Python</h2>
+          <p class="slide-subtitle">Python sits in a sweet spot for beginners: simple to read, yet powerful enough for real jobs.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-book-open" aria-hidden="true"></i><span><strong>Readable syntax:</strong> Python code often looks like plain English instructions.</span></li>
+            <li><i class="fa-solid fa-users" aria-hidden="true"></i><span><strong>Huge community:</strong> If you get stuck, thousands of tutorials and forums can help.</span></li>
+            <li><i class="fa-solid fa-toolbox" aria-hidden="true"></i><span><strong>Versatile:</strong> Used in web development, data science, artificial intelligence, and automation.</span></li>
+            <li><i class="fa-solid fa-gauge-high" aria-hidden="true"></i><span><strong>Fast to write:</strong> You can build small, working programs in just a few lines of code.</span></li>
+          </ul>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>Printing "Hello, World!" takes about 5 lines in some languages, but only 1 line in Python.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — HELLO WORLD COMPARISON -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Hello World Comparison">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></span> "Hello, World!" in Different Languages</h2>
+          <p class="slide-subtitle">The classic first program every programmer writes — notice how much shorter the Python version is.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">hello_world.py</span>
+            </div>
+            <pre><code class="language-python">print("Hello, World!")</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">HelloWorld.java</span>
+            </div>
+            <pre><code class="language-java">public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>Fewer lines doesn't always mean "better" — but for beginners, less to type means fewer chances to make mistakes.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — SUMMARY -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-microchip" aria-hidden="true"></i><span>Low-level languages are close to hardware; high-level languages are closer to human language.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-hammer" aria-hidden="true"></i><span>Compiled languages translate all at once; interpreted languages translate line-by-line.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-globe" aria-hidden="true"></i><span>Different languages exist for different jobs: Python, Java, C, C++, JavaScript, and more.</span></div>
+            <div class="summary-item"><i class="fa-brands fa-python" aria-hidden="true"></i><span>Python is high-level and interpreted, which makes it great for beginners.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> Which of these is a low-level language?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Python</button>
+              <button class="quiz-option" data-correct="true">Assembly Language</button>
+              <button class="quiz-option" data-correct="false">JavaScript</button>
+              <button class="quiz-option" data-correct="false">Java</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> A compiled language translates the whole program...</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">Before it runs</button>
+              <button class="quiz-option" data-correct="false">One line at a time while running</button>
+              <button class="quiz-option" data-correct="false">Only after a crash</button>
+              <button class="quiz-option" data-correct="false">It never gets translated</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> Which best describes Python?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Low-level and compiled</button>
+              <button class="quiz-option" data-correct="true">High-level and interpreted</button>
+              <button class="quiz-option" data-correct="false">Machine language</button>
+              <button class="quiz-option" data-correct="false">Assembly language</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> What does a programming language let you do?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Repair broken hardware</button>
+              <button class="quiz-option" data-correct="true">Give clear instructions to a computer</button>
+              <button class="quiz-option" data-correct="false">Charge a laptop battery</button>
+              <button class="quiz-option" data-correct="false">Connect to Wi-Fi</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — MINI ACTIVITY -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Compiled or Interpreted?</h2>
+          <p class="slide-subtitle">Read each clue and guess before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>For each language, decide whether it is typically compiled or interpreted, then click "Reveal Answer" to check yourself.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> "My code is translated line-by-line as it runs, with no separate executable file."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Interpreted</strong> (e.g., Python, JavaScript)</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> "My entire program is translated into a standalone .exe file before anyone can run it."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Compiled</strong> (e.g., C, C++)</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> "I use words like print and if, which are much closer to English than to binary."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>High-Level Language</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 — FUN FACTS -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Programming Languages</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-brands fa-python" aria-hidden="true"></i><h4>Named After Comedy</h4><p>Python was named after the British comedy show "Monty Python's Flying Circus," not the snake!</p></div>
+            <div class="fact-card"><i class="fa-solid fa-list-ol" aria-hidden="true"></i><h4>Thousands Exist</h4><p>There are thousands of programming languages, but only a few dozen are widely used today.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i><h4>Old but Gold</h4><p>Some languages like C (created in 1972) are still widely used today, over 50 years later.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-baby" aria-hidden="true"></i><h4>Scratch for Kids</h4><p>Scratch, a drag-and-drop visual language, is often the very first programming language kids learn.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 — END OF TOPIC -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 02</h2>
+          <p class="slide-subtitle">You now understand the different kinds of programming languages and why this course is built around Python.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can tell low-level and high-level languages apart.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You understand compiled versus interpreted translation.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You know why Python is a great beginner language.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 03</h4>
+              <p>Basics of Python — Python's history, key features, and writing your very first Python program.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 06 — FLOWCHART FUNDAMENTALS
+     16-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 06 — Flowchart Fundamentals | Programming 1</title>
+<meta name="description" content="Learn to visualize program logic using flowchart symbols before writing any code." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+    <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_Python_Operators.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">Python Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Flowchart_Fundamentals.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic07_Control_Flow.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic08_Python_Loops.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Python_Functions.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 16</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
+          <h1>Flowchart Fundamentals</h1>
+          <p class="topic-label">Topic 06 &middot; Planning Logic Before Writing Code</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Identify standard flowchart symbols and their meaning.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Draw a simple flowchart for an everyday process.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Translate a flowchart into a logical sequence of steps.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Explain why planning with flowcharts helps avoid coding errors.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS A FLOWCHART -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is a Flowchart">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></span> What is a Flowchart?</h2>
+          <p class="slide-subtitle">A flowchart is a picture that shows the steps of a process, in order, using simple shapes and arrows.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> A flowchart is a visual diagram that represents the steps and decisions in a process or program.</span></li>
+                <li><i class="fa-solid fa-child-reaching" aria-hidden="true"></i><span><strong>Simple explanation:</strong> It's like a map for your logic — instead of streets, you follow arrows from step to step.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span>
+                <p class="caption">Flowcharts turn abstract logic into something you can see.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — WHY USE FLOWCHARTS -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Why Use Flowcharts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-heart" aria-hidden="true"></i> Why It Matters</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-compass" aria-hidden="true"></i></span> Why Use Flowcharts?</h2>
+          <p class="slide-subtitle">Planning before coding saves time and helps you catch mistakes early.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-map" aria-hidden="true"></i><span><strong>Plan first:</strong> You can design the logic of a program before writing a single line of code.</span></li>
+            <li><i class="fa-solid fa-comments" aria-hidden="true"></i><span><strong>Communicate clearly:</strong> Flowcharts help explain your logic to teammates, teachers, or clients who may not read code.</span></li>
+            <li><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span><strong>Spot errors early:</strong> Gaps or missing steps in logic are much easier to see in a diagram than in lines of code.</span></li>
+            <li><i class="fa-solid fa-language" aria-hidden="true"></i><span><strong>Language-independent:</strong> A flowchart's logic can later be written in Python, Java, or any other language.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — FLOWCHART SYMBOLS OVERVIEW -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Flowchart Symbols Overview">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-shapes" aria-hidden="true"></i> Reference</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-shapes" aria-hidden="true"></i></span> Standard Flowchart Symbols</h2>
+          <p class="slide-subtitle">Each shape in a flowchart has one specific meaning — this consistency is what makes flowcharts easy to read.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Symbol</th><th>Shape</th><th>Meaning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><i class="fa-solid fa-circle" aria-hidden="true"></i> Terminal</td><td>Oval</td><td>Marks the Start or End of the flowchart</td></tr>
+                <tr><td><i class="fa-solid fa-square" aria-hidden="true"></i> Process</td><td>Rectangle</td><td>A single action or instruction to perform</td></tr>
+                <tr><td><i class="fa-solid fa-diamond" aria-hidden="true"></i> Decision</td><td>Diamond</td><td>A yes/no question that branches the flow</td></tr>
+                <tr><td><i class="fa-solid fa-arrow-right-arrow-left" aria-hidden="true"></i> Input/Output</td><td>Parallelogram</td><td>Getting input from, or showing output to, the user</td></tr>
+                <tr><td><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Flow Line</td><td>Arrow</td><td>Shows the direction the process moves next</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — START AND END SYMBOLS -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: Start and End Symbols">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag" aria-hidden="true"></i> Symbol</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle" aria-hidden="true"></i></span> The Terminal Symbol (Start / End)</h2>
+          <p class="slide-subtitle">Every flowchart begins with a Start oval and finishes with an End oval.</p>
+
+          <div class="diagram">
+            <div class="diagram-box highlight"><i class="fa-solid fa-play" aria-hidden="true"></i><span>Start</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i><span>Steps...</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box highlight"><i class="fa-solid fa-stop" aria-hidden="true"></i><span>End</span></div>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>A flowchart should only ever have <strong>one</strong> Start symbol, though it can sometimes have more than one End.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — PROCESS SYMBOL -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Process Symbol">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-square" aria-hidden="true"></i> Symbol</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-gear" aria-hidden="true"></i></span> The Process Symbol</h2>
+          <p class="slide-subtitle">A rectangle represents one clear action or calculation the program performs.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Used for actions like calculations, assignments, or any single step.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Each rectangle should describe just <strong>one</strong> clear action.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-square" aria-hidden="true"></i></span>
+                <p class="caption">Example: "Add 5 to total"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — DECISION SYMBOL -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Decision Symbol">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-diamond" aria-hidden="true"></i> Symbol</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-diamond" aria-hidden="true"></i></span> The Decision Symbol</h2>
+          <p class="slide-subtitle">A diamond asks a yes/no question and splits the flow into two different paths.</p>
+
+          <div class="diagram">
+            <div class="diagram-box highlight"><i class="fa-solid fa-diamond" aria-hidden="true"></i><span>Age &ge; 18?</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-check" aria-hidden="true"></i><span>Yes &rarr; Allow Entry</span></div>
+          </div>
+          <div class="diagram">
+            <div class="diagram-box highlight"><i class="fa-solid fa-diamond" aria-hidden="true"></i><span>Age &ge; 18?</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span>No &rarr; Deny Entry</span></div>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>A decision diamond always has exactly two paths leading out: one for "Yes" and one for "No."</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — INPUT OUTPUT SYMBOL -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Input Output Symbol">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-right-left" aria-hidden="true"></i> Symbol</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-arrow-right-arrow-left" aria-hidden="true"></i></span> The Input/Output Symbol</h2>
+          <p class="slide-subtitle">A parallelogram shows where data enters the program, or where results are shown to the user.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-keyboard" aria-hidden="true"></i><span><strong>Input:</strong> "Ask the user for their name" or "Read a number from the keyboard."</span></li>
+            <li><i class="fa-solid fa-display" aria-hidden="true"></i><span><strong>Output:</strong> "Display the total" or "Show the result on screen."</span></li>
+          </ul>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>If a step is getting information in or showing information out, it belongs in a parallelogram, not a rectangle.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — EXAMPLE: SIMPLE SEQUENTIAL FLOWCHART -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Example Simple Sequential Flowchart">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i></span> Example: Making a Cup of Coffee</h2>
+          <p class="slide-subtitle">A simple, everyday process with no decisions — just steps in order.</p>
+
+          <div class="diagram">
+            <div class="diagram-box highlight"><i class="fa-solid fa-play" aria-hidden="true"></i><span>Start</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-fire" aria-hidden="true"></i><span>Boil Water</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-mug-saucer" aria-hidden="true"></i><span>Add Coffee to Cup</span></div>
+          </div>
+          <div class="diagram">
+            <div class="diagram-box"><i class="fa-solid fa-glass-water" aria-hidden="true"></i><span>Pour Water In</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-spoon" aria-hidden="true"></i><span>Stir</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box highlight"><i class="fa-solid fa-stop" aria-hidden="true"></i><span>End</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — EXAMPLE: FLOWCHART WITH DECISION -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Example Flowchart with Decision">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></span> Example: Is a Number Even or Odd?</h2>
+          <p class="slide-subtitle">This time, a decision diamond splits the flow into two possible outcomes.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-play" aria-hidden="true"></i><span><strong>Start</strong></span></li>
+            <li><i class="fa-solid fa-keyboard" aria-hidden="true"></i><span><strong>Input:</strong> Read a number</span></li>
+            <li><i class="fa-solid fa-diamond" aria-hidden="true"></i><span><strong>Decision:</strong> Is number % 2 == 0?</span></li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i><span><strong>Yes path &rarr; Output:</strong> "It's Even"</span></li>
+            <li><i class="fa-solid fa-xmark" aria-hidden="true"></i><span><strong>No path &rarr; Output:</strong> "It's Odd"</span></li>
+            <li><i class="fa-solid fa-stop" aria-hidden="true"></i><span><strong>End</strong></span></li>
+          </ul>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Notice both the "Yes" and "No" paths eventually lead to the same End symbol.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — FLOWCHART TO CODE -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Flowchart to Code">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></span> From Flowchart to Code</h2>
+          <p class="slide-subtitle">Once your logic is planned in a flowchart, turning it into Python code becomes much easier.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-arrow-right-arrow-left" aria-hidden="true"></i><span>Input/Output symbols become <code>input()</code> and <code>print()</code>.</span></li>
+                <li><i class="fa-solid fa-diamond" aria-hidden="true"></i><span>Decision diamonds become <code>if</code> statements.</span></li>
+                <li><i class="fa-solid fa-square" aria-hidden="true"></i><span>Process rectangles become regular lines of code.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="code-block">
+                <div class="code-block-header">
+                  <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                  <span class="filename">even_odd.py</span>
+                </div>
+                <pre><code class="language-python">number = int(input("Enter a number: "))
+
+if number % 2 == 0:
+    print("It's Even")
+else:
+    print("It's Odd")</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — SUMMARY -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle" aria-hidden="true"></i><span>Ovals mark the Start and End of a flowchart.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-square" aria-hidden="true"></i><span>Rectangles represent a single process or action.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-diamond" aria-hidden="true"></i><span>Diamonds represent yes/no decisions that split the flow.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-arrow-right-arrow-left" aria-hidden="true"></i><span>Parallelograms represent input and output.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> Which shape represents a decision?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Oval</button>
+              <button class="quiz-option" data-correct="false">Rectangle</button>
+              <button class="quiz-option" data-correct="true">Diamond</button>
+              <button class="quiz-option" data-correct="false">Parallelogram</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> Which shape marks the Start and End of a flowchart?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">Oval</button>
+              <button class="quiz-option" data-correct="false">Diamond</button>
+              <button class="quiz-option" data-correct="false">Rectangle</button>
+              <button class="quiz-option" data-correct="false">Arrow</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> A decision diamond always has how many outgoing paths?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">One</button>
+              <button class="quiz-option" data-correct="true">Two</button>
+              <button class="quiz-option" data-correct="false">Three</button>
+              <button class="quiz-option" data-correct="false">Four</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> Displaying a result to the user belongs in which symbol?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Diamond</button>
+              <button class="quiz-option" data-correct="false">Oval</button>
+              <button class="quiz-option" data-correct="true">Parallelogram (Output)</button>
+              <button class="quiz-option" data-correct="false">Rectangle</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — MINI ACTIVITY -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Which Symbol Is It?</h2>
+          <p class="slide-subtitle">Guess which flowchart symbol matches each step before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Read each step description and decide which flowchart shape it belongs in.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> "Ask the user to enter their age."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Parallelogram (Input)</strong></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> "Is the age greater than or equal to 18?"</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Diamond (Decision)</strong></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> "Add 10 points to the total score."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Rectangle (Process)</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 — FUN FACTS -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Flowcharts</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-industry" aria-hidden="true"></i><h4>Older Than Computers</h4><p>Flowcharts were first used in industrial engineering in the 1920s, long before modern computers existed.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-file-shield" aria-hidden="true"></i><h4>ISO Standard</h4><p>Flowchart symbols are standardized by ISO 5807, so they mean the same thing worldwide.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-code-branch" aria-hidden="true"></i><h4>Pseudocode Cousin</h4><p>Flowcharts and pseudocode both describe logic before real code is written — just in different formats.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-chalkboard" aria-hidden="true"></i><h4>Used Everywhere</h4><p>Flowcharts aren't just for programmers — businesses use them to map workflows and decision-making too.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 — END OF TOPIC -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 06</h2>
+          <p class="slide-subtitle">You can now plan program logic visually before writing any code — a skill every programmer relies on.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can identify the five standard flowchart symbols.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can trace a flowchart's logic from Start to End.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can translate a flowchart into working Python code.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 07</h4>
+              <p>Control Flow — learn how programs make real decisions using if, if-else, and nested conditions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 01 — BASIC COMPUTER STRUCTURE
+     18-slide deck. Sidebar + topbar + slides + bottom nav share markup
+     conventions with every other Topic##_*.html file so the JS engine
+     in assets/js/script.js works identically across the whole course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 01 — Basic Computer Structure | Programming 1</title>
+<meta name="description" content="Learn the basic structure of a computer: hardware, software, input, CPU, memory, and output." />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Font Awesome (icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Highlight.js (syntax highlighting for code blocks) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<!-- PDF export (html2canvas + jsPDF) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Shared stylesheet -->
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- ============================== SIDEBAR ============================== -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+    <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_Python_Operators.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">Python Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic07_Control_Flow.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic08_Python_Loops.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Python_Functions.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <!-- ============================== MAIN CONTENT ============================== -->
+  <main class="main-content">
+
+    <!-- TOPBAR: mobile menu, progress bar, counter, dark mode, fullscreen -->
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 18</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <!-- SLIDES -->
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 1 — TITLE PAGE -->
+      <!-- ============================================================ -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-desktop" aria-hidden="true"></i></div>
+          <h1>Basic Computer Structure</h1>
+          <p class="topic-label">Topic 01 &middot; Understanding the Machine Behind the Code</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Define what a computer is using simple, real-life examples.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Identify the three parts of a computer system: hardware, software, and peopleware.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Explain the four basic operations: input, processing, storage, and output.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Recognize common input, output, and storage devices.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Describe, step-by-step, how data flows through a computer.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 2 — WHAT IS A COMPUTER? -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is a Computer">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-question" aria-hidden="true"></i></span> What is a Computer?</h2>
+          <p class="slide-subtitle">Before we open any code editor, let's understand the machine that will run our programs.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> A computer is an electronic machine that accepts <strong>data (input)</strong>, follows a set of <strong>instructions</strong>, and produces useful <strong>results (output)</strong>.</span></li>
+                <li><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i><span><strong>Real-life example:</strong> Your smartphone, an ATM machine, a smart TV, and a calculator are all computers of different sizes.</span></li>
+                <li><i class="fa-solid fa-child-reaching" aria-hidden="true"></i><span><strong>Simple explanation:</strong> Think of a computer like a very fast, very obedient assistant — it does exactly what it's told, exactly when it's told.</span></li>
+              </ul>
+
+              <div class="info-box example">
+                <i class="fa-solid fa-flask" aria-hidden="true"></i>
+                <div><span class="info-label">Example</span>When you type "2 + 2" into a calculator app, you give <em>input</em> (the numbers), the app <em>processes</em> them (adds), and shows the <em>output</em> (4).</div>
+              </div>
+
+              <div class="info-box tip">
+                <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+                <div><span class="info-label">Tip</span>Anything that takes input, follows instructions, and produces output can be thought of as a type of computer!</div>
+              </div>
+            </div>
+
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-microchip" aria-hidden="true"></i></span>
+                <p class="caption">A computer follows instructions step-by-step, just like a recipe.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 3 — COMPUTER SYSTEM -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Computer System">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></span> Computer System</h2>
+          <p class="slide-subtitle">A "computer system" is more than just the box on your desk — it's three parts working together.</p>
+
+          <div class="diagram">
+            <div class="diagram-box highlight"><i class="fa-solid fa-microchip" aria-hidden="true"></i><span>Hardware</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-plus" aria-hidden="true"></i></div>
+            <div class="diagram-box highlight"><i class="fa-solid fa-code" aria-hidden="true"></i><span>Software</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-plus" aria-hidden="true"></i></div>
+            <div class="diagram-box highlight"><i class="fa-solid fa-users" aria-hidden="true"></i><span>Peopleware</span></div>
+          </div>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Part</th><th>What it Means</th><th>Examples</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><i class="fa-solid fa-microchip" aria-hidden="true"></i> Hardware</td><td>The physical parts you can touch</td><td>Monitor, keyboard, mouse, CPU box</td></tr>
+                <tr><td><i class="fa-solid fa-code" aria-hidden="true"></i> Software</td><td>The instructions/programs that tell hardware what to do</td><td>Windows, Google Chrome, MS Word, games</td></tr>
+                <tr><td><i class="fa-solid fa-users" aria-hidden="true"></i> Peopleware</td><td>The people who use, manage, or build computer systems</td><td>Students, programmers, IT staff, you!</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Without peopleware, hardware and software are useless — computers exist to help <strong>people</strong>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 4 — BASIC COMPUTER STRUCTURE -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Basic Computer Structure">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-cubes" aria-hidden="true"></i> Core Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span> Basic Computer Structure</h2>
+          <p class="slide-subtitle">Every computer, from a phone to a supercomputer, is built around the same four building blocks.</p>
+
+          <div class="diagram">
+            <div class="diagram-box"><i class="fa-solid fa-keyboard" aria-hidden="true"></i><span>Input</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box highlight"><i class="fa-solid fa-microchip" aria-hidden="true"></i><span>CPU</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-memory" aria-hidden="true"></i><span>Memory</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-display" aria-hidden="true"></i><span>Output</span></div>
+          </div>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i><span><strong>Input:</strong> Data enters the computer (typing, clicking, scanning).</span></li>
+            <li><i class="fa-solid fa-microchip" aria-hidden="true"></i><span><strong>CPU (Processing):</strong> The "brain" that follows instructions and does calculations.</span></li>
+            <li><i class="fa-solid fa-memory" aria-hidden="true"></i><span><strong>Memory:</strong> Temporarily (or permanently) holds data and instructions.</span></li>
+            <li><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i><span><strong>Output:</strong> The processed result is shown or delivered to the user.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 5 — INPUT DEVICES -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: Input Devices">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Hardware</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-keyboard" aria-hidden="true"></i></span> Input Devices</h2>
+          <p class="slide-subtitle">Input devices let us send data and commands into the computer.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-keyboard" aria-hidden="true"></i><span><strong>Keyboard:</strong> Sends letters, numbers, and symbols when keys are pressed.</span></li>
+                <li><i class="fa-solid fa-computer-mouse" aria-hidden="true"></i><span><strong>Mouse:</strong> Points, clicks, and selects things on the screen.</span></li>
+                <li><i class="fa-solid fa-print" aria-hidden="true"></i><span><strong>Scanner:</strong> Converts paper documents or photos into digital images.</span></li>
+                <li><i class="fa-solid fa-microphone" aria-hidden="true"></i><span><strong>Microphone:</strong> Captures sound and voice as input.</span></li>
+                <li><i class="fa-solid fa-camera" aria-hidden="true"></i><span><strong>Camera:</strong> Captures pictures and video as input.</span></li>
+                <li><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i><span><strong>Touch Screen:</strong> Accepts input directly from a finger or stylus tap.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-keyboard" aria-hidden="true"></i></span>
+                <p class="caption">Input devices are how <em>you</em> talk to the computer.</p>
+              </div>
+              <div class="info-box tip" style="margin-top:16px;">
+                <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+                <div><span class="info-label">Tip</span>Ask yourself: "Does this device send information <em>into</em> the computer?" If yes, it's an input device.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 6 — OUTPUT DEVICES -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Output Devices">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Hardware</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-display" aria-hidden="true"></i></span> Output Devices</h2>
+          <p class="slide-subtitle">Output devices show or deliver the results after the computer has processed your input.</p>
+
+          <div class="content-grid reverse">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-desktop" aria-hidden="true"></i><span><strong>Monitor:</strong> Displays text, images, and video.</span></li>
+                <li><i class="fa-solid fa-print" aria-hidden="true"></i><span><strong>Printer:</strong> Puts the digital output onto paper.</span></li>
+                <li><i class="fa-solid fa-volume-high" aria-hidden="true"></i><span><strong>Speaker:</strong> Produces sound output like music or voice.</span></li>
+                <li><i class="fa-solid fa-video" aria-hidden="true"></i><span><strong>Projector:</strong> Displays the screen onto a large surface.</span></li>
+                <li><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i><span><strong>Plotter:</strong> Draws precise, large-scale graphics like blueprints or maps.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-display" aria-hidden="true"></i></span>
+                <p class="caption">Output devices are how the computer talks back to <em>you</em>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 7 — CPU -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: CPU">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-brain" aria-hidden="true"></i> Hardware</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-microchip" aria-hidden="true"></i></span> The CPU — Central Processing Unit</h2>
+          <p class="slide-subtitle">The CPU is the "brain" of the computer. It has four key parts that work together at incredible speed.</p>
+
+          <div class="diagram">
+            <div class="diagram-box"><i class="fa-solid fa-gavel" aria-hidden="true"></i><span>Control Unit</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box highlight"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span>ALU</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-table-cells" aria-hidden="true"></i><span>Registers</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span>Cache</span></div>
+          </div>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-gavel" aria-hidden="true"></i><span><strong>Control Unit (CU):</strong> Directs traffic — tells other parts what to do and when.</span></li>
+            <li><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span><strong>ALU (Arithmetic Logic Unit):</strong> Performs math (add, subtract) and logic (comparisons).</span></li>
+            <li><i class="fa-solid fa-table-cells" aria-hidden="true"></i><span><strong>Registers:</strong> Tiny, ultra-fast storage spots for data the CPU is using <em>right now</em>.</span></li>
+            <li><i class="fa-solid fa-bolt" aria-hidden="true"></i><span><strong>Cache:</strong> A small, very fast memory that stores frequently used data close to the CPU.</span></li>
+          </ul>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>The animated arrows above represent the constant back-and-forth flow of instructions inside the CPU — this happens billions of times per second!</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 8 — MEMORY -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Memory">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-memory" aria-hidden="true"></i> Hardware</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-memory" aria-hidden="true"></i></span> Memory</h2>
+          <p class="slide-subtitle">Memory holds the data and instructions a computer needs — some temporarily, some permanently.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Type</th><th>Full Name</th><th>Keeps Data When Powered Off?</th><th>Speed</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>RAM</td><td>Random Access Memory</td><td>No (temporary)</td><td>Fast</td></tr>
+                <tr><td>ROM</td><td>Read-Only Memory</td><td>Yes (permanent)</td><td>Slower than RAM</td></tr>
+                <tr><td>Cache</td><td>CPU Cache Memory</td><td>No (temporary)</td><td>Extremely Fast</td></tr>
+                <tr><td>Storage</td><td>Hard Disk / SSD</td><td>Yes (permanent)</td><td>Slowest (but largest)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>RAM is like your desk while working — fast to use, but cleared when you leave. Storage is like a filing cabinet — slower to access, but keeps your files even after you go home.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 9 — STORAGE DEVICES -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Storage Devices">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-box-archive" aria-hidden="true"></i> Hardware</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-hard-drive" aria-hidden="true"></i></span> Storage Devices</h2>
+          <p class="slide-subtitle">Storage devices keep your files safe even after the computer is turned off.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Device</th><th>Typical Use</th><th>Speed</th><th>Portable?</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><i class="fa-solid fa-hard-drive" aria-hidden="true"></i> HDD</td><td>Large, low-cost storage inside desktops</td><td>Moderate</td><td>No</td></tr>
+                <tr><td><i class="fa-solid fa-bolt" aria-hidden="true"></i> SSD</td><td>Fast storage in modern laptops</td><td>Very Fast</td><td>No</td></tr>
+                <tr><td><i class="fa-solid fa-usb" aria-hidden="true"></i> USB Flash Drive</td><td>Carrying files between computers</td><td>Fast</td><td>Yes</td></tr>
+                <tr><td><i class="fa-solid fa-compact-disc" aria-hidden="true"></i> CD / DVD</td><td>Software or movie distribution (older)</td><td>Slow</td><td>Yes</td></tr>
+                <tr><td><i class="fa-solid fa-cloud" aria-hidden="true"></i> Cloud Storage</td><td>Storing files on the internet (Google Drive, etc.)</td><td>Depends on internet</td><td>Yes (anywhere)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>SSDs have no moving parts, which is why they are faster and more durable than HDDs.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 10 — MOTHERBOARD COMPONENTS -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Motherboard Components">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-microchip" aria-hidden="true"></i> Hardware</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-server" aria-hidden="true"></i></span> Motherboard Components</h2>
+          <p class="slide-subtitle">The motherboard is the "highway system" that connects every part of the computer together.</p>
+
+          <div class="board-diagram">
+            <div class="board-part"><i class="fa-solid fa-microchip" aria-hidden="true"></i>CPU Socket</div>
+            <div class="board-part"><i class="fa-solid fa-memory" aria-hidden="true"></i>RAM Slots</div>
+            <div class="board-part"><i class="fa-solid fa-plug" aria-hidden="true"></i>Power Connector</div>
+            <div class="board-part"><i class="fa-solid fa-square-plus" aria-hidden="true"></i>Expansion Slots</div>
+            <div class="board-part"><i class="fa-solid fa-usb" aria-hidden="true"></i>Ports (USB, HDMI)</div>
+            <div class="board-part"><i class="fa-solid fa-hard-drive" aria-hidden="true"></i>Storage Connectors</div>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Every component we've discussed — CPU, RAM, storage — physically plugs into the motherboard.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 11 — HOW DATA FLOWS -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: How Data Flows">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-arrows-turn-right" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span> How Data Flows</h2>
+          <p class="slide-subtitle">Data moves through a computer in a clear, repeatable cycle.</p>
+
+          <div class="diagram">
+            <div class="diagram-box"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i><span>Input</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box highlight"><i class="fa-solid fa-gears" aria-hidden="true"></i><span>Processing</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-box-archive" aria-hidden="true"></i><span>Storage</span></div>
+            <div class="diagram-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+            <div class="diagram-box"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i><span>Output</span></div>
+          </div>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-1" aria-hidden="true"></i><span><strong>Input</strong> — Data enters the system.</span></li>
+            <li><i class="fa-solid fa-2" aria-hidden="true"></i><span><strong>Processing</strong> — The CPU works on the data following instructions.</span></li>
+            <li><i class="fa-solid fa-3" aria-hidden="true"></i><span><strong>Storage</strong> — Data or results may be saved for later use.</span></li>
+            <li><i class="fa-solid fa-4" aria-hidden="true"></i><span><strong>Output</strong> — The final result is presented to the user.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 12 — EXAMPLE SCENARIO -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Example Scenario">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-file-word" aria-hidden="true"></i></span> Example Scenario: Typing in Microsoft Word</h2>
+          <p class="slide-subtitle">Let's trace exactly what happens when you press a single key.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-keyboard" aria-hidden="true"></i><span><strong>Step 1 — Input:</strong> You press the "H" key on the keyboard.</span></li>
+            <li><i class="fa-solid fa-bolt" aria-hidden="true"></i><span><strong>Step 2 — Signal Sent:</strong> The keyboard sends an electrical signal to the CPU.</span></li>
+            <li><i class="fa-solid fa-microchip" aria-hidden="true"></i><span><strong>Step 3 — Processing:</strong> The CPU, guided by Word's software instructions, figures out which letter was pressed.</span></li>
+            <li><i class="fa-solid fa-memory" aria-hidden="true"></i><span><strong>Step 4 — Memory:</strong> The letter "H" is temporarily held in RAM as part of your document.</span></li>
+            <li><i class="fa-solid fa-display" aria-hidden="true"></i><span><strong>Step 5 — Output:</strong> The letter "H" appears on your monitor almost instantly.</span></li>
+            <li><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i><span><strong>Step 6 — Storage (optional):</strong> When you click "Save," the document is written to your SSD or HDD.</span></li>
+          </ul>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">conceptual-flow.txt</span>
+            </div>
+            <pre><code class="language-plaintext">KEY PRESSED: "H"
+  -> keyboard sends signal
+  -> CPU decodes signal (processing)
+  -> letter stored in RAM (memory)
+  -> letter displayed on monitor (output)
+  -> [optional] file written to disk (storage)</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>This entire cycle happens in a tiny fraction of a second — computers are astonishingly fast!</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 13 — COMMON COMPUTER SPECIFICATIONS -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Common Computer Specifications">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-list-check" aria-hidden="true"></i> Real-World Skill</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i></span> Common Computer Specifications</h2>
+          <p class="slide-subtitle">When shopping for or describing a computer, you'll often see these five specs.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-microchip" aria-hidden="true"></i><span><strong>CPU:</strong> How fast the "brain" can think — measured in GHz and number of cores.</span></li>
+            <li><i class="fa-solid fa-memory" aria-hidden="true"></i><span><strong>RAM:</strong> How much the computer can "hold in mind" at once — more RAM means smoother multitasking.</span></li>
+            <li><i class="fa-solid fa-hard-drive" aria-hidden="true"></i><span><strong>SSD:</strong> How much long-term storage space is available, and how fast files open.</span></li>
+            <li><i class="fa-solid fa-tv" aria-hidden="true"></i><span><strong>GPU:</strong> A special chip for handling graphics, video, and games.</span></li>
+            <li><i class="fa-solid fa-window-restore" aria-hidden="true"></i><span><strong>Operating System (OS):</strong> The main software that manages everything else (Windows, macOS, Linux).</span></li>
+          </ul>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>A laptop labeled "Intel i5, 8GB RAM, 512GB SSD, Windows 11" tells you its CPU, memory, storage, and operating system all at once.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 14 — SUMMARY -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-desktop" aria-hidden="true"></i><span>A computer accepts input, processes it, and produces output.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><span>A computer system = Hardware + Software + Peopleware.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-microchip" aria-hidden="true"></i><span>The CPU (Control Unit + ALU + Registers + Cache) is the brain.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-memory" aria-hidden="true"></i><span>RAM is temporary memory; storage (HDD/SSD) is permanent.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-server" aria-hidden="true"></i><span>The motherboard connects every hardware part together.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i><span>Data flow: Input &rarr; Processing &rarr; Storage &rarr; Output.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 15 — KNOWLEDGE CHECK -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right. You can try again on refresh.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> Which part of the computer is known as the "brain"?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Monitor</button>
+              <button class="quiz-option" data-correct="true">CPU</button>
+              <button class="quiz-option" data-correct="false">Keyboard</button>
+              <button class="quiz-option" data-correct="false">USB Drive</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> Which of these is an input device?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Printer</button>
+              <button class="quiz-option" data-correct="false">Speaker</button>
+              <button class="quiz-option" data-correct="true">Scanner</button>
+              <button class="quiz-option" data-correct="false">Projector</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> Which memory type loses its data when the power is turned off?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">RAM</button>
+              <button class="quiz-option" data-correct="false">ROM</button>
+              <button class="quiz-option" data-correct="false">SSD</button>
+              <button class="quiz-option" data-correct="false">HDD</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> Peopleware refers to which part of a computer system?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">The physical parts</button>
+              <button class="quiz-option" data-correct="false">The programs and apps</button>
+              <button class="quiz-option" data-correct="true">The people who use and manage computers</button>
+              <button class="quiz-option" data-correct="false">The internet connection</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">5</span> What is the correct order of the basic data flow cycle?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Output &rarr; Input &rarr; Processing &rarr; Storage</button>
+              <button class="quiz-option" data-correct="true">Input &rarr; Processing &rarr; Storage &rarr; Output</button>
+              <button class="quiz-option" data-correct="false">Storage &rarr; Output &rarr; Input &rarr; Processing</button>
+              <button class="quiz-option" data-correct="false">Processing &rarr; Input &rarr; Output &rarr; Storage</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 16 — MINI ACTIVITY -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Identify the Component</h2>
+          <p class="slide-subtitle">Look at each mystery component below. Try to guess what it is before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>For each box, think about its clue and guess which computer component it describes. Click "Reveal Answer" to check yourself.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> "I am the brain of the computer. I calculate and control everything."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>CPU (Central Processing Unit)</strong></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> "I hold your open files and programs, but I forget everything when the power goes off."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>RAM (Random Access Memory)</strong></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> "I connect every part of the computer together, like a circuit highway."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Motherboard</strong></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">D</span> "You press my keys, and letters appear on the screen."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Keyboard (Input Device)</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 17 — FUN FACTS -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="17" aria-label="Slide 17: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Computers</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-bug" aria-hidden="true"></i><h4>The First "Bug"</h4><p>In 1947, engineers found an actual moth stuck in a computer relay — the origin of the term "software bug."</p></div>
+            <div class="fact-card"><i class="fa-solid fa-microchip" aria-hidden="true"></i><h4>Moore's Law</h4><p>The number of transistors on a chip roughly doubles every two years, making computers faster and cheaper over time.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-house" aria-hidden="true"></i><h4>Room-Sized Computers</h4><p>Early computers like ENIAC (1945) filled an entire room and weighed about 30 tons — less powerful than a modern calculator.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-rocket" aria-hidden="true"></i><h4>Less Power Than Your Phone</h4><p>The computers that helped land Apollo 11 on the Moon had far less processing power than a modern smartphone.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 18 — END OF TOPIC -->
+      <!-- ============================================================ -->
+      <section class="slide" data-slide="18" aria-label="Slide 18: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 01</h2>
+          <p class="slide-subtitle">You now understand the basic structure of a computer — the foundation for everything we build in this course.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can define a computer and describe a computer system.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You know the CPU, memory, and storage, and how they differ.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can trace how data flows from input to output.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 02</h4>
+              <p>Types of Programming Languages — discover how humans "speak" to computers, from machine code to Python.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<!-- Shared script: slide engine, theme toggle, sidebar, fullscreen, quiz -->
+<script src="assets/js/script.js"></script>
+</body>
+</html>

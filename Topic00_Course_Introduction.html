@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 00 — COURSE INTRODUCTION
+     9-slide deck. Orientation topic: instructor, course description,
+     grading system, topic roadmap, classroom rules. Shares sidebar,
+     topbar, slide engine, and bottom nav markup conventions with every
+     other Topic##_*.html file so the JS engine in assets/js/script.js
+     works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 00 — Course Introduction | Programming 1</title>
+<meta name="description" content="Meet your instructor and get oriented: course description, grading system, topic roadmap, and classroom rules for CoC5102 Computer Programming 1." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+    <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_Python_Operators.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">Python Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic07_Control_Flow.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic08_Python_Loops.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Python_Functions.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 9</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">CoC5102 &middot; College of Computer Studies</span>
+          <div class="hero-icon"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></div>
+          <h1>Computer Programming 1</h1>
+          <p class="topic-label">Topic 00 &middot; Course Introduction</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> What This Topic Covers</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Meet your instructor and know how to reach them.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Understand the course description and what you'll be able to do by the end.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Know exactly how your grade is computed.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Preview the full topic roadmap for the term.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Agree on the classroom rules that keep this a good learning space.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — COURSE INSTRUCTOR -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: Course Instructor">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> Get to Know</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></span> Course Instructor</h2>
+          <p class="slide-subtitle">Here's who will be guiding you through Programming 1, and how to reach them.</p>
+
+          <div class="content-grid">
+            <div class="visual-col">
+              <div class="illustration-box">
+                <img src="assets/images/instructor-jerico-hita.jpg" alt="Jerico E. Hita" class="instructor-photo">
+                <p class="caption">Jerico E. Hita</p>
+              </div>
+            </div>
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-id-badge" aria-hidden="true"></i><span><strong>Jerico E. Hita</strong> &mdash; College of Computer Studies, CCS Instructor / Programmer.</span></li>
+                <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><span><strong>Email:</strong> <a href="mailto:jericohita@thelewiscollege.edu.ph">jericohita@thelewiscollege.edu.ph</a></span></li>
+                <li><i class="fa-brands fa-facebook-messenger" aria-hidden="true"></i><span><strong>FB Messenger:</strong> Jerico Hita</span></li>
+              </ul>
+              <div class="info-box tip">
+                <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+                <div><span class="info-label">Tip</span>Reach out early if you're stuck on a machine problem &mdash; don't wait until the deadline.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — COURSE DESCRIPTION -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Course Description">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Overview</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span> Course Description</h2>
+          <p class="slide-subtitle">What this course is really about, in one paragraph.</p>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">CoC5102 Computer Programming 1</span>The course covers the use of a general purpose programming language to solve problems. The emphasis is to train students to <strong>design, implement, test, and debug</strong> programs intended to solve computing problems using fundamental programming constructs.</div>
+          </div>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i><span><strong>Design:</strong> Plan a solution before writing any code (this is exactly why Topic 06 covers flowcharts).</span></li>
+            <li><i class="fa-solid fa-keyboard" aria-hidden="true"></i><span><strong>Implement:</strong> Turn that plan into working Python code.</span></li>
+            <li><i class="fa-solid fa-vial" aria-hidden="true"></i><span><strong>Test:</strong> Run your program with different inputs to see if it behaves correctly.</span></li>
+            <li><i class="fa-solid fa-bug" aria-hidden="true"></i><span><strong>Debug:</strong> Find and fix the inevitable mistakes along the way.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — GRADING SYSTEM -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Grading System">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Important</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i></span> Grading System</h2>
+          <p class="slide-subtitle">Here's exactly how your final grade for this course is calculated.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Component</th><th>Weight</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Attendance and GMRC</td><td>5%</td></tr>
+                <tr><td>Class Participation</td><td>10%</td></tr>
+                <tr><td>Laboratory Exercises</td><td>15%</td></tr>
+                <tr><td>Machine Problems</td><td>30%</td></tr>
+                <tr><td>Major Examinations</td><td>40%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div>
+              <span class="info-label">How Term Grades Roll Up</span>
+              <strong>Midterm Grade</strong> = Prelim Grade (30%) + Midterm Grade (70%)<br>
+              <strong>Final Grade</strong> = Midterm Grade (30%) + Final Grade (70%)
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — COURSE TOPICS ROADMAP -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: Course Topics Roadmap">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-map" aria-hidden="true"></i> The Journey Ahead</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-road" aria-hidden="true"></i></span> Course Topics</h2>
+          <p class="slide-subtitle">Here's everything we'll cover this term, from computer basics to saving data in files.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-desktop" aria-hidden="true"></i><span><strong>01</strong> Basic Computer Structure</span></div>
+            <div class="summary-item"><i class="fa-solid fa-code-branch" aria-hidden="true"></i><span><strong>02</strong> Types of Programming Languages</span></div>
+            <div class="summary-item"><i class="fa-brands fa-python" aria-hidden="true"></i><span><strong>03</strong> Basics of Python</span></div>
+            <div class="summary-item"><i class="fa-solid fa-database" aria-hidden="true"></i><span><strong>04</strong> Data Types and Variables</span></div>
+            <div class="summary-item"><i class="fa-solid fa-calculator" aria-hidden="true"></i><span><strong>05</strong> Python Operators</span></div>
+            <div class="summary-item"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i><span><strong>06</strong> Flowchart Fundamentals</span></div>
+            <div class="summary-item"><i class="fa-solid fa-route" aria-hidden="true"></i><span><strong>07</strong> Control Flow</span></div>
+            <div class="summary-item"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i><span><strong>08</strong> Python Loops</span></div>
+            <div class="summary-item"><i class="fa-solid fa-cubes" aria-hidden="true"></i><span><strong>09</strong> Python Functions</span></div>
+            <div class="summary-item"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span><strong>10</strong> Python File Stream</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — CLASSROOM RULES -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Classroom Rules">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-gavel" aria-hidden="true"></i> Ground Rules</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-people-roof" aria-hidden="true"></i></span> Classroom Rules</h2>
+          <p class="slide-subtitle">A good classroom is a shared responsibility &mdash; here's what's expected of everyone.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-handshake" aria-hidden="true"></i><span><strong>Respect Everyone:</strong> Be kind and polite to classmates, teachers, and school property.</span></li>
+                <li><i class="fa-solid fa-clock" aria-hidden="true"></i><span><strong>Be On Time:</strong> Arrive before class starts and be prepared with necessary materials.</span></li>
+                <li><i class="fa-solid fa-hand" aria-hidden="true"></i><span><strong>Listen When Others Are Speaking:</strong> Raise your hand to speak and wait for your turn.</span></li>
+                <li><i class="fa-solid fa-bullseye" aria-hidden="true"></i><span><strong>Stay on Task:</strong> Focus during lessons and avoid distractions.</span></li>
+                <li><i class="fa-solid fa-list-check" aria-hidden="true"></i><span><strong>Follow Instructions:</strong> Listen carefully and follow directions from the teacher.</span></li>
+              </ul>
+            </div>
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i><span><strong>No Cell Phones During Class:</strong> Unless allowed for learning activities.</span></li>
+                <li><i class="fa-solid fa-broom" aria-hidden="true"></i><span><strong>Clean As You Go:</strong> Keep your area neat and help maintain a clean classroom.</span></li>
+                <li><i class="fa-solid fa-heart" aria-hidden="true"></i><span><strong>Be Honest:</strong> No cheating, lying, or plagiarism.</span></li>
+                <li><i class="fa-solid fa-hands-helping" aria-hidden="true"></i><span><strong>Ask for Help When Needed:</strong> Don't hesitate to seek assistance from the teacher.</span></li>
+                <li><i class="fa-solid fa-face-smile" aria-hidden="true"></i><span><strong>Have a Positive Attitude:</strong> Encourage others and always try your best.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — WORDS OF MOTIVATION -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Words of Motivation">
+        <div class="slide-inner quote-slide">
+          <blockquote>
+            <i class="fa-solid fa-quote-left" aria-hidden="true"></i>Don't chase easy tasks when studying. Choose the hard ones&mdash;they teach you more.
+            <cite>&mdash; A note to keep in mind this term</cite>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — QUICK RECAP -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Quick Recap">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Quick Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Did That Stick?</h2>
+          <p class="slide-subtitle">A quick self-check before we dive into Topic 01. Guess, then reveal the answer.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> Which single component carries the most weight in your grade?</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Major Examinations (40%)</strong></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> How is your Final Grade calculated?</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Midterm Grade (30%) + Final Grade (70%)</strong></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> What's the very first topic we cover after this orientation?</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Topic 01 &mdash; Basic Computer Structure</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — END OF TOPIC -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-comments" aria-hidden="true"></i> Question Session</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Any Questions?</h2>
+          <p class="slide-subtitle">If anything about the instructor, grading, topics, or classroom rules is unclear, now's the time to ask.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You know who to contact and how.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You understand exactly how your grade is computed.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You know what's expected of you in class.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 01</h4>
+              <p>Basic Computer Structure &mdash; hardware, software, the CPU, memory, and how input becomes output.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 05 — PYTHON OPERATORS
+     15-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 05 — Python Operators | Programming 1</title>
+<meta name="description" content="Explore arithmetic, relational, and logical operators used to build expressions in Python." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+    <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_Python_Operators.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">Python Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic07_Control_Flow.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic08_Python_Loops.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Python_Functions.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 14</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-calculator" aria-hidden="true"></i></div>
+          <h1>Python Operators</h1>
+          <p class="topic-label">Topic 05 &middot; Building Expressions That Compute and Compare</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use arithmetic operators to perform calculations.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use relational operators to compare values.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use logical operators to combine conditions.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Predict the result of an expression using operator precedence.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS AN OPERATOR -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is an Operator">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-plus-minus" aria-hidden="true"></i></span> What is an Operator?</h2>
+          <p class="slide-subtitle">An operator is a special symbol that performs an action on one or more values, called operands.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> Operators combine values into an <strong>expression</strong> that produces a result.</span></li>
+                <li><i class="fa-solid fa-child-reaching" aria-hidden="true"></i><span><strong>Simple explanation:</strong> Just like in math class, <code>+</code> adds and <code>-</code> subtracts — Python uses many of the same symbols.</span></li>
+              </ul>
+              <div class="info-box example">
+                <i class="fa-solid fa-flask" aria-hidden="true"></i>
+                <div><span class="info-label">Example</span>In <code>5 + 3</code>, the <code>+</code> is the operator, and <code>5</code> and <code>3</code> are the operands.</div>
+              </div>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-plus-minus" aria-hidden="true"></i></span>
+                <p class="caption">Operators combine values to produce a new result.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — ARITHMETIC OPERATORS -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Arithmetic Operators">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-calculator" aria-hidden="true"></i> Operator Type</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i></span> Arithmetic Operators</h2>
+          <p class="slide-subtitle">These operators perform mathematical calculations.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>+</code></td><td>Addition</td><td><code>5 + 2</code></td><td>7</td></tr>
+                <tr><td><code>-</code></td><td>Subtraction</td><td><code>5 - 2</code></td><td>3</td></tr>
+                <tr><td><code>*</code></td><td>Multiplication</td><td><code>5 * 2</code></td><td>10</td></tr>
+                <tr><td><code>/</code></td><td>Division</td><td><code>5 / 2</code></td><td>2.5</td></tr>
+                <tr><td><code>//</code></td><td>Floor Division (drops decimals)</td><td><code>5 // 2</code></td><td>2</td></tr>
+                <tr><td><code>%</code></td><td>Modulus (remainder)</td><td><code>5 % 2</code></td><td>1</td></tr>
+                <tr><td><code>**</code></td><td>Exponent (power)</td><td><code>5 ** 2</code></td><td>25</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — ASSIGNMENT OPERATORS -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Assignment Operators">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-equals" aria-hidden="true"></i> Operator Type</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-pen" aria-hidden="true"></i></span> Assignment Operators</h2>
+          <p class="slide-subtitle">These operators store or update a value inside a variable.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Operator</th><th>Example</th><th>Same As</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>=</code></td><td><code>x = 5</code></td><td>Store 5 in x</td></tr>
+                <tr><td><code>+=</code></td><td><code>x += 3</code></td><td><code>x = x + 3</code></td></tr>
+                <tr><td><code>-=</code></td><td><code>x -= 3</code></td><td><code>x = x - 3</code></td></tr>
+                <tr><td><code>*=</code></td><td><code>x *= 3</code></td><td><code>x = x * 3</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span><code>x += 3</code> is a quick shortcut that saves you from typing <code>x = x + 3</code>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — RELATIONAL OPERATORS -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: Relational Operators">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Operator Type</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-code-compare" aria-hidden="true"></i></span> Comparison (Relational) Operators</h2>
+          <p class="slide-subtitle">These operators compare two values and always produce a boolean result: True or False.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>==</code></td><td>Equal to</td><td><code>5 == 5</code></td><td>True</td></tr>
+                <tr><td><code>!=</code></td><td>Not equal to</td><td><code>5 != 3</code></td><td>True</td></tr>
+                <tr><td><code>&gt;</code></td><td>Greater than</td><td><code>5 &gt; 3</code></td><td>True</td></tr>
+                <tr><td><code>&lt;</code></td><td>Less than</td><td><code>5 &lt; 3</code></td><td>False</td></tr>
+                <tr><td><code>&gt;=</code></td><td>Greater than or equal to</td><td><code>5 &gt;= 5</code></td><td>True</td></tr>
+                <tr><td><code>&lt;=</code></td><td>Less than or equal to</td><td><code>5 &lt;= 3</code></td><td>False</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — LOGICAL OPERATORS -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Logical Operators">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-brain" aria-hidden="true"></i> Operator Type</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></span> Logical Operators</h2>
+          <p class="slide-subtitle">These operators combine multiple True/False conditions into one result.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>and</code></td><td>True only if <em>both</em> sides are True</td><td><code>5 &gt; 3 and 2 &gt; 1</code></td><td>True</td></tr>
+                <tr><td><code>or</code></td><td>True if <em>at least one</em> side is True</td><td><code>5 &gt; 3 or 2 &gt; 10</code></td><td>True</td></tr>
+                <tr><td><code>not</code></td><td>Flips True to False, or False to True</td><td><code>not (5 &gt; 3)</code></td><td>False</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>"You can enter the ride if <code>age &gt;= 12 and height &gt;= 150</code>" — both conditions must be true.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — OPERATOR PRECEDENCE -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Operator Precedence">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-sort" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span> Operator Precedence</h2>
+          <p class="slide-subtitle">When an expression has multiple operators, Python follows a strict order — very similar to math class's PEMDAS.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-1" aria-hidden="true"></i><span><strong>Parentheses <code>()</code></strong> are always calculated first.</span></li>
+            <li><i class="fa-solid fa-2" aria-hidden="true"></i><span><strong>Exponents <code>**</code></strong> come next.</span></li>
+            <li><i class="fa-solid fa-3" aria-hidden="true"></i><span><strong>Multiplication, Division, Floor Division, Modulus</strong> (<code>* / // %</code>) come next.</span></li>
+            <li><i class="fa-solid fa-4" aria-hidden="true"></i><span><strong>Addition and Subtraction</strong> (<code>+ -</code>) happen last.</span></li>
+          </ul>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">precedence.py</span>
+            </div>
+            <pre><code class="language-python">result = 2 + 3 * 4     # multiplication happens first
+print(result)          # 14, not 20</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — COMBINING OPERATORS -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Combining Operators">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span> Combining Operators in Expressions</h2>
+          <p class="slide-subtitle">Real programs often mix arithmetic, comparison, and logical operators together.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">exam_check.py</span>
+            </div>
+            <pre><code class="language-python">score = 78
+attendance = 95
+
+passed = score >= 75 and attendance >= 80
+print(passed)   # True</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Python evaluates <code>score &gt;= 75</code> and <code>attendance &gt;= 80</code> first, then combines both results using <code>and</code>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — COMMON MISTAKES -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Common Mistakes">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Watch Out</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-bug" aria-hidden="true"></i></span> Common Mistake: = vs. ==</h2>
+          <p class="slide-subtitle">One of the most common beginner mistakes is confusing assignment with comparison.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Symbol</th><th>Purpose</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>=</code></td><td>Assigns (stores) a value into a variable</td><td><code>score = 90</code></td></tr>
+                <tr><td><code>==</code></td><td>Compares two values for equality</td><td><code>score == 90</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>Writing <code>if score = 90:</code> instead of <code>if score == 90:</code> will cause an error in Python — always double-check your equals signs!</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — SUMMARY -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-calculator" aria-hidden="true"></i><span>Arithmetic operators (+ - * / // % **) perform calculations.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-code-compare" aria-hidden="true"></i><span>Relational operators (== != &gt; &lt; &gt;= &lt;=) compare values.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-code-branch" aria-hidden="true"></i><span>Logical operators (and, or, not) combine conditions.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-list-ol" aria-hidden="true"></i><span>Operator precedence decides which part of an expression runs first.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> What does <code>10 % 3</code> evaluate to?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">3</button>
+              <button class="quiz-option" data-correct="true">1</button>
+              <button class="quiz-option" data-correct="false">3.33</button>
+              <button class="quiz-option" data-correct="false">0</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> Which operator checks if two values are equal?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">=</button>
+              <button class="quiz-option" data-correct="true">==</button>
+              <button class="quiz-option" data-correct="false">=&gt;</button>
+              <button class="quiz-option" data-correct="false">!=</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> <code>True and False</code> evaluates to...</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">True</button>
+              <button class="quiz-option" data-correct="true">False</button>
+              <button class="quiz-option" data-correct="false">None</button>
+              <button class="quiz-option" data-correct="false">Error</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> In <code>2 + 3 * 4</code>, which operation happens first?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">2 + 3</button>
+              <button class="quiz-option" data-correct="true">3 * 4</button>
+              <button class="quiz-option" data-correct="false">Both at the same time</button>
+              <button class="quiz-option" data-correct="false">Neither, it's an error</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — MINI ACTIVITY -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Evaluate the Expression</h2>
+          <p class="slide-subtitle">Try to solve each expression yourself before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Work out the value of each expression using operator precedence, then check your answer.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> <code>(2 + 3) * 4</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>20</strong> — parentheses are calculated first: (2+3)=5, then 5*4=20.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> <code>15 // 4</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>3</strong> — floor division drops the decimal part of 3.75.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> <code>5 &gt; 2 and 4 &lt; 1</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>False</strong> — the first part is True, but the second part (4 &lt; 1) is False, and <code>and</code> needs both to be True.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — FUN FACTS -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Operators</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-infinity" aria-hidden="true"></i><h4>Chained Comparisons</h4><p>Python lets you write <code>1 &lt; x &lt; 10</code> directly — most other languages require two separate comparisons.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-percent" aria-hidden="true"></i><h4>Modulus Trick</h4><p>The % operator is the easiest way to check if a number is even: <code>num % 2 == 0</code>.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-plus" aria-hidden="true"></i><h4>Plus Joins Strings Too</h4><p>The same + symbol adds numbers and joins (concatenates) strings, depending on the data type.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-code" aria-hidden="true"></i><h4>Shared Symbols</h4><p>Most of Python's operators (+ - * / == etc.) are shared with many other programming languages.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — END OF TOPIC -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 05</h2>
+          <p class="slide-subtitle">You can now build expressions that calculate, compare, and combine conditions.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can use arithmetic operators to perform calculations.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can compare values with relational operators.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can combine conditions with and, or, and not.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 06</h4>
+              <p>Flowchart Fundamentals — visualize program logic with flowchart symbols before writing any code.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
