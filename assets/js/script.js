@@ -277,6 +277,55 @@
   }
 
   /* -------------------------------------------------------------------
+     CODE COPY BUTTON
+     Injects a "Copy" button into every .code-block-header on the page,
+     so every sample code snippet across every slide gets one without
+     needing to hand-edit each code block's markup.
+     ------------------------------------------------------------------- */
+  function initCodeCopy() {
+    document.querySelectorAll('.code-block').forEach((block) => {
+      const header = block.querySelector('.code-block-header');
+      const codeEl = block.querySelector('code');
+      if (!header || !codeEl || header.querySelector('.copy-btn')) return;
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'copy-btn';
+      btn.setAttribute('aria-label', 'Copy code');
+      btn.innerHTML = '<i class="fa-solid fa-copy" aria-hidden="true"></i><span>Copy</span>';
+      header.appendChild(btn);
+
+      let resetTimer = null;
+      btn.addEventListener('click', async () => {
+        const text = codeEl.textContent;
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (e) {
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          try { document.execCommand('copy'); } catch (e2) { /* clipboard unavailable */ }
+          document.body.removeChild(textarea);
+        }
+
+        btn.classList.add('copied');
+        btn.querySelector('i').className = 'fa-solid fa-check';
+        btn.querySelector('span').textContent = 'Copied!';
+
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.querySelector('i').className = 'fa-solid fa-copy';
+          btn.querySelector('span').textContent = 'Copy';
+        }, 1500);
+      });
+    });
+  }
+
+  /* -------------------------------------------------------------------
      EXPORT TO PDF
      Renders every slide in the deck to a canvas (via html2canvas) and
      stitches the images into a downloadable PDF (via jsPDF) — the whole
@@ -417,6 +466,7 @@
     initPresentation();
     initSlides();
     initQuiz();
+    initCodeCopy();
     initExportPdf();
   });
 })();

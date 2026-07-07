@@ -541,6 +541,27 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
 .code-block pre { margin: 0; padding: 18px 20px; overflow-x: auto; font-size: 0.88rem; }
 .code-block code { font-family: var(--font-mono); }
 
+/* Copy-to-clipboard button, injected into every .code-block-header by
+   initCodeCopy() in script.js */
+.copy-btn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #b7bdd6;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+.copy-btn:hover { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: rgba(255, 255, 255, 0.3); }
+.copy-btn.copied { color: var(--color-success); border-color: var(--color-success); }
+
 /* Diagrams built from flex/grid boxes */
 .diagram {
   display: flex;
