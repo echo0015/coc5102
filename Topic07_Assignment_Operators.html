@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 07 — ASSIGNMENT OPERATORS
+     11-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 07 — Assignment Operators | Programming 1</title>
+<meta name="description" content="Learn how to store and update values in variables using Python's assignment operators." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+        <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_String_Access_and_Slicing.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Arithmetic_Operators.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic07_Assignment_Operators.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic08_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic11_Control_Flow.html" class="topic-link">
+        <span class="topic-num">11</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic12_Python_Loops.html" class="topic-link">
+        <span class="topic-num">12</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic13_Python_Functions.html" class="topic-link">
+        <span class="topic-num">13</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic14_Python_Lists.html" class="topic-link">
+        <span class="topic-num">14</span>
+        <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic15_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">15</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic16_Python_Errors_and_Exceptions.html" class="topic-link">
+        <span class="topic-num">16</span>
+        <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 11</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-pen" aria-hidden="true"></i></div>
+          <h1>Assignment Operators</h1>
+          <p class="topic-label">Topic 07 &middot; Storing and Updating Values</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use the = operator to store a value in a variable.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use compound assignment operators like += to update a variable.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Explain why compound assignment is a useful shortcut.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Avoid confusing assignment (=) with comparison (==).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS ASSIGNMENT -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is Assignment">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-box" aria-hidden="true"></i></span> What is Assignment?</h2>
+          <p class="slide-subtitle">Assignment means storing a value inside a variable, using the = symbol.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> The <code>=</code> operator takes the value on its right and stores it in the variable on its left.</span></li>
+                <li><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span><strong>Not math equals:</strong> In Python, <code>=</code> means "assign," not "is equal to."</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-box" aria-hidden="true"></i></span>
+                <p class="caption">x = 5 means "put 5 inside the box named x."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — THE ASSIGNMENT OPERATORS TABLE -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: The Assignment Operators Table">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-equals" aria-hidden="true"></i> Reference</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-pen" aria-hidden="true"></i></span> Assignment Operators</h2>
+          <p class="slide-subtitle">Compound assignment operators combine an operation with assignment, in one shorter step.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Operator</th><th>Example</th><th>Same As</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>=</code></td><td><code>x = 5</code></td><td>Store 5 in x</td></tr>
+                <tr><td><code>+=</code></td><td><code>x += 3</code></td><td><code>x = x + 3</code></td></tr>
+                <tr><td><code>-=</code></td><td><code>x -= 3</code></td><td><code>x = x - 3</code></td></tr>
+                <tr><td><code>*=</code></td><td><code>x *= 3</code></td><td><code>x = x * 3</code></td></tr>
+                <tr><td><code>/=</code></td><td><code>x /= 3</code></td><td><code>x = x / 3</code></td></tr>
+                <tr><td><code>//=</code></td><td><code>x //= 3</code></td><td><code>x = x // 3</code></td></tr>
+                <tr><td><code>%=</code></td><td><code>x %= 3</code></td><td><code>x = x % 3</code></td></tr>
+                <tr><td><code>**=</code></td><td><code>x **= 3</code></td><td><code>x = x ** 3</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — WHY USE COMPOUND ASSIGNMENT -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Why Use Compound Assignment">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-heart" aria-hidden="true"></i> Why It Matters</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span> Why Use Compound Assignment?</h2>
+          <p class="slide-subtitle">It's shorter to type, and it makes your intent ("update this variable") obvious at a glance.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">compare.py</span>
+            </div>
+            <pre><code class="language-python"># Without compound assignment
+score = score + 10
+
+# With compound assignment
+score += 10</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>Both lines do exactly the same thing — <code>+=</code> is just a shortcut that saves typing.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — EXAMPLE: RUNNING TOTAL -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: Example Running Total">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></span> Example: Keeping a Running Total</h2>
+          <p class="slide-subtitle">Compound assignment is perfect for accumulating a value over several steps.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">running_total.py</span>
+            </div>
+            <pre><code class="language-python">total = 0
+total += 50   # bought an item for 50
+total += 30   # bought another for 30
+total -= 10   # got a 10 discount
+
+print(total)  # 70</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — COMMON MISTAKE -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Common Mistake">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Watch Out</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-bug" aria-hidden="true"></i></span> Common Mistake: = vs. ==</h2>
+          <p class="slide-subtitle">One of the most common beginner mistakes is confusing assignment with comparison.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Symbol</th><th>Purpose</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>=</code></td><td>Assigns (stores) a value into a variable</td><td><code>score = 90</code></td></tr>
+                <tr><td><code>==</code></td><td>Compares two values for equality</td><td><code>score == 90</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>Writing <code>if score = 90:</code> instead of <code>if score == 90:</code> will cause an error in Python — always double-check your equals signs!</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — SUMMARY -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-box" aria-hidden="true"></i><span>= stores a value inside a variable.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span>Compound operators like += update a variable in one short step.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>= assigns; == compares — don't mix them up.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> What does <code>x += 5</code> mean?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">x equals 5</button>
+              <button class="quiz-option" data-correct="true">x = x + 5</button>
+              <button class="quiz-option" data-correct="false">x = 5 + 5</button>
+              <button class="quiz-option" data-correct="false">Compare x to 5</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> Which operator checks if two values are equal?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">=</button>
+              <button class="quiz-option" data-correct="true">==</button>
+              <button class="quiz-option" data-correct="false">=&gt;</button>
+              <button class="quiz-option" data-correct="false">!=</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> If <code>x = 10</code>, what is x after <code>x -= 4</code>?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">14</button>
+              <button class="quiz-option" data-correct="false">10</button>
+              <button class="quiz-option" data-correct="true">6</button>
+              <button class="quiz-option" data-correct="false">4</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — MINI ACTIVITY -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Trace the Variable</h2>
+          <p class="slide-subtitle">Follow each step and track what the variable's value becomes.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Work through each line in order, updating the value of x as you go.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> <code>x = 10</code><br><code>x += 5</code><br>What is x now?</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>15</strong> — 10 + 5.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> <code>x = 15</code><br><code>x *= 2</code><br>What is x now?</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>30</strong> — 15 * 2.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> <code>x = 30</code><br><code>x //= 4</code><br>What is x now?</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>7</strong> — 30 // 4 drops the remainder.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — FUN FACTS -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Assignment</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-arrows-turn-right" aria-hidden="true"></i><h4>Multiple Assignment</h4><p>Python lets you assign several variables in one line: <code>a, b = 1, 2</code>.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i><h4>Instant Swap</h4><p>You can swap two variables' values in one line: <code>a, b = b, a</code> — no temporary variable needed.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i><h4>Right to Left</h4><p>Assignment always happens right to left — the right side is calculated fully before being stored.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-code" aria-hidden="true"></i><h4>Shared Convention</h4><p>Compound assignment operators like += exist in almost every modern programming language.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — END OF TOPIC -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 07</h2>
+          <p class="slide-subtitle">You can now store and update variable values confidently and concisely.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can use = and compound operators like += to update variables.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You know why compound assignment is a useful shortcut.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You won't confuse = with == anymore.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 08</h4>
+              <p>Conditional Operators — compare values to build the conditions your programs will branch on.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

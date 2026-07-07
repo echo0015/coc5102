@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 05 — STRING ACCESS & SLICING
+     16-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 05 — String Access &amp; Slicing | Programming 1</title>
+<meta name="description" content="Learn to access individual characters and extract substrings from Python strings using indexing and slicing." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+        <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_String_Access_and_Slicing.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Arithmetic_Operators.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic07_Assignment_Operators.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic08_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic11_Control_Flow.html" class="topic-link">
+        <span class="topic-num">11</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic12_Python_Loops.html" class="topic-link">
+        <span class="topic-num">12</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic13_Python_Functions.html" class="topic-link">
+        <span class="topic-num">13</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic14_Python_Lists.html" class="topic-link">
+        <span class="topic-num">14</span>
+        <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic15_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">15</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic16_Python_Errors_and_Exceptions.html" class="topic-link">
+        <span class="topic-num">16</span>
+        <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 16</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></div>
+          <h1>String Access &amp; Slicing</h1>
+          <p class="topic-label">Topic 05 &middot; Reaching Into a String for Exactly What You Need</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Access individual characters in a string using indexing.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use negative indexing to count from the end of a string.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Extract substrings using slicing, including a step value.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Explain why strings are immutable in Python.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — STRINGS ARE SEQUENCES -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: Strings Are Sequences">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-font" aria-hidden="true"></i></span> Strings Are Sequences of Characters</h2>
+          <p class="slide-subtitle">A string isn't just one block of text — it's an ordered sequence, one character at a time.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> Every character in a string has a fixed position, called an <strong>index</strong>.</span></li>
+                <li><i class="fa-solid fa-child-reaching" aria-hidden="true"></i><span><strong>Simple explanation:</strong> Think of a string as a row of labeled boxes, each holding one character.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-font" aria-hidden="true"></i></span>
+                <p class="caption">"PYTHON" is 6 characters, each with its own position.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — INDEXING BASICS -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Indexing Basics">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span> Indexing Basics</h2>
+          <p class="slide-subtitle">Use square brackets to access a single character by its position, starting from 0.</p>
+
+          <div class="diagram">
+            <div class="diagram-box"><span>P<br>0</span></div>
+            <div class="diagram-box"><span>Y<br>1</span></div>
+            <div class="diagram-box"><span>T<br>2</span></div>
+            <div class="diagram-box"><span>H<br>3</span></div>
+            <div class="diagram-box"><span>O<br>4</span></div>
+            <div class="diagram-box"><span>N<br>5</span></div>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">indexing.py</span>
+            </div>
+            <pre><code class="language-python">word = "PYTHON"
+print(word[0])   # P
+print(word[3])   # H</code></pre>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>Python counts starting at 0, not 1 — the first character is always index 0.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — NEGATIVE INDEXING -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Negative Indexing">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></span> Negative Indexing</h2>
+          <p class="slide-subtitle">Negative indexes count backward from the end of the string.</p>
+
+          <div class="diagram">
+            <div class="diagram-box"><span>P<br>-6</span></div>
+            <div class="diagram-box"><span>Y<br>-5</span></div>
+            <div class="diagram-box"><span>T<br>-4</span></div>
+            <div class="diagram-box"><span>H<br>-3</span></div>
+            <div class="diagram-box"><span>O<br>-2</span></div>
+            <div class="diagram-box highlight"><span>N<br>-1</span></div>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">negative_index.py</span>
+            </div>
+            <pre><code class="language-python">word = "PYTHON"
+print(word[-1])   # N  (last character)
+print(word[-2])   # O  (second to last)</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span><code>word[-1]</code> is the easiest way to grab the last character, no matter how long the string is.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — STRING LENGTH -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: String Length">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-ruler" aria-hidden="true"></i> Tool</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-ruler-horizontal" aria-hidden="true"></i></span> Finding a String's Length</h2>
+          <p class="slide-subtitle">The len() function counts exactly how many characters are in a string.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">string_length.py</span>
+            </div>
+            <pre><code class="language-python">word = "PYTHON"
+print(len(word))       # 6
+print(word[len(word) - 1])   # N (last character, the long way)</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>The last valid positive index is always <code>len(word) - 1</code>, since counting starts at 0.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — SLICING BASICS -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Slicing Basics">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></span> Slicing Basics</h2>
+          <p class="slide-subtitle">Slicing extracts a whole substring, using word[start:stop].</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">slicing_basics.py</span>
+            </div>
+            <pre><code class="language-python">word = "PYTHON"
+print(word[0:2])   # PY
+print(word[2:5])   # THO</code></pre>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>The slice includes <code>start</code> but stops <strong>before</strong> <code>stop</code> — <code>word[0:2]</code> gives only 2 characters, not 3.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — SLICING WITH STEP -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Slicing with Step">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-shoe-prints" aria-hidden="true"></i></span> Slicing with a Step</h2>
+          <p class="slide-subtitle">A third number, word[start:stop:step], controls how many characters to skip each time.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">slicing_step.py</span>
+            </div>
+            <pre><code class="language-python">word = "PYTHON"
+print(word[0:6:2])   # PTO  (every 2nd character)</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>Step 2 means "take a character, then skip one" — starting at P, then T, then O.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — OMITTING START/STOP/STEP -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Omitting Start Stop Step">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Shortcut</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i></span> Omitting Start, Stop, or Step</h2>
+          <p class="slide-subtitle">Leaving a part blank tells Python to use a sensible default.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Slice</th><th>Meaning</th><th>Result on "PYTHON"</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>word[:3]</code></td><td>From the start up to index 3</td><td>PYT</td></tr>
+                <tr><td><code>word[3:]</code></td><td>From index 3 to the end</td><td>HON</td></tr>
+                <tr><td><code>word[:]</code></td><td>The whole string (a copy)</td><td>PYTHON</td></tr>
+                <tr><td><code>word[::-1]</code></td><td>The whole string, reversed</td><td>NOHTYP</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span><code>word[::-1]</code> is the most popular one-line trick to reverse a string in Python.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — STRINGS ARE IMMUTABLE -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Strings Are Immutable">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-lock" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></span> Strings Are Immutable</h2>
+          <p class="slide-subtitle">Once a string is created, its individual characters can never be changed in place.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">immutable_error.py</span>
+            </div>
+            <pre><code class="language-python">word = "PYTHON"
+word[0] = "J"
+
+# TypeError: 'str' object does not support item assignment</code></pre>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>To "change" a string, you must build a brand-new one, e.g. <code>"J" + word[1:]</code>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — COMMON SLICING PATTERNS -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Common Slicing Patterns">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Reference</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></span> Common Slicing Patterns</h2>
+          <p class="slide-subtitle">A few slicing tricks come up again and again in real programs.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Pattern</th><th>What it Does</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>word[:3]</code></td><td>First 3 characters</td></tr>
+                <tr><td><code>word[-3:]</code></td><td>Last 3 characters</td></tr>
+                <tr><td><code>word[::-1]</code></td><td>Reverse the whole string</td></tr>
+                <tr><td><code>word[::2]</code></td><td>Every other character</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — EXAMPLE SCENARIO -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Example Scenario">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-at" aria-hidden="true"></i></span> Example: Extracting a Username from an Email</h2>
+          <p class="slide-subtitle">Slicing is perfect for pulling out just the part of a string you actually need.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">extract_username.py</span>
+            </div>
+            <pre><code class="language-python">email = "jerico@thelewiscollege.edu.ph"
+at_position = email.find("@")
+
+username = email[:at_position]
+print(username)   # jerico</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span><code>find("@")</code> locates the position of "@", then slicing grabs everything before it.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — SUMMARY -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>word[i] accesses one character; indexing starts at 0.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i><span>Negative indexes count backward from the end.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-scissors" aria-hidden="true"></i><span>word[start:stop:step] slices out a substring.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Strings are immutable — slicing creates new strings, never edits in place.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> What is <code>"HELLO"[0]</code>?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">H</button>
+              <button class="quiz-option" data-correct="false">E</button>
+              <button class="quiz-option" data-correct="false">O</button>
+              <button class="quiz-option" data-correct="false">An error</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> Which index gives you the last character of any string?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">0</button>
+              <button class="quiz-option" data-correct="false">len(word)</button>
+              <button class="quiz-option" data-correct="true">-1</button>
+              <button class="quiz-option" data-correct="false">end</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> What does <code>"HELLO"[1:3]</code> return?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">HEL</button>
+              <button class="quiz-option" data-correct="true">EL</button>
+              <button class="quiz-option" data-correct="false">ELL</button>
+              <button class="quiz-option" data-correct="false">LL</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> Can you change one character of a string directly, like <code>word[0] = "J"</code>?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Yes, always</button>
+              <button class="quiz-option" data-correct="true">No, strings are immutable</button>
+              <button class="quiz-option" data-correct="false">Only for the first character</button>
+              <button class="quiz-option" data-correct="false">Only in loops</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — MINI ACTIVITY -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Predict the Slice</h2>
+          <p class="slide-subtitle">Given <code>word = "PROGRAM"</code>, predict each result before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Count out the positions of "PROGRAM" on your fingers if it helps: P-R-O-G-R-A-M (indexes 0-6).</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> <code>word[0:3]</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>PRO</strong> — indexes 0, 1, 2.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> <code>word[-3:]</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>RAM</strong> — the last 3 characters.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> <code>word[::-1]</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>MARGORP</strong> — the whole string, reversed.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 — FUN FACTS -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Strings</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-globe" aria-hidden="true"></i><h4>Slicing Never Errors on Range</h4><p>Unlike single indexing, slicing outside the string's length just returns less text instead of crashing.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-copy" aria-hidden="true"></i><h4>word[:] Makes a Copy</h4><p>Slicing the entire string with no start or stop creates a full copy, which is a handy trick in more advanced code.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-list-ol" aria-hidden="true"></i><h4>Zero-Based Counting</h4><p>Starting at 0 instead of 1 is called "zero-based indexing" — nearly every modern language does this.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-list" aria-hidden="true"></i><h4>Lists Work the Same Way</h4><p>Everything you learned here — indexing, negative indexing, slicing — works identically on Python lists too.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 — END OF TOPIC -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 05</h2>
+          <p class="slide-subtitle">You can now reach into any string and pull out exactly the characters you need.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can access characters using positive and negative indexing.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can slice out substrings with start, stop, and step.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You understand why strings can't be edited in place.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 06</h4>
+              <p>Arithmetic Operators — perform calculations and predict results using Python's math operators.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -2,11 +2,11 @@
 <html lang="en">
 <!-- =====================================================================
      TOPIC 00 — COURSE INTRODUCTION
-     9-slide deck. Orientation topic: instructor, course description,
-     grading system, topic roadmap, classroom rules. Shares sidebar,
-     topbar, slide engine, and bottom nav markup conventions with every
-     other Topic##_*.html file so the JS engine in assets/js/script.js
-     works identically across the course.
+     10-slide deck. Orientation topic: instructor, course description,
+     grading system, transmutation table, topic roadmap, classroom rules.
+     Shares sidebar, topbar, slide engine, and bottom nav markup
+     conventions with every other Topic##_*.html file so the JS engine
+     in assets/js/script.js works identically across the course.
      ===================================================================== -->
 <head>
 <meta charset="UTF-8" />
@@ -41,7 +41,7 @@
       <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
     </div>
 
-    <nav class="topic-nav">
+        <nav class="topic-nav">
       <a href="Topic00_Course_Introduction.html" class="topic-link active" aria-current="page">
         <span class="topic-num">00</span>
         <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
@@ -62,29 +62,53 @@
         <span class="topic-num">04</span>
         <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic05_Python_Operators.html" class="topic-link">
+      <a href="Topic05_String_Access_and_Slicing.html" class="topic-link">
         <span class="topic-num">05</span>
-        <span class="topic-text"><span class="topic-title">Python Operators</span><br><span class="topic-sub">Python</span></span>
+        <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic06_Flowchart_Fundamentals.html" class="topic-link">
+      <a href="Topic06_Arithmetic_Operators.html" class="topic-link">
         <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic07_Assignment_Operators.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic08_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">10</span>
         <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
       </a>
-      <a href="Topic07_Control_Flow.html" class="topic-link">
-        <span class="topic-num">07</span>
+      <a href="Topic11_Control_Flow.html" class="topic-link">
+        <span class="topic-num">11</span>
         <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
       </a>
-      <a href="Topic08_Python_Loops.html" class="topic-link">
-        <span class="topic-num">08</span>
+      <a href="Topic12_Python_Loops.html" class="topic-link">
+        <span class="topic-num">12</span>
         <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic09_Python_Functions.html" class="topic-link">
-        <span class="topic-num">09</span>
+      <a href="Topic13_Python_Functions.html" class="topic-link">
+        <span class="topic-num">13</span>
         <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic10_Python_File_Stream.html" class="topic-link">
-        <span class="topic-num">10</span>
+      <a href="Topic14_Python_Lists.html" class="topic-link">
+        <span class="topic-num">14</span>
+        <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic15_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">15</span>
         <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic16_Python_Errors_and_Exceptions.html" class="topic-link">
+        <span class="topic-num">16</span>
+        <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
       </a>
     </nav>
 
@@ -101,7 +125,7 @@
         <div class="progress-bar" id="progressBar"></div>
       </div>
       <div class="topbar-right">
-        <span class="slide-counter" id="slideCounter">Slide 1 of 9</span>
+        <span class="slide-counter" id="slideCounter">Slide 1 of 10</span>
         <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
         <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
         <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
@@ -206,19 +230,44 @@
             </table>
           </div>
 
-          <div class="info-box note">
-            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-            <div>
-              <span class="info-label">How Term Grades Roll Up</span>
-              <strong>Midterm Grade</strong> = Prelim Grade (30%) + Midterm Grade (70%)<br>
-              <strong>Final Grade</strong> = Midterm Grade (30%) + Final Grade (70%)
-            </div>
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Period</th><th>Formula</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1st Half</td><td>Prelim (30%) + Midterm (70%)</td></tr>
+                <tr><td>2nd Half</td><td>Prefinals (30%) + Finals (70%)</td></tr>
+                <tr><td><strong>Final Grade</strong></td><td>(1st Half &times; 40%) + (2nd Half &times; 60%)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Passing Mark</span>You need a Final Grade of <strong>60% or higher</strong> to pass this course.</div>
           </div>
         </div>
       </section>
 
-      <!-- SLIDE 5 — COURSE TOPICS ROADMAP -->
-      <section class="slide" data-slide="5" aria-label="Slide 5: Course Topics Roadmap">
+      <!-- SLIDE 5 — TRANSMUTATION TABLE -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: Transmutation Table">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-table" aria-hidden="true"></i> Reference</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-percent" aria-hidden="true"></i></span> Transmutation Table</h2>
+          <p class="slide-subtitle">Use this table to convert a quality point (GPA) into its equivalent numerical grade.</p>
+
+          <img src="assets/images/transmutation-table.jpg" alt="Transmutation table showing quality point to numerical grade conversion. Remarks: P = Passed, F = Failed, FA = Failed due to Absences, D = Dropped, W = Withdrawn, FC = For Compliance." class="slide-image">
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>This is the official College of Computer Studies transmutation table used to convert quality points into numerical grades.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — COURSE TOPICS ROADMAP -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Course Topics Roadmap">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-map" aria-hidden="true"></i> The Journey Ahead</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-road" aria-hidden="true"></i></span> Course Topics</h2>
@@ -229,18 +278,24 @@
             <div class="summary-item"><i class="fa-solid fa-code-branch" aria-hidden="true"></i><span><strong>02</strong> Types of Programming Languages</span></div>
             <div class="summary-item"><i class="fa-brands fa-python" aria-hidden="true"></i><span><strong>03</strong> Basics of Python</span></div>
             <div class="summary-item"><i class="fa-solid fa-database" aria-hidden="true"></i><span><strong>04</strong> Data Types and Variables</span></div>
-            <div class="summary-item"><i class="fa-solid fa-calculator" aria-hidden="true"></i><span><strong>05</strong> Python Operators</span></div>
-            <div class="summary-item"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i><span><strong>06</strong> Flowchart Fundamentals</span></div>
-            <div class="summary-item"><i class="fa-solid fa-route" aria-hidden="true"></i><span><strong>07</strong> Control Flow</span></div>
-            <div class="summary-item"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i><span><strong>08</strong> Python Loops</span></div>
-            <div class="summary-item"><i class="fa-solid fa-cubes" aria-hidden="true"></i><span><strong>09</strong> Python Functions</span></div>
-            <div class="summary-item"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span><strong>10</strong> Python File Stream</span></div>
+            <div class="summary-item"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span><strong>05</strong> String Access &amp; Slicing</span></div>
+            <div class="summary-item"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span><strong>06</strong> Arithmetic Operators</span></div>
+            <div class="summary-item"><i class="fa-solid fa-pen" aria-hidden="true"></i><span><strong>07</strong> Assignment Operators</span></div>
+            <div class="summary-item"><i class="fa-solid fa-code-compare" aria-hidden="true"></i><span><strong>08</strong> Conditional Operators</span></div>
+            <div class="summary-item"><i class="fa-solid fa-code-branch" aria-hidden="true"></i><span><strong>09</strong> Logical Operators</span></div>
+            <div class="summary-item"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i><span><strong>10</strong> Flowchart Fundamentals</span></div>
+            <div class="summary-item"><i class="fa-solid fa-route" aria-hidden="true"></i><span><strong>11</strong> Control Flow</span></div>
+            <div class="summary-item"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i><span><strong>12</strong> Python Loops</span></div>
+            <div class="summary-item"><i class="fa-solid fa-cubes" aria-hidden="true"></i><span><strong>13</strong> Python Functions</span></div>
+            <div class="summary-item"><i class="fa-solid fa-list-ul" aria-hidden="true"></i><span><strong>14</strong> Python Lists</span></div>
+            <div class="summary-item"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span><strong>15</strong> Python File Stream</span></div>
+            <div class="summary-item"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span><strong>16</strong> Python Errors &amp; Exceptions</span></div>
           </div>
         </div>
       </section>
 
-      <!-- SLIDE 6 — CLASSROOM RULES -->
-      <section class="slide" data-slide="6" aria-label="Slide 6: Classroom Rules">
+      <!-- SLIDE 7 — CLASSROOM RULES -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Classroom Rules">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-gavel" aria-hidden="true"></i> Ground Rules</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-people-roof" aria-hidden="true"></i></span> Classroom Rules</h2>
@@ -269,8 +324,8 @@
         </div>
       </section>
 
-      <!-- SLIDE 7 — WORDS OF MOTIVATION -->
-      <section class="slide" data-slide="7" aria-label="Slide 7: Words of Motivation">
+      <!-- SLIDE 8 — WORDS OF MOTIVATION -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Words of Motivation">
         <div class="slide-inner quote-slide">
           <blockquote>
             <i class="fa-solid fa-quote-left" aria-hidden="true"></i>Don't chase easy tasks when studying. Choose the hard ones&mdash;they teach you more.
@@ -279,8 +334,8 @@
         </div>
       </section>
 
-      <!-- SLIDE 8 — QUICK RECAP -->
-      <section class="slide" data-slide="8" aria-label="Slide 8: Quick Recap">
+      <!-- SLIDE 9 — QUICK RECAP -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Quick Recap">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Quick Recap</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Did That Stick?</h2>
@@ -295,7 +350,7 @@
           <div class="quiz-question">
             <h4><span class="q-num">B</span> How is your Final Grade calculated?</h4>
             <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
-            <div class="reveal-answer">Answer: <strong>Midterm Grade (30%) + Final Grade (70%)</strong></div>
+            <div class="reveal-answer">Answer: <strong>(1st Half &times; 40%) + (2nd Half &times; 60%)</strong></div>
           </div>
 
           <div class="quiz-question">
@@ -306,8 +361,8 @@
         </div>
       </section>
 
-      <!-- SLIDE 9 — END OF TOPIC -->
-      <section class="slide" data-slide="9" aria-label="Slide 9: End of Topic">
+      <!-- SLIDE 10 — END OF TOPIC -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: End of Topic">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-comments" aria-hidden="true"></i> Question Session</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Any Questions?</h2>

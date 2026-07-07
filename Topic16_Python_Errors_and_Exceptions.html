@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 16 — PYTHON ERRORS & EXCEPTIONS
+     17-slide deck. Final topic of the course. Shares sidebar, topbar,
+     slide engine, and bottom nav markup conventions with every other
+     Topic##_*.html file so the JS engine in assets/js/script.js works
+     identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 16 — Python Errors &amp; Exceptions | Programming 1</title>
+<meta name="description" content="Learn to handle problems gracefully in Python using try, except, else, finally, and raise instead of letting your program crash." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+        <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_String_Access_and_Slicing.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Arithmetic_Operators.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic07_Assignment_Operators.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic08_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic11_Control_Flow.html" class="topic-link">
+        <span class="topic-num">11</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic12_Python_Loops.html" class="topic-link">
+        <span class="topic-num">12</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic13_Python_Functions.html" class="topic-link">
+        <span class="topic-num">13</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic14_Python_Lists.html" class="topic-link">
+        <span class="topic-num">14</span>
+        <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic15_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">15</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic16_Python_Errors_and_Exceptions.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">16</span>
+        <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 17</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
+          <h1>Python Errors &amp; Exceptions</h1>
+          <p class="topic-label">Topic 16 &middot; Handling Problems Gracefully with try/except</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Differentiate between syntax errors and runtime errors (exceptions).</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Identify common types of exceptions in Python.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use try/except to handle errors without crashing the program.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use else, finally, and raise to control exception flow.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS AN ERROR -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is an Error">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-bug" aria-hidden="true"></i></span> What is an Error?</h2>
+          <p class="slide-subtitle">An error is anything that stops your program from running the way you expected.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-code" aria-hidden="true"></i><span><strong>Syntax Errors:</strong> Break Python's grammar rules — the program can't even start.</span></li>
+                <li><i class="fa-solid fa-bolt" aria-hidden="true"></i><span><strong>Runtime Errors (Exceptions):</strong> The code is valid, but something goes wrong while it's running.</span></li>
+              </ul>
+              <div class="info-box tip">
+                <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+                <div><span class="info-label">Tip</span>Errors aren't a sign you're bad at programming — every programmer, beginner or expert, deals with them daily.</div>
+              </div>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></span>
+                <p class="caption">An error is Python's way of saying "something's not right here."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — SYNTAX ERRORS -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Syntax Errors">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Error Type</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></span> Syntax Errors</h2>
+          <p class="slide-subtitle">A syntax error means your code breaks Python's grammar rules, so it never even starts running.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">syntax_error.py</span>
+            </div>
+            <pre><code class="language-python">if age >= 18
+    print("Adult")
+
+# SyntaxError: expected ':'</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Syntax errors are usually easy to fix — Python tells you exactly which line looks wrong, before your program ever runs.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — RUNTIME ERRORS -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Runtime Errors">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Error Type</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span> Runtime Errors (Exceptions)</h2>
+          <p class="slide-subtitle">The code is written correctly, but something unexpected happens while it's actually running.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">runtime_error.py</span>
+            </div>
+            <pre><code class="language-python">number = 10
+result = number / 0
+
+# ZeroDivisionError: division by zero</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>This code is perfectly valid Python — the problem only shows up once it actually tries to divide by zero.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — COMMON EXCEPTION TYPES -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: Common Exception Types">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-list" aria-hidden="true"></i> Reference</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-table-list" aria-hidden="true"></i></span> Common Exception Types</h2>
+          <p class="slide-subtitle">Python gives each kind of runtime problem its own named exception.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Exception</th><th>Happens When...</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>ValueError</code></td><td>A value has the right type but an invalid value, e.g. <code>int("abc")</code></td></tr>
+                <tr><td><code>TypeError</code></td><td>An operation is used on the wrong data type, e.g. <code>"2" + 2</code></td></tr>
+                <tr><td><code>ZeroDivisionError</code></td><td>Dividing a number by zero</td></tr>
+                <tr><td><code>IndexError</code></td><td>Accessing a list position that doesn't exist</td></tr>
+                <tr><td><code>KeyError</code></td><td>Looking up a dictionary key that doesn't exist</td></tr>
+                <tr><td><code>FileNotFoundError</code></td><td>Opening a file that doesn't exist</td></tr>
+                <tr><td><code>NameError</code></td><td>Using a variable that was never defined</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — THE TRY/EXCEPT STATEMENT -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: The try except Statement">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span> The try/except Statement</h2>
+          <p class="slide-subtitle">try/except lets your program recover from an error instead of crashing.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">basic_try_except.py</span>
+            </div>
+            <pre><code class="language-python">try:
+    number = int(input("Enter a number: "))
+    print("You entered:", number)
+except:
+    print("That wasn't a valid number.")</code></pre>
+          </div>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-1" aria-hidden="true"></i><span>Python runs the code inside <code>try</code> first.</span></li>
+            <li><i class="fa-solid fa-2" aria-hidden="true"></i><span>If an exception happens, Python immediately jumps to the <code>except</code> block instead of crashing.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — CATCHING SPECIFIC EXCEPTIONS -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Catching Specific Exceptions">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Best Practice</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-crosshairs" aria-hidden="true"></i></span> Catching Specific Exceptions</h2>
+          <p class="slide-subtitle">Naming the exact exception type is safer than catching every possible error the same way.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">specific_except.py</span>
+            </div>
+            <pre><code class="language-python">try:
+    number = int(input("Enter a number: "))
+except ValueError:
+    print("Please enter a valid whole number.")</code></pre>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>A bare <code>except:</code> catches everything, even mistakes you didn't expect — that can hide real bugs. Naming the exception keeps you in control.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — MULTIPLE EXCEPT BLOCKS -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Multiple except Blocks">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span> Multiple except Blocks</h2>
+          <p class="slide-subtitle">You can handle different kinds of errors differently, in the same try statement.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">multiple_except.py</span>
+            </div>
+            <pre><code class="language-python">try:
+    divisor = int(input("Enter a divisor: "))
+    result = 10 / divisor
+    print("Result:", result)
+except ValueError:
+    print("That's not a number.")
+except ZeroDivisionError:
+    print("Cannot divide by zero.")</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Python checks each <code>except</code> in order and runs only the first one that matches the error that occurred.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — THE ELSE CLAUSE -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: The else Clause">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-check" aria-hidden="true"></i></span> The else Clause</h2>
+          <p class="slide-subtitle">The else block runs only when the try block succeeds with no exception at all.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">try_else.py</span>
+            </div>
+            <pre><code class="language-python">try:
+    number = int(input("Enter a number: "))
+except ValueError:
+    print("Invalid input.")
+else:
+    print("You entered:", number)</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>Use <code>else</code> for code that should only run when nothing went wrong &mdash; keeping it separate from the risky code in <code>try</code>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — THE FINALLY CLAUSE -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: The finally Clause">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i></span> The finally Clause</h2>
+          <p class="slide-subtitle">The finally block always runs — whether an exception happened or not.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">try_finally.py</span>
+            </div>
+            <pre><code class="language-python">try:
+    file = open("data.txt", "r")
+except FileNotFoundError:
+    print("File not found.")
+finally:
+    print("Done attempting to open the file.")</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span><code>finally</code> is perfect for cleanup steps, like closing a file, that must happen no matter what.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — RAISING EXCEPTIONS MANUALLY -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Raising Exceptions Manually">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-hand-point-up" aria-hidden="true"></i></span> Raising Exceptions Manually</h2>
+          <p class="slide-subtitle">The raise keyword lets you trigger your own exception when something doesn't make sense.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">raise_demo.py</span>
+            </div>
+            <pre><code class="language-python">age = -5
+
+if age < 0:
+    raise ValueError("Age cannot be negative.")</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Raising your own exceptions helps catch invalid data early, with a clear message about what went wrong.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — EXAMPLE SCENARIO -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Example Scenario">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-keyboard" aria-hidden="true"></i></span> Example: Validating User Input</h2>
+          <p class="slide-subtitle">Combining a loop with try/except keeps asking until the user gives valid input.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">validate_input.py</span>
+            </div>
+            <pre><code class="language-python">while True:
+    try:
+        age = int(input("Enter your age: "))
+        break
+    except ValueError:
+        print("Please enter a whole number.")
+
+print("Thanks! You are", age, "years old.")</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>The loop only stops (<code>break</code>) once the user finally types something valid &mdash; no crash, no confusion.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — SUMMARY -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-code" aria-hidden="true"></i><span>Syntax errors break Python's grammar; exceptions happen while running.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>try/except catches errors so your program doesn't crash.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-check" aria-hidden="true"></i><span>else runs on success; finally always runs for cleanup.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-hand-point-up" aria-hidden="true"></i><span>raise lets you trigger your own exception on invalid data.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> Which exception happens when you divide a number by zero?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">ValueError</button>
+              <button class="quiz-option" data-correct="true">ZeroDivisionError</button>
+              <button class="quiz-option" data-correct="false">TypeError</button>
+              <button class="quiz-option" data-correct="false">KeyError</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> Which block always runs, whether an exception occurred or not?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">try</button>
+              <button class="quiz-option" data-correct="false">except</button>
+              <button class="quiz-option" data-correct="false">else</button>
+              <button class="quiz-option" data-correct="true">finally</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> Which keyword lets you trigger your own exception?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">throw</button>
+              <button class="quiz-option" data-correct="true">raise</button>
+              <button class="quiz-option" data-correct="false">except</button>
+              <button class="quiz-option" data-correct="false">error</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> A syntax error is best described as...</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">An error that only appears while the program is running</button>
+              <button class="quiz-option" data-correct="true">A mistake in Python's grammar that stops the program from starting</button>
+              <button class="quiz-option" data-correct="false">A missing file on the computer</button>
+              <button class="quiz-option" data-correct="false">A slow-running program</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 — MINI ACTIVITY -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Name That Exception</h2>
+          <p class="slide-subtitle">Guess which exception each snippet raises, then reveal the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Read each code snippet and think about what kind of problem it would cause when run.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> <code>int("hello")</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>ValueError</strong> &mdash; "hello" cannot be converted into a number.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> <code>numbers = [1, 2, 3]</code><br><code>print(numbers[5])</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>IndexError</strong> &mdash; position 5 doesn't exist in a 3-item list.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> <code>print(total)</code> <em>(without ever creating total)</em></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>NameError</strong> &mdash; the variable total was never defined.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 — FUN FACTS -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Errors &amp; Exceptions</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><h4>Everything is an Exception</h4><p>In Python, even things like ZeroDivisionError are objects built from a common base class called Exception.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i><h4>Older Than You Think</h4><p>Try/except style error handling has existed in programming languages since the 1960s.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-rocket" aria-hidden="true"></i><h4>Used in Real Software</h4><p>Every app that shows "Something went wrong, please try again" instead of crashing is using exception handling like this.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><h4>Better Safe Than Sorry</h4><p>Professional Python code almost always wraps file access and user input in try/except, since those are the most error-prone operations.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 17 — END OF COURSE -->
+      <section class="slide" data-slide="17" aria-label="Slide 17: End of Course">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Congratulations!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> You've Completed Programming 1!</h2>
+          <p class="slide-subtitle">You now have a solid foundation in computer basics and Python programming, including how to handle errors gracefully — ready for whatever comes next.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can catch and handle exceptions instead of crashing.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can write complete, resilient Python programs from scratch.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You're ready to keep exploring more advanced programming topics.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-champagne-glasses" aria-hidden="true"></i>
+            <div>
+              <h4>Congratulations, Programmer!</h4>
+              <p>Keep practicing, keep building small projects, and keep exploring — this is only the beginning of your programming journey.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

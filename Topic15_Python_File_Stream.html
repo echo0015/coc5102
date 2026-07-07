@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 15 — PYTHON FILE STREAM
+     16-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 15 — Python File Stream | Programming 1</title>
+<meta name="description" content="Learn how Python programs read from and write to files so data can be saved permanently." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+        <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_String_Access_and_Slicing.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Arithmetic_Operators.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic07_Assignment_Operators.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic08_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic11_Control_Flow.html" class="topic-link">
+        <span class="topic-num">11</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic12_Python_Loops.html" class="topic-link">
+        <span class="topic-num">12</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic13_Python_Functions.html" class="topic-link">
+        <span class="topic-num">13</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic14_Python_Lists.html" class="topic-link">
+        <span class="topic-num">14</span>
+        <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic15_Python_File_Stream.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">15</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic16_Python_Errors_and_Exceptions.html" class="topic-link">
+        <span class="topic-num">16</span>
+        <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 16</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></div>
+          <h1>Python File Stream</h1>
+          <p class="topic-label">Topic 15 &middot; Making Your Programs Remember Data</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Open, read, and close a text file in Python.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Write and append data to a file.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Explain the purpose of file modes (r, w, a).</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use the with statement to handle files safely.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS FILE HANDLING -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is File Handling">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-folder-open" aria-hidden="true"></i></span> What is File Handling?</h2>
+          <p class="slide-subtitle">Variables disappear once a program ends — files let your data survive after the program closes.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> File handling means reading data from, or writing data to, files stored on disk.</span></li>
+                <li><i class="fa-solid fa-memory" aria-hidden="true"></i><span><strong>Why it matters:</strong> Without files, every variable's value is lost the moment your program stops running.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span>
+                <p class="caption">Files let programs save information permanently.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — OPENING A FILE -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Opening a File">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-folder-open" aria-hidden="true"></i></span> Opening a File</h2>
+          <p class="slide-subtitle">The open() function is the starting point for any file operation in Python.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">open_file.py</span>
+            </div>
+            <pre><code class="language-python">file = open("notes.txt", "r")</code></pre>
+          </div>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Mode</th><th>Meaning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>"r"</code></td><td>Read — opens a file for reading only (default mode)</td></tr>
+                <tr><td><code>"w"</code></td><td>Write — creates a new file or erases an existing one</td></tr>
+                <tr><td><code>"a"</code></td><td>Append — adds new content to the end without erasing what's there</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — READING A FILE -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Reading a File">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span> Reading a File</h2>
+          <p class="slide-subtitle">Python offers a few different ways to read the contents of a file.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Method</th><th>Reads</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>read()</code></td><td>The entire file, as one single string</td></tr>
+                <tr><td><code>readline()</code></td><td>Just one line at a time</td></tr>
+                <tr><td><code>readlines()</code></td><td>All lines, as a list of strings</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">read_file.py</span>
+            </div>
+            <pre><code class="language-python">file = open("notes.txt", "r")
+content = file.read()
+print(content)
+file.close()</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — WRITING TO A FILE -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: Writing to a File">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span> Writing to a File</h2>
+          <p class="slide-subtitle">Opening a file in "w" mode lets you write new content into it.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">write_file.py</span>
+            </div>
+            <pre><code class="language-python">file = open("notes.txt", "w")
+file.write("Hello, this is my first saved note!")
+file.close()</code></pre>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>"w" mode <strong>erases</strong> the file's previous contents before writing — use "a" mode instead if you want to keep what's already there.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — APPENDING TO A FILE -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Appending to a File">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-plus" aria-hidden="true"></i></span> Appending to a File</h2>
+          <p class="slide-subtitle">The "a" mode adds new content to the end of a file, keeping everything that was already there.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">append_file.py</span>
+            </div>
+            <pre><code class="language-python">file = open("notes.txt", "a")
+file.write("\nThis line was added later.")
+file.close()</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>A logging system that records new events every day would always use append mode, never write mode.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — CLOSING A FILE -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Closing a File">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-lock" aria-hidden="true"></i> Best Practice</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-xmark" aria-hidden="true"></i></span> Closing a File</h2>
+          <p class="slide-subtitle">Always close a file once you're finished with it.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i><span><strong>Saves changes:</strong> Closing ensures anything you wrote is properly saved to disk.</span></li>
+            <li><i class="fa-solid fa-lock-open" aria-hidden="true"></i><span><strong>Frees resources:</strong> An open file can block other programs (or parts of your own program) from using it.</span></li>
+          </ul>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">close_file.py</span>
+            </div>
+            <pre><code class="language-python">file = open("notes.txt", "r")
+content = file.read()
+file.close()   # always remember this step!</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — THE WITH STATEMENT -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: The with Statement">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Best Practice</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-check-double" aria-hidden="true"></i></span> The with Statement</h2>
+          <p class="slide-subtitle">The with statement automatically closes a file for you, even if an error happens.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">with_statement.py</span>
+            </div>
+            <pre><code class="language-python">with open("notes.txt", "r") as file:
+    content = file.read()
+    print(content)
+
+# File is automatically closed here!</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>Most professional Python code uses <code>with</code> instead of manually calling <code>close()</code> — it's safer and easy to forget otherwise.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — EXAMPLE SCENARIO -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Example Scenario">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list-check" aria-hidden="true"></i></span> Example: A Simple To-Do List Saver</h2>
+          <p class="slide-subtitle">Let's write a program that saves a task, then reads it back.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">todo_saver.py</span>
+            </div>
+            <pre><code class="language-python">with open("tasks.txt", "a") as file:
+    file.write("Finish Programming 1 homework\n")
+
+with open("tasks.txt", "r") as file:
+    print(file.read())</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Each time this program runs, a new task line is appended, and the file keeps growing over time.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — COMMON ERRORS -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Common Errors">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Watch Out</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-bug" aria-hidden="true"></i></span> Common Error: FileNotFoundError</h2>
+          <p class="slide-subtitle">Trying to read a file that doesn't exist yet causes a common beginner error.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">error_example.py</span>
+            </div>
+            <pre><code class="language-python">with open("missing_file.txt", "r") as file:
+    print(file.read())
+
+# FileNotFoundError: [Errno 2] No such file or directory</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>Reading requires the file to already exist, but writing ("w") or appending ("a") will automatically create it if it's missing.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — SUMMARY -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-folder-open" aria-hidden="true"></i><span>open() opens a file in read ("r"), write ("w"), or append ("a") mode.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>read(), readline(), and readlines() all read file content differently.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i><span>write() saves new content into a file.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>The with statement handles closing the file safely and automatically.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> Which mode erases a file's existing contents before writing?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">"r"</button>
+              <button class="quiz-option" data-correct="true">"w"</button>
+              <button class="quiz-option" data-correct="false">"a"</button>
+              <button class="quiz-option" data-correct="false">"x"</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> Which mode adds new content without erasing what's already there?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">"r"</button>
+              <button class="quiz-option" data-correct="false">"w"</button>
+              <button class="quiz-option" data-correct="true">"a"</button>
+              <button class="quiz-option" data-correct="false">"c"</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> What is the main benefit of the with statement?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">It makes files bigger</button>
+              <button class="quiz-option" data-correct="true">It automatically closes the file for you</button>
+              <button class="quiz-option" data-correct="false">It reads files faster</button>
+              <button class="quiz-option" data-correct="false">It deletes old files</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> Trying to read a file that doesn't exist causes...</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">A new blank file to be created</button>
+              <button class="quiz-option" data-correct="true">A FileNotFoundError</button>
+              <button class="quiz-option" data-correct="false">Nothing at all</button>
+              <button class="quiz-option" data-correct="false">The program to pause forever</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — MINI ACTIVITY -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Pick the Right Mode</h2>
+          <p class="slide-subtitle">For each scenario, guess which file mode should be used before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Think about whether each scenario needs to read, overwrite, or add on to a file.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> "Show the user everything currently saved in their notes file."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>"r" (Read mode)</strong></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> "Add today's new log entry without deleting yesterday's."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>"a" (Append mode)</strong></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> "Completely replace an old save file with a fresh, brand-new one."</h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>"w" (Write mode)</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — FUN FACTS -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About File Handling</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-file-csv" aria-hidden="true"></i><h4>Beyond .txt Files</h4><p>Python can also read and write CSV, JSON, and even image files using the same core ideas.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-database" aria-hidden="true"></i><h4>Every App Uses This</h4><p>Every time you save a document or a game, the software behind it is doing file writing just like this.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i><h4>Foundation of Databases</h4><p>Even complex databases are, deep down, built on the same idea of reading and writing files.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-code-compare" aria-hidden="true"></i><h4>Cross-Platform</h4><p>The same file-handling code works the same way on Windows, macOS, and Linux.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 — COURSE SUMMARY -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Course Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-road" aria-hidden="true"></i> Looking Back</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-map" aria-hidden="true"></i></span> Your Journey Through Programming 1</h2>
+          <p class="slide-subtitle">From understanding computers to writing complete Python programs — look how far you've come.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-desktop" aria-hidden="true"></i><span>Topics 00&ndash;02: Orientation, computers, and languages.</span></div>
+            <div class="summary-item"><i class="fa-brands fa-python" aria-hidden="true"></i><span>Topics 03&ndash;05: Python basics, data types, and string slicing.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-code-compare" aria-hidden="true"></i><span>Topics 06&ndash;09: Arithmetic, assignment, conditional, and logical operators.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i><span>Topics 10&ndash;13: Flowcharts, control flow, loops, and functions.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>Topics 14&ndash;16: Lists, file handling, and error handling.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 — END OF TOPIC -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 15</h2>
+          <p class="slide-subtitle">You now know how to make your programs remember data between runs — a huge step toward writing real, practical software.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can read, write, and append data to files safely.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can write complete Python programs from scratch.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You're ready to make your programs more robust against errors.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 16</h4>
+              <p>Python Errors &amp; Exceptions — handle problems gracefully with try/except instead of letting your program crash.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

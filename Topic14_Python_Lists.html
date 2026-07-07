@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 14 — PYTHON LISTS
+     18-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 14 — Python Lists | Programming 1</title>
+<meta name="description" content="Learn to create, access, modify, and loop through Python lists — the most common way to store multiple values." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+        <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_String_Access_and_Slicing.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Arithmetic_Operators.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic07_Assignment_Operators.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic08_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic11_Control_Flow.html" class="topic-link">
+        <span class="topic-num">11</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic12_Python_Loops.html" class="topic-link">
+        <span class="topic-num">12</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic13_Python_Functions.html" class="topic-link">
+        <span class="topic-num">13</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic14_Python_Lists.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">14</span>
+        <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic15_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">15</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic16_Python_Errors_and_Exceptions.html" class="topic-link">
+        <span class="topic-num">16</span>
+        <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 18</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-list-ul" aria-hidden="true"></i></div>
+          <h1>Python Lists</h1>
+          <p class="topic-label">Topic 14 &middot; Storing Many Values in One Place</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Create a list and access its elements.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Modify, add, and remove list elements.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use common list methods and the len() function.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Loop through a list to process every item.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS A LIST -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is a List">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list-ul" aria-hidden="true"></i></span> What is a List?</h2>
+          <p class="slide-subtitle">A list is an ordered collection that can hold many values in a single variable.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> A list stores multiple values together, in order, under one name.</span></li>
+                <li><i class="fa-solid fa-child-reaching" aria-hidden="true"></i><span><strong>Simple explanation:</strong> Instead of five separate variables for five grades, one list can hold all five.</span></li>
+                <li><i class="fa-solid fa-pen" aria-hidden="true"></i><span><strong>Mutable:</strong> Unlike strings, a list's contents CAN be changed after it's created.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-list-ul" aria-hidden="true"></i></span>
+                <p class="caption">A list is like a row of labeled slots, each holding one value.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — CREATING A LIST -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Creating a List">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-plus" aria-hidden="true"></i></span> Creating a List</h2>
+          <p class="slide-subtitle">Square brackets and commas are all it takes to build a list.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">create_list.py</span>
+            </div>
+            <pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
+grades = [88, 92, 79, 95]
+mixed = ["Maria", 18, True]
+
+print(fruits)</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>A single list can even hold different data types mixed together, like the <code>mixed</code> example above.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — ACCESSING LIST ELEMENTS -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Accessing List Elements">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span> Accessing List Elements</h2>
+          <p class="slide-subtitle">Lists use the same zero-based indexing you already know from strings.</p>
+
+          <div class="diagram">
+            <div class="diagram-box"><span>apple<br>0</span></div>
+            <div class="diagram-box"><span>banana<br>1</span></div>
+            <div class="diagram-box highlight"><span>cherry<br>2</span></div>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">access_list.py</span>
+            </div>
+            <pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
+print(fruits[0])    # apple
+print(fruits[-1])   # cherry (last item)</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — LIST SLICING -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: List Slicing">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-scissors" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></span> List Slicing</h2>
+          <p class="slide-subtitle">Just like strings, lists can be sliced to grab a range of items.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">slice_list.py</span>
+            </div>
+            <pre><code class="language-python">numbers = [10, 20, 30, 40, 50]
+print(numbers[1:3])   # [20, 30]
+print(numbers[:2])    # [10, 20]
+print(numbers[::-1])  # [50, 40, 30, 20, 10]</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>Everything you learned about string slicing in Topic 05 applies to lists too.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — MODIFYING LIST ELEMENTS -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Modifying List Elements">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span> Modifying List Elements</h2>
+          <p class="slide-subtitle">Unlike strings, lists are mutable — you can change an item after the list is created.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">modify_list.py</span>
+            </div>
+            <pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
+fruits[1] = "blueberry"
+print(fruits)   # ['apple', 'blueberry', 'cherry']</code></pre>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>This is the key difference from strings — <code>fruits[1] = "blueberry"</code> works fine, but the same line on a string would cause an error.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — ADDING ELEMENTS -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Adding Elements">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-plus" aria-hidden="true"></i></span> Adding Elements</h2>
+          <p class="slide-subtitle">Lists can grow after they're created, using append() or insert().</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Method</th><th>What it Does</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>append(x)</code></td><td>Adds x to the end of the list</td></tr>
+                <tr><td><code>insert(i, x)</code></td><td>Adds x at position i, shifting the rest over</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">add_to_list.py</span>
+            </div>
+            <pre><code class="language-python">fruits = ["apple", "banana"]
+fruits.append("cherry")
+fruits.insert(1, "kiwi")
+print(fruits)   # ['apple', 'kiwi', 'banana', 'cherry']</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — REMOVING ELEMENTS -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Removing Elements">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trash" aria-hidden="true"></i></span> Removing Elements</h2>
+          <p class="slide-subtitle">Python gives you a few different ways to remove items from a list.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Method</th><th>What it Does</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>remove(x)</code></td><td>Removes the first item that matches value x</td></tr>
+                <tr><td><code>pop(i)</code></td><td>Removes and returns the item at position i (last item if i is left blank)</td></tr>
+                <tr><td><code>del list[i]</code></td><td>Deletes the item at position i</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">remove_from_list.py</span>
+            </div>
+            <pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
+fruits.remove("banana")
+print(fruits)   # ['apple', 'cherry']</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — COMMON LIST METHODS -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Common List Methods">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Reference</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></span> Common List Methods</h2>
+          <p class="slide-subtitle">A handful of built-in methods handle almost everything you'll need to do with a list.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Method / Function</th><th>What it Does</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>len(list)</code></td><td>Counts how many items are in the list</td></tr>
+                <tr><td><code>sort()</code></td><td>Sorts the list in place, smallest to largest</td></tr>
+                <tr><td><code>reverse()</code></td><td>Reverses the order of the list in place</td></tr>
+                <tr><td><code>count(x)</code></td><td>Counts how many times x appears</td></tr>
+                <tr><td><code>index(x)</code></td><td>Finds the position of the first x</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — LOOPING THROUGH A LIST -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Looping Through a List">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-rotate" aria-hidden="true"></i></span> Looping Through a List</h2>
+          <p class="slide-subtitle">A for loop can visit every item in a list, one at a time.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">loop_list.py</span>
+            </div>
+            <pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
+
+for fruit in fruits:
+    print(fruit)</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>This is by far the most common way lists and loops (Topic 09... now Topic 12) are used together in real programs.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — CHECKING MEMBERSHIP -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Checking Membership">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Checking Membership with in</h2>
+          <p class="slide-subtitle">The in keyword checks whether a value exists anywhere in a list.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">membership.py</span>
+            </div>
+            <pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
+
+print("banana" in fruits)      # True
+print("mango" in fruits)       # False</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span><code>if "mango" in fruits:</code> combines membership checking directly with the conditions you learned in Topic 08.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — NESTED LISTS -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Nested Lists">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-table-cells" aria-hidden="true"></i></span> Nested Lists</h2>
+          <p class="slide-subtitle">A list can even contain other lists — handy for grids or tables of data.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">nested_list.py</span>
+            </div>
+            <pre><code class="language-python">grid = [
+    [1, 2, 3],
+    [4, 5, 6]
+]
+
+print(grid[0])      # [1, 2, 3]
+print(grid[0][1])   # 2</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span><code>grid[0][1]</code> means "get row 0, then item 1 from that row" — two indexes, one for each level.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — EXAMPLE SCENARIO -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Example Scenario">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></span> Example: Averaging a List of Grades</h2>
+          <p class="slide-subtitle">Combining a list with a loop is one of the most useful patterns in programming.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">average_grades.py</span>
+            </div>
+            <pre><code class="language-python">grades = [88, 92, 79, 95]
+total = 0
+
+for grade in grades:
+    total += grade
+
+average = total / len(grades)
+print("Average:", average)   # Average: 88.5</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — SUMMARY -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-list-ul" aria-hidden="true"></i><span>Lists store multiple values, in order, under one variable name.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-pen" aria-hidden="true"></i><span>Lists are mutable: add with append/insert, remove with remove/pop/del.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i><span>A for loop can process every item in a list.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>The in keyword checks whether a value exists in a list.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> Which method adds an item to the end of a list?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">insert()</button>
+              <button class="quiz-option" data-correct="true">append()</button>
+              <button class="quiz-option" data-correct="false">add()</button>
+              <button class="quiz-option" data-correct="false">push()</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> Unlike strings, lists are...</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Immutable</button>
+              <button class="quiz-option" data-correct="true">Mutable</button>
+              <button class="quiz-option" data-correct="false">Read-only</button>
+              <button class="quiz-option" data-correct="false">Fixed-size</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> What does <code>len(["a","b","c"])</code> return?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">2</button>
+              <button class="quiz-option" data-correct="true">3</button>
+              <button class="quiz-option" data-correct="false">"abc"</button>
+              <button class="quiz-option" data-correct="false">An error</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 — MINI ACTIVITY -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Predict the List</h2>
+          <p class="slide-subtitle">Trace through each snippet and guess the final list before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Start with <code>nums = [1, 2, 3]</code> for each question below.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> <code>nums.append(4)</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>[1, 2, 3, 4]</strong> — append adds to the end.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> <code>nums.remove(2)</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>[1, 3]</strong> — the value 2 is removed.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> <code>nums.reverse()</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>[3, 2, 1]</strong> — the order flips.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 17 — FUN FACTS -->
+      <section class="slide" data-slide="17" aria-label="Slide 17: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Lists</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-shapes" aria-hidden="true"></i><h4>Lists Can Mix Types</h4><p>A single Python list can hold numbers, strings, and booleans all at once — no type restriction required.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-database" aria-hidden="true"></i><h4>Foundation of Data</h4><p>Lists are the building block for many other data tools in Python, including data science libraries like pandas.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-bolt" aria-hidden="true"></i><h4>Dynamic Sizing</h4><p>Unlike arrays in some languages, Python lists automatically grow or shrink as you add or remove items.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-code-compare" aria-hidden="true"></i><h4>List Comprehensions</h4><p>Advanced Python lets you build a list in a single line, like <code>[x*2 for x in nums]</code> — a topic for later!</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 18 — END OF TOPIC -->
+      <section class="slide" data-slide="18" aria-label="Slide 18: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 14</h2>
+          <p class="slide-subtitle">You can now store, modify, and process collections of data using Python lists.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can create, access, and modify lists.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can add, remove, and loop through list items.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You're ready to make your programs remember data permanently.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 15</h4>
+              <p>Python File Stream — read from and write to files so your programs can remember data.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

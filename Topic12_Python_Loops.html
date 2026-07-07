@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 12 — PYTHON LOOPS
+     16-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 12 — Python Loops | Programming 1</title>
+<meta name="description" content="Discover how to repeat actions efficiently using for loops and while loops." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+        <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_String_Access_and_Slicing.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Arithmetic_Operators.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic07_Assignment_Operators.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic08_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic11_Control_Flow.html" class="topic-link">
+        <span class="topic-num">11</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic12_Python_Loops.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">12</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic13_Python_Functions.html" class="topic-link">
+        <span class="topic-num">13</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic14_Python_Lists.html" class="topic-link">
+        <span class="topic-num">14</span>
+        <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic15_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">15</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic16_Python_Errors_and_Exceptions.html" class="topic-link">
+        <span class="topic-num">16</span>
+        <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 16</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></div>
+          <h1>Python Loops</h1>
+          <p class="topic-label">Topic 12 &middot; Repeating Actions Without Repeating Code</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Explain why loops are used to avoid repetitive code.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Write a for loop to iterate over a range or sequence.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Write a while loop with a clear stopping condition.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use break and continue to control loop execution.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS A LOOP -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is a Loop">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-rotate" aria-hidden="true"></i></span> What is a Loop?</h2>
+          <p class="slide-subtitle">A loop repeats a block of code multiple times, without you having to write it over and over.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> A loop is a control structure that repeats a set of instructions while a condition holds.</span></li>
+                <li><i class="fa-solid fa-child-reaching" aria-hidden="true"></i><span><strong>Simple explanation:</strong> Instead of writing <code>print("Hi")</code> five times, a loop can do it for you in just two lines.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></span>
+                <p class="caption">Loops turn "do this once" into "do this many times."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — WHY USE LOOPS -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Why Use Loops">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-heart" aria-hidden="true"></i> Why It Matters</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-recycle" aria-hidden="true"></i></span> Why Use Loops?</h2>
+          <p class="slide-subtitle">Loops make code shorter, cleaner, and much easier to maintain.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">without_loop.py</span>
+            </div>
+            <pre><code class="language-python">print("Hi")
+print("Hi")
+print("Hi")
+print("Hi")
+print("Hi")</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">with_loop.py</span>
+            </div>
+            <pre><code class="language-python">for i in range(5):
+    print("Hi")</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — THE FOR LOOP -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: The for Loop">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span> The for Loop</h2>
+          <p class="slide-subtitle">A for loop repeats code once for every item in a sequence, such as a range of numbers.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">for_loop.py</span>
+            </div>
+            <pre><code class="language-python">for i in range(5):
+    print(i)
+
+# Output: 0 1 2 3 4</code></pre>
+          </div>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-1" aria-hidden="true"></i><span><code>i</code> is the loop variable — it changes on every repeat.</span></li>
+            <li><i class="fa-solid fa-2" aria-hidden="true"></i><span><code>range(5)</code> produces the numbers 0, 1, 2, 3, 4 — five numbers total.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — THE RANGE FUNCTION -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: The range Function">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-ruler" aria-hidden="true"></i> Tool</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-ruler-horizontal" aria-hidden="true"></i></span> The range() Function</h2>
+          <p class="slide-subtitle">range() generates a sequence of numbers, and can be used in a few different ways.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Usage</th><th>Produces</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>range(5)</code></td><td>0, 1, 2, 3, 4</td></tr>
+                <tr><td><code>range(2, 6)</code></td><td>2, 3, 4, 5</td></tr>
+                <tr><td><code>range(0, 10, 2)</code></td><td>0, 2, 4, 6, 8</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span><code>range()</code> always stops <strong>before</strong> the last number you give it — <code>range(5)</code> never includes 5.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — THE WHILE LOOP -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: The while Loop">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i></span> The while Loop</h2>
+          <p class="slide-subtitle">A while loop repeats code as long as its condition stays True.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">while_loop.py</span>
+            </div>
+            <pre><code class="language-python">count = 1
+
+while count <= 5:
+    print(count)
+    count += 1</code></pre>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>The line <code>count += 1</code> is what eventually makes the condition False — without it, the loop would run forever!</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — FOR VS WHILE -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: for vs while">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Comparison</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i></span> for Loop vs. while Loop</h2>
+          <p class="slide-subtitle">Choosing the right loop depends on whether you know how many times to repeat.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Loop Type</th><th>Best When...</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>for</code></td><td>You know exactly how many times to repeat</td><td>Print numbers 1 to 10</td></tr>
+                <tr><td><code>while</code></td><td>You repeat until some condition changes</td><td>Keep asking until user enters "quit"</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — LOOP CONTROL: BREAK -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Loop Control break">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand" aria-hidden="true"></i> Loop Control</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-stop" aria-hidden="true"></i></span> Loop Control: break</h2>
+          <p class="slide-subtitle">The break keyword immediately stops the loop entirely, no matter what.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">break_demo.py</span>
+            </div>
+            <pre><code class="language-python">for i in range(10):
+    if i == 3:
+        break
+    print(i)
+
+# Output: 0 1 2</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>As soon as <code>i</code> equals 3, the loop exits completely — the numbers 3 through 9 never get printed.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — LOOP CONTROL: CONTINUE -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Loop Control continue">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand" aria-hidden="true"></i> Loop Control</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-forward-step" aria-hidden="true"></i></span> Loop Control: continue</h2>
+          <p class="slide-subtitle">The continue keyword skips the rest of the current repeat and jumps to the next one.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">continue_demo.py</span>
+            </div>
+            <pre><code class="language-python">for i in range(5):
+    if i == 2:
+        continue
+    print(i)
+
+# Output: 0 1 3 4</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Unlike break, the loop keeps going — it only skips printing when <code>i</code> equals 2.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — NESTED LOOPS -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Nested Loops">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-table-cells" aria-hidden="true"></i></span> Nested Loops</h2>
+          <p class="slide-subtitle">A loop can be placed inside another loop — useful for grids, tables, and patterns.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">nested_loop.py</span>
+            </div>
+            <pre><code class="language-python">for row in range(3):
+    for col in range(3):
+        print("*", end=" ")
+    print()</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>For every single repeat of the outer loop, the entire inner loop runs from start to finish.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — INFINITE LOOPS -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Infinite Loops">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Watch Out</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-infinity" aria-hidden="true"></i></span> Common Pitfall: Infinite Loops</h2>
+          <p class="slide-subtitle">If a while loop's condition never becomes False, the loop will run forever.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">infinite_loop.py</span>
+            </div>
+            <pre><code class="language-python"># Danger! This never stops:
+count = 1
+while count <= 5:
+    print(count)
+    # forgot count += 1</code></pre>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>Always double-check that something inside your while loop eventually makes the condition False.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — EXAMPLE SCENARIO -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Example Scenario">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-plus" aria-hidden="true"></i></span> Example: Summing Numbers 1 to 10</h2>
+          <p class="slide-subtitle">A classic beginner problem — perfect for practicing loops.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">sum_numbers.py</span>
+            </div>
+            <pre><code class="language-python">total = 0
+
+for number in range(1, 11):
+    total += number
+
+print("Sum:", total)   # Sum: 55</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span><code>total</code> starts at 0 and grows by each number from 1 to 10, one loop repeat at a time.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — SUMMARY -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-list-ol" aria-hidden="true"></i><span>for loops repeat a known number of times, often using range().</span></div>
+            <div class="summary-item"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i><span>while loops repeat as long as a condition stays True.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-stop" aria-hidden="true"></i><span>break exits a loop early; continue skips to the next repeat.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-infinity" aria-hidden="true"></i><span>Always make sure a while loop's condition can eventually become False.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> Which loop is best when you already know exactly how many repeats you need?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">for loop</button>
+              <button class="quiz-option" data-correct="false">while loop</button>
+              <button class="quiz-option" data-correct="false">if statement</button>
+              <button class="quiz-option" data-correct="false">function</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> What does <code>range(5)</code> produce?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">1, 2, 3, 4, 5</button>
+              <button class="quiz-option" data-correct="true">0, 1, 2, 3, 4</button>
+              <button class="quiz-option" data-correct="false">0, 1, 2, 3, 4, 5</button>
+              <button class="quiz-option" data-correct="false">5 only</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> Which keyword completely stops a loop?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">continue</button>
+              <button class="quiz-option" data-correct="true">break</button>
+              <button class="quiz-option" data-correct="false">pass</button>
+              <button class="quiz-option" data-correct="false">stop</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> A loop that never stops is called...</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">A nested loop</button>
+              <button class="quiz-option" data-correct="false">A broken loop</button>
+              <button class="quiz-option" data-correct="true">An infinite loop</button>
+              <button class="quiz-option" data-correct="false">A range loop</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 — MINI ACTIVITY -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Predict the Output</h2>
+          <p class="slide-subtitle">Trace through each loop and guess its output before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Follow each loop's logic one step at a time, the same way Python would run it.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> <code>for i in range(3): print(i)</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>0, 1, 2</strong> — three repeats, starting from 0.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> <code>x = 0</code><br><code>while x &lt; 3:</code><br>&nbsp;&nbsp;<code>print(x)</code><br>&nbsp;&nbsp;<code>x += 1</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>0, 1, 2</strong> — the loop stops once x reaches 3.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 — END OF TOPIC -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 12</h2>
+          <p class="slide-subtitle">You can now repeat actions efficiently instead of writing the same code over and over.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can write for loops and while loops.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can use break and continue to control loop flow.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You know how to avoid creating an infinite loop.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 13</h4>
+              <p>Python Functions — organize code into reusable, well-named blocks.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

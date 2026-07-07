@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 11 — CONTROL FLOW
+     16-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 11 — Control Flow | Programming 1</title>
+<meta name="description" content="Learn how programs make decisions using if, if-else, and nested conditional statements." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+        <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_String_Access_and_Slicing.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Arithmetic_Operators.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic07_Assignment_Operators.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic08_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic11_Control_Flow.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">11</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic12_Python_Loops.html" class="topic-link">
+        <span class="topic-num">12</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic13_Python_Functions.html" class="topic-link">
+        <span class="topic-num">13</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic14_Python_Lists.html" class="topic-link">
+        <span class="topic-num">14</span>
+        <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic15_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">15</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic16_Python_Errors_and_Exceptions.html" class="topic-link">
+        <span class="topic-num">16</span>
+        <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 14</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
+          <h1>Control Flow</h1>
+          <p class="topic-label">Topic 11 &middot; Teaching Programs to Make Decisions</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Write a basic if statement in Python.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use if-else to choose between two outcomes.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Build if-elif-else chains and nested conditions.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Trace the execution path of a conditional program.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS CONTROL FLOW -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is Control Flow">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-route" aria-hidden="true"></i></span> What is Control Flow?</h2>
+          <p class="slide-subtitle">By default, Python runs code from top to bottom, one line at a time. Control flow lets us change that order.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-arrow-down" aria-hidden="true"></i><span><strong>Default behavior:</strong> Without any decisions, Python executes every line in sequence, once each.</span></li>
+                <li><i class="fa-solid fa-code-branch" aria-hidden="true"></i><span><strong>Control flow:</strong> Using conditions, we can make the program skip, choose, or repeat certain lines.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-route" aria-hidden="true"></i></span>
+                <p class="caption">Conditions act like forks in the road for your program.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — THE IF STATEMENT -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: The if Statement">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-diamond" aria-hidden="true"></i></span> The if Statement</h2>
+          <p class="slide-subtitle">An if statement runs a block of code only when its condition is True.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">basic_if.py</span>
+            </div>
+            <pre><code class="language-python">age = 20
+
+if age >= 18:
+    print("You are an adult.")</code></pre>
+          </div>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-1" aria-hidden="true"></i><span>The condition <code>age &gt;= 18</code> must end with a colon <code>:</code>.</span></li>
+            <li><i class="fa-solid fa-2" aria-hidden="true"></i><span>The code that runs if the condition is True must be <strong>indented</strong>.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — THE IF-ELSE STATEMENT -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: The if-else Statement">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></span> The if-else Statement</h2>
+          <p class="slide-subtitle">Use else to run a different block of code when the condition is False.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">if_else.py</span>
+            </div>
+            <pre><code class="language-python">age = 15
+
+if age >= 18:
+    print("You are an adult.")
+else:
+    print("You are a minor.")</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>Exactly one of the two blocks will run — never both, and never neither.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — THE IF-ELIF-ELSE CHAIN -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: The if-elif-else Chain">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span> The if-elif-else Chain</h2>
+          <p class="slide-subtitle">Use elif ("else if") when you need to check more than two possible outcomes.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">grading.py</span>
+            </div>
+            <pre><code class="language-python">score = 85
+
+if score >= 90:
+    print("Grade: A")
+elif score >= 80:
+    print("Grade: B")
+elif score >= 70:
+    print("Grade: C")
+else:
+    print("Grade: F")</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Python checks each condition from top to bottom and stops at the <strong>first</strong> one that is True.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — NESTED CONDITIONS -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Nested Conditions">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span> Nested Conditions</h2>
+          <p class="slide-subtitle">An if statement can be placed inside another if statement — this is called nesting.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">nested_if.py</span>
+            </div>
+            <pre><code class="language-python">age = 20
+has_id = True
+
+if age >= 18:
+    if has_id:
+        print("Entry allowed.")
+    else:
+        print("ID required.")
+else:
+    print("Too young to enter.")</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>Notice the inner if-else is indented one extra level — indentation shows Python exactly which block belongs to which condition.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — COMBINING WITH LOGICAL OPERATORS -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Combining with Logical Operators">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-brain" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></span> Combining Conditions with Logical Operators</h2>
+          <p class="slide-subtitle">Instead of nesting, you can often combine conditions using and, or, and not.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">combined_condition.py</span>
+            </div>
+            <pre><code class="language-python">age = 20
+has_id = True
+
+if age >= 18 and has_id:
+    print("Entry allowed.")
+else:
+    print("Entry denied.")</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>This does exactly the same thing as the nested version on the previous slide, just in fewer lines.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — EXAMPLE SCENARIO -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Example Scenario">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span> Example: A Simple Grading System</h2>
+          <p class="slide-subtitle">Let's trace exactly what happens when a student's score is checked.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-1" aria-hidden="true"></i><span><strong>Input:</strong> The student's score is 72.</span></li>
+            <li><i class="fa-solid fa-2" aria-hidden="true"></i><span>Python checks <code>score &gt;= 90</code> &rarr; False, skip.</span></li>
+            <li><i class="fa-solid fa-3" aria-hidden="true"></i><span>Python checks <code>score &gt;= 80</code> &rarr; False, skip.</span></li>
+            <li><i class="fa-solid fa-4" aria-hidden="true"></i><span>Python checks <code>score &gt;= 70</code> &rarr; True! Runs <code>print("Grade: C")</code>.</span></li>
+            <li><i class="fa-solid fa-5" aria-hidden="true"></i><span>The rest of the chain (<code>else</code>) is skipped entirely.</span></li>
+          </ul>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Output</span>Grade: C</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — COMMON MISTAKES -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Common Mistakes">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Watch Out</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-bug" aria-hidden="true"></i></span> Common Mistakes with Conditions</h2>
+          <p class="slide-subtitle">These small errors trip up almost every beginner at some point.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-indent" aria-hidden="true"></i><span><strong>Wrong indentation:</strong> Python uses indentation to know which lines belong to the if block — inconsistent spacing causes errors.</span></li>
+            <li><i class="fa-solid fa-colon" aria-hidden="true"></i><span><strong>Missing colon:</strong> Every if, elif, and else line must end with a <code>:</code>.</span></li>
+            <li><i class="fa-solid fa-equals" aria-hidden="true"></i><span><strong>Using = instead of ==:</strong> Comparing values requires the double equals sign.</span></li>
+          </ul>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">wrong_vs_right.py</span>
+            </div>
+            <pre><code class="language-python"># Wrong
+if age >= 18
+    print("Adult")
+
+# Correct
+if age >= 18:
+    print("Adult")</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — SUMMARY -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-diamond" aria-hidden="true"></i><span>if runs code only when its condition is True.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-code-branch" aria-hidden="true"></i><span>if-else picks between exactly two outcomes.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-list-ol" aria-hidden="true"></i><span>elif checks additional conditions in order.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><span>Conditions can be nested or combined with and/or/not.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> What must every if, elif, and else line end with?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">A semicolon ;</button>
+              <button class="quiz-option" data-correct="true">A colon :</button>
+              <button class="quiz-option" data-correct="false">A period .</button>
+              <button class="quiz-option" data-correct="false">Nothing extra</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> In an if-elif-else chain, how many blocks can run?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">All of them</button>
+              <button class="quiz-option" data-correct="false">None of them</button>
+              <button class="quiz-option" data-correct="true">Exactly one</button>
+              <button class="quiz-option" data-correct="false">Exactly two</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> What keeps track of which code belongs to an if block?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Curly braces</button>
+              <button class="quiz-option" data-correct="true">Indentation</button>
+              <button class="quiz-option" data-correct="false">Semicolons</button>
+              <button class="quiz-option" data-correct="false">Capital letters</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> An if statement inside another if statement is called...</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Chaining</button>
+              <button class="quiz-option" data-correct="false">Looping</button>
+              <button class="quiz-option" data-correct="true">Nesting</button>
+              <button class="quiz-option" data-correct="false">Casting</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — MINI ACTIVITY -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Trace the Output</h2>
+          <p class="slide-subtitle">Predict what each snippet will print before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Read each snippet carefully and trace through the conditions step by step.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> <code>x = 5</code><br><code>if x &gt; 10:</code><br>&nbsp;&nbsp;<code>print("big")</code><br><code>else:</code><br>&nbsp;&nbsp;<code>print("small")</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>small</strong> — 5 is not greater than 10, so the else block runs.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> <code>score = 95</code><br><code>if score &gt;= 90:</code><br>&nbsp;&nbsp;<code>print("A")</code><br><code>elif score &gt;= 80:</code><br>&nbsp;&nbsp;<code>print("B")</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>A</strong> — the first True condition wins, and the elif is never even checked.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — FUN FACTS -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Control Flow</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-indent" aria-hidden="true"></i><h4>Indentation Is the Law</h4><p>Python is one of the few major languages where indentation isn't just style — it's required syntax.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-shuffle" aria-hidden="true"></i><h4>No switch Statement</h4><p>Unlike some languages, older Python versions have no switch statement — if-elif chains do that job instead.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-arrows-down-to-line" aria-hidden="true"></i><h4>Ternary Shortcut</h4><p>Python supports a one-line if-else called a "ternary expression," e.g. <code>"Adult" if age &gt;= 18 else "Minor"</code>.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-gamepad" aria-hidden="true"></i><h4>Everywhere in Games</h4><p>Every decision a video game makes — win, lose, level up — relies on control flow just like this.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — END OF TOPIC -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 11</h2>
+          <p class="slide-subtitle">You can now write programs that make decisions instead of just running the same steps every time.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can write if, if-else, and if-elif-else statements.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can nest conditions and combine them with logical operators.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can trace the execution path of a conditional program.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 12</h4>
+              <p>Python Loops — repeat actions efficiently using for loops and while loops.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 13 — PYTHON FUNCTIONS
+     16-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 13 — Python Functions | Programming 1</title>
+<meta name="description" content="Learn to organize code into reusable, well-named blocks using functions." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+        <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_String_Access_and_Slicing.html" class="topic-link">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_Arithmetic_Operators.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic07_Assignment_Operators.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic08_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic11_Control_Flow.html" class="topic-link">
+        <span class="topic-num">11</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic12_Python_Loops.html" class="topic-link">
+        <span class="topic-num">12</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic13_Python_Functions.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">13</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic14_Python_Lists.html" class="topic-link">
+        <span class="topic-num">14</span>
+        <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic15_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">15</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic16_Python_Errors_and_Exceptions.html" class="topic-link">
+        <span class="topic-num">16</span>
+        <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 16</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-cubes" aria-hidden="true"></i></div>
+          <h1>Python Functions</h1>
+          <p class="topic-label">Topic 13 &middot; Organizing Code Into Reusable Pieces</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Define a function using the def keyword.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Pass parameters into a function and use return values.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Explain the benefits of breaking a program into functions.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Call and reuse a function multiple times in a program.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHAT IS A FUNCTION -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: What is a Function">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-cube" aria-hidden="true"></i></span> What is a Function?</h2>
+          <p class="slide-subtitle">A function is a named, reusable block of code that performs a specific task.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>Definition:</strong> A function groups instructions together under one name, so you can run them anytime just by calling that name.</span></li>
+                <li><i class="fa-solid fa-child-reaching" aria-hidden="true"></i><span><strong>Analogy:</strong> Think of a function like a kitchen recipe — you can follow it (call it) as many times as you like without rewriting it.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-cube" aria-hidden="true"></i></span>
+                <p class="caption">A function packages instructions into one reusable unit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — WHY USE FUNCTIONS -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: Why Use Functions">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-heart" aria-hidden="true"></i> Why It Matters</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-recycle" aria-hidden="true"></i></span> Why Use Functions?</h2>
+          <p class="slide-subtitle">Functions help you write cleaner, more organized, and less repetitive programs.</p>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-rotate" aria-hidden="true"></i><span><strong>Avoid repetition:</strong> Write the logic once, then reuse it as many times as needed.</span></li>
+            <li><i class="fa-solid fa-broom" aria-hidden="true"></i><span><strong>Organize code:</strong> Breaking a big program into small functions makes it easier to read and understand.</span></li>
+            <li><i class="fa-solid fa-bug-slash" aria-hidden="true"></i><span><strong>Easier to fix:</strong> If something goes wrong, you only need to fix it in one place.</span></li>
+            <li><i class="fa-solid fa-people-group" aria-hidden="true"></i><span><strong>Teamwork:</strong> Different people can build and test separate functions independently.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — DEFINING A FUNCTION -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Defining a Function">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-pen" aria-hidden="true"></i></span> Defining a Function</h2>
+          <p class="slide-subtitle">The def keyword creates a new function in Python.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">define_function.py</span>
+            </div>
+            <pre><code class="language-python">def greet():
+    print("Hello there!")
+    print("Welcome to Programming 1.")</code></pre>
+          </div>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-1" aria-hidden="true"></i><span><code>def</code> tells Python you're creating a function.</span></li>
+            <li><i class="fa-solid fa-2" aria-hidden="true"></i><span><code>greet</code> is the function's name — choose something clear and descriptive.</span></li>
+            <li><i class="fa-solid fa-3" aria-hidden="true"></i><span>The indented lines below make up the function's body.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — CALLING A FUNCTION -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: Calling a Function">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-phone" aria-hidden="true"></i></span> Calling a Function</h2>
+          <p class="slide-subtitle">Defining a function doesn't run it — you must call it by name to actually execute its code.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">call_function.py</span>
+            </div>
+            <pre><code class="language-python">def greet():
+    print("Hello there!")
+
+greet()   # This line actually runs the function
+greet()   # You can call it again and again</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Notice the parentheses <code>()</code> after the function name — that's what tells Python "run this function now."</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — PARAMETERS AND ARGUMENTS -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Parameters and Arguments">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-inbox" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></span> Parameters and Arguments</h2>
+          <p class="slide-subtitle">Functions can accept input values, called parameters, to make them more flexible.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">greet_name.py</span>
+            </div>
+            <pre><code class="language-python">def greet(name):
+    print("Hello,", name + "!")
+
+greet("Maria")   # Hello, Maria!
+greet("Juan")    # Hello, Juan!</code></pre>
+          </div>
+
+          <ul class="bullet-list">
+            <li><i class="fa-solid fa-tag" aria-hidden="true"></i><span><strong>Parameter:</strong> <code>name</code> — the placeholder listed in the function definition.</span></li>
+            <li><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span><strong>Argument:</strong> <code>"Maria"</code> — the actual value you pass in when calling the function.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — RETURN VALUES -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Return Values">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i></span> Return Values</h2>
+          <p class="slide-subtitle">A function can send a result back to wherever it was called using the return keyword.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">return_demo.py</span>
+            </div>
+            <pre><code class="language-python">def add(a, b):
+    return a + b
+
+result = add(3, 4)
+print(result)   # 7</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span><code>print()</code> only displays something — <code>return</code> actually sends a value back so it can be stored or reused.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — DEFAULT PARAMETER VALUES -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Default Parameter Values">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-sliders" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-gear" aria-hidden="true"></i></span> Default Parameter Values</h2>
+          <p class="slide-subtitle">You can give a parameter a default value, used automatically if no argument is provided.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">default_param.py</span>
+            </div>
+            <pre><code class="language-python">def greet(name="friend"):
+    print("Hello,", name + "!")
+
+greet()          # Hello, friend!
+greet("Maria")   # Hello, Maria!</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>Default values are handy for optional settings that most callers won't need to change.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — LOCAL VS GLOBAL SCOPE -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Local vs Global Scope">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-map" aria-hidden="true"></i> Concept</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-house" aria-hidden="true"></i></span> Local vs. Global Scope</h2>
+          <p class="slide-subtitle">A variable's scope determines where in the program it can be used.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Scope</th><th>Where It's Created</th><th>Where It Can Be Used</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Local</td><td>Inside a function</td><td>Only inside that same function</td></tr>
+                <tr><td>Global</td><td>Outside any function</td><td>Anywhere in the program</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>A variable created inside a function disappears once the function finishes running.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — BUILT-IN FUNCTIONS RECAP -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Built-in Functions Recap">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Reference</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i></span> Built-in Functions You Already Know</h2>
+          <p class="slide-subtitle">Python comes with many functions already built in — you've been using some since Topic 03!</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Function</th><th>What it Does</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>print()</code></td><td>Displays text or values on the screen</td></tr>
+                <tr><td><code>input()</code></td><td>Gets text typed by the user</td></tr>
+                <tr><td><code>len()</code></td><td>Counts the number of items in something, like a string</td></tr>
+                <tr><td><code>type()</code></td><td>Shows the data type of a value</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>Built-in functions work exactly like the custom functions you write — you just don't need to define them yourself.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — EXAMPLE SCENARIO -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Example Scenario">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i></span> Example: Calculating Rectangle Area</h2>
+          <p class="slide-subtitle">Let's write a reusable function that calculates the area of any rectangle.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">rectangle_area.py</span>
+            </div>
+            <pre><code class="language-python">def calculate_area(width, height):
+    return width * height
+
+room_area = calculate_area(4, 5)
+garden_area = calculate_area(10, 3)
+
+print("Room area:", room_area)
+print("Garden area:", garden_area)</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>The same function is reused twice with completely different numbers — that's the real power of functions.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — SUMMARY -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-cube" aria-hidden="true"></i><span>def creates a reusable, named block of code.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i><span>Parameters let you pass values into a function.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i><span>return sends a result back out of the function.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Local variables only exist inside their own function.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> Which keyword creates a function in Python?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">function</button>
+              <button class="quiz-option" data-correct="true">def</button>
+              <button class="quiz-option" data-correct="false">func</button>
+              <button class="quiz-option" data-correct="false">new</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> What keyword sends a value back out of a function?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">print</button>
+              <button class="quiz-option" data-correct="false">output</button>
+              <button class="quiz-option" data-correct="true">return</button>
+              <button class="quiz-option" data-correct="false">send</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> In <code>def greet(name):</code>, what is <code>name</code> called?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">A parameter</button>
+              <button class="quiz-option" data-correct="false">A return value</button>
+              <button class="quiz-option" data-correct="false">A loop</button>
+              <button class="quiz-option" data-correct="false">A comment</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> A variable created inside a function is...</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Global, usable anywhere</button>
+              <button class="quiz-option" data-correct="true">Local, usable only inside that function</button>
+              <button class="quiz-option" data-correct="false">Automatically printed</button>
+              <button class="quiz-option" data-correct="false">Deleted immediately</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — MINI ACTIVITY -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Mini Activity — Predict the Output</h2>
+          <p class="slide-subtitle">Trace through each function call and guess its result before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Follow each function definition and call carefully, just like Python would.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> <code>def square(n): return n * n</code><br><code>print(square(4))</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>16</strong> — 4 * 4 equals 16.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> <code>def greet(name="Guest"): print("Hi", name)</code><br><code>greet()</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Hi Guest</strong> — since no argument was given, the default value is used.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 — FUN FACTS -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About Functions</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-shapes" aria-hidden="true"></i><h4>Everything Is an Object</h4><p>In Python, functions themselves can be stored in variables and passed around like any other value.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-arrows-spin" aria-hidden="true"></i><h4>Functions Can Call Themselves</h4><p>A function that calls itself is called "recursion" — an advanced technique you may explore later.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-book-open" aria-hidden="true"></i><h4>Docstrings</h4><p>Python functions can include a special comment called a docstring that explains what the function does.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i><h4>Building Blocks of Libraries</h4><p>Every Python library you'll ever use is really just a huge collection of functions someone else wrote.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 — END OF TOPIC -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 13</h2>
+          <p class="slide-subtitle">You can now organize your programs into clean, reusable functions.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can define and call your own functions.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can use parameters and return values.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You understand the difference between local and global scope.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 14</h4>
+              <p>Python Lists — store, modify, and loop through collections of values.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
