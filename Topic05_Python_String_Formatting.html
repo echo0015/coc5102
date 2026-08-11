@@ -2,7 +2,7 @@
 <html lang="en">
 <!-- =====================================================================
      TOPIC 05 — PYTHON STRING FORMATTING
-     16-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     17-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
      markup conventions with every other Topic##_*.html file so the JS
      engine in assets/js/script.js works identically across the course.
      ===================================================================== -->
@@ -127,7 +127,7 @@
         <div class="progress-bar" id="progressBar"></div>
       </div>
       <div class="topbar-right">
-        <span class="slide-counter" id="slideCounter">Slide 1 of 16</span>
+        <span class="slide-counter" id="slideCounter">Slide 1 of 17</span>
         <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
         <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
         <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
@@ -293,8 +293,49 @@ print("My name is %s and I am %d years old." % (name, age))
         </div>
       </section>
 
-      <!-- SLIDE 7 — DECIMAL PRECISION -->
-      <section class="slide" data-slide="7" aria-label="Slide 7: Decimal Precision">
+      <!-- SLIDE 7 — COMMON ESCAPE CHARACTERS -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Common Escape Characters">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-quote-left" aria-hidden="true"></i></span> Common Escape Characters</h2>
+          <p class="slide-subtitle">A backslash lets you insert characters into a string that are otherwise hard to type directly.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Escape</th><th>Meaning</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>\n</code></td><td>New line</td><td><code>"Line1\nLine2"</code></td></tr>
+                <tr><td><code>\t</code></td><td>Tab space</td><td><code>"Name:\tJerico"</code></td></tr>
+                <tr><td><code>\\</code></td><td>Backslash</td><td><code>"C:\\Users"</code></td></tr>
+                <tr><td><code>\'</code></td><td>Single quote</td><td><code>'It\'s here'</code></td></tr>
+                <tr><td><code>\"</code></td><td>Double quote</td><td><code>"She said \"Hi\""</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">escape_characters.py</span>
+            </div>
+            <pre><code class="language-python">name = "Jerico"
+age = 21
+print(f"Name:\t{name}\nAge:\t{age}")
+# Name:	Jerico
+# Age:	21</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>Prefixing a string with <code>r</code>, like <code>r"C:\Users"</code>, disables escape sequences entirely — handy for file paths.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — DECIMAL PRECISION -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Decimal Precision">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-ruler" aria-hidden="true"></i> Numbers</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-ruler-horizontal" aria-hidden="true"></i></span> Controlling Decimal Precision</h2>
@@ -319,8 +360,8 @@ print(f"Price: ${price:.2f}")      # Price: $19.90</code></pre>
         </div>
       </section>
 
-      <!-- SLIDE 8 — WIDTH & ALIGNMENT -->
-      <section class="slide" data-slide="8" aria-label="Slide 8: Width and Alignment">
+      <!-- SLIDE 9 — WIDTH & ALIGNMENT -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Width and Alignment">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Numbers</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-table-columns" aria-hidden="true"></i></span> Width &amp; Alignment</h2>
@@ -347,8 +388,8 @@ print(f"Price: ${price:.2f}")      # Price: $19.90</code></pre>
         </div>
       </section>
 
-      <!-- SLIDE 9 — SEPARATORS & PERCENTAGES -->
-      <section class="slide" data-slide="9" aria-label="Slide 9: Thousands Separators and Percentages">
+      <!-- SLIDE 10 — SEPARATORS & PERCENTAGES -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Thousands Separators and Percentages">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Numbers</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-money-bill" aria-hidden="true"></i></span> Thousands Separators &amp; Percentages</h2>
@@ -373,8 +414,8 @@ print(f"Score: {score:.1%}")           # Score: 84.2%</code></pre>
         </div>
       </section>
 
-      <!-- SLIDE 10 — COMPARISON TABLE -->
-      <section class="slide" data-slide="10" aria-label="Slide 10: Choosing a Style">
+      <!-- SLIDE 11 — COMPARISON TABLE -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Choosing a Style">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Reference</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span> f-string vs .format() vs %</h2>
@@ -400,8 +441,8 @@ print(f"Score: {score:.1%}")           # Score: 84.2%</code></pre>
         </div>
       </section>
 
-      <!-- SLIDE 11 — EXAMPLE SCENARIO -->
-      <section class="slide" data-slide="11" aria-label="Slide 11: Example Scenario">
+      <!-- SLIDE 12 — EXAMPLE SCENARIO -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Example Scenario">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-receipt" aria-hidden="true"></i></span> Example: Printing a Formatted Receipt</h2>
@@ -431,8 +472,8 @@ print(f"{name2:&lt;10}{qty2:&gt;3} x {price2:&gt;6.2f} = {total2:&gt;8.2f}")
         </div>
       </section>
 
-      <!-- SLIDE 12 — SUMMARY -->
-      <section class="slide" data-slide="12" aria-label="Slide 12: Summary">
+      <!-- SLIDE 13 — SUMMARY -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Summary">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
@@ -447,8 +488,8 @@ print(f"{name2:&lt;10}{qty2:&gt;3} x {price2:&gt;6.2f} = {total2:&gt;8.2f}")
         </div>
       </section>
 
-      <!-- SLIDE 13 — KNOWLEDGE CHECK -->
-      <section class="slide" data-slide="13" aria-label="Slide 13: Knowledge Check">
+      <!-- SLIDE 14 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Knowledge Check">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
@@ -500,8 +541,8 @@ print(f"{name2:&lt;10}{qty2:&gt;3} x {price2:&gt;6.2f} = {total2:&gt;8.2f}")
         </div>
       </section>
 
-      <!-- SLIDE 14 — MINI ACTIVITY -->
-      <section class="slide" data-slide="14" aria-label="Slide 14: Mini Activity">
+      <!-- SLIDE 15 — MINI ACTIVITY -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Mini Activity">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-align-left" aria-hidden="true"></i></span> Mini Activity — Predict the Output</h2>
@@ -532,8 +573,8 @@ print(f"{name2:&lt;10}{qty2:&gt;3} x {price2:&gt;6.2f} = {total2:&gt;8.2f}")
         </div>
       </section>
 
-      <!-- SLIDE 15 — FUN FACTS -->
-      <section class="slide" data-slide="15" aria-label="Slide 15: Fun Facts">
+      <!-- SLIDE 16 — FUN FACTS -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: Fun Facts">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About String Formatting</h2>
@@ -548,8 +589,8 @@ print(f"{name2:&lt;10}{qty2:&gt;3} x {price2:&gt;6.2f} = {total2:&gt;8.2f}")
         </div>
       </section>
 
-      <!-- SLIDE 16 — END OF TOPIC -->
-      <section class="slide" data-slide="16" aria-label="Slide 16: End of Topic">
+      <!-- SLIDE 17 — END OF TOPIC -->
+      <section class="slide" data-slide="17" aria-label="Slide 17: End of Topic">
         <div class="slide-inner">
           <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
           <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 05</h2>

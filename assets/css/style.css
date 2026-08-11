@@ -888,6 +888,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
 
 .presentation-mode .slide {
   padding: 6vh 8vw;
+  overflow-x: auto;
 }
 
 .present-exit-btn {
@@ -947,9 +948,10 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
 }
 
 .presentation-mode .slide-inner {
-  transform: scale(var(--present-zoom, 1));
-  transform-origin: top center;
-  transition: transform var(--transition-fast);
+  /* zoom (not transform: scale) so the layout actually reflows at each
+     level — text rewraps, grid columns recompute, tables resize — instead
+     of a flat visual stretch that just overflows or clips at the edges. */
+  zoom: var(--present-zoom, 1);
 }
 
 /* PDF export in progress: snap slides and all their contents instantly to
