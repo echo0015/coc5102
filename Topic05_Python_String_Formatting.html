@@ -412,15 +412,16 @@ print(f"Score: {score:.1%}")           # Score: 84.2%</code></pre>
               <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
               <span class="filename">receipt.py</span>
             </div>
-            <pre><code class="language-python">items = [("Pen", 2, 15.5), ("Notebook", 1, 45.0), ("Eraser", 3, 5.0)]
+            <pre><code class="language-python">name1, qty1, price1 = "Pen", 2, 15.5
+total1 = qty1 * price1
+print(f"{name1:&lt;10}{qty1:&gt;3} x {price1:&gt;6.2f} = {total1:&gt;8.2f}")
 
-for name, qty, price in items:
-    total = qty * price
-    print(f"{name:&lt;10}{qty:&gt;3} x {price:&gt;6.2f} = {total:&gt;8.2f}")
+name2, qty2, price2 = "Notebook", 1, 45.0
+total2 = qty2 * price2
+print(f"{name2:&lt;10}{qty2:&gt;3} x {price2:&gt;6.2f} = {total2:&gt;8.2f}")
 
 # Pen         2 x  15.50 =    31.00
-# Notebook    1 x  45.00 =    45.00
-# Eraser      3 x   5.00 =    15.00</code></pre>
+# Notebook    1 x  45.00 =    45.00</code></pre>
           </div>
 
           <div class="info-box example">
