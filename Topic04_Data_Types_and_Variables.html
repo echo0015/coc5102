@@ -60,52 +60,56 @@
         <span class="topic-num">04</span>
         <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic05_String_Access_and_Slicing.html" class="topic-link">
+      <a href="Topic05_Python_String_Formatting.html" class="topic-link">
         <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">Python String Formatting</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_String_Access_and_Slicing.html" class="topic-link">
+        <span class="topic-num">06</span>
         <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic06_Arithmetic_Operators.html" class="topic-link">
-        <span class="topic-num">06</span>
+      <a href="Topic07_Arithmetic_Operators.html" class="topic-link">
+        <span class="topic-num">07</span>
         <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic07_Assignment_Operators.html" class="topic-link">
-        <span class="topic-num">07</span>
+      <a href="Topic08_Assignment_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
         <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic08_Conditional_Operators.html" class="topic-link">
-        <span class="topic-num">08</span>
+      <a href="Topic09_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
         <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic09_Logical_Operators.html" class="topic-link">
-        <span class="topic-num">09</span>
+      <a href="Topic10_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">10</span>
         <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic10_Flowchart_Fundamentals.html" class="topic-link">
-        <span class="topic-num">10</span>
+      <a href="Topic11_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">11</span>
         <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
       </a>
-      <a href="Topic11_Control_Flow.html" class="topic-link">
-        <span class="topic-num">11</span>
+      <a href="Topic12_Control_Flow.html" class="topic-link">
+        <span class="topic-num">12</span>
         <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
       </a>
-      <a href="Topic12_Python_Loops.html" class="topic-link">
-        <span class="topic-num">12</span>
+      <a href="Topic13_Python_Loops.html" class="topic-link">
+        <span class="topic-num">13</span>
         <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic13_Python_Functions.html" class="topic-link">
-        <span class="topic-num">13</span>
+      <a href="Topic14_Python_Functions.html" class="topic-link">
+        <span class="topic-num">14</span>
         <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic14_Python_Lists.html" class="topic-link">
-        <span class="topic-num">14</span>
+      <a href="Topic15_Python_Lists.html" class="topic-link">
+        <span class="topic-num">15</span>
         <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic15_Python_File_Stream.html" class="topic-link">
-        <span class="topic-num">15</span>
+      <a href="Topic16_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">16</span>
         <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
       </a>
-      <a href="Topic16_Python_Errors_and_Exceptions.html" class="topic-link">
-        <span class="topic-num">16</span>
+      <a href="Topic17_Python_Errors_and_Exceptions.html" class="topic-link">
+        <span class="topic-num">17</span>
         <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
       </a>
     </nav>
@@ -132,6 +136,13 @@
     </header>
 
     <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="present-zoom-controls" id="presentZoomControls">
+      <div class="zoom-pill">
+        <button class="icon-btn zoom-btn" id="presentZoomOutBtn" aria-label="Zoom out" disabled><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+        <button class="icon-btn zoom-btn" id="presentZoomInBtn" aria-label="Zoom in"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
 
     <div class="slides-viewport" id="slidesViewport">
 
@@ -561,10 +572,10 @@ print(item_name, "x", quantity, "=", total)</code></pre>
           </div>
 
           <div class="preview-card">
-            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <i class="fa-solid fa-align-left" aria-hidden="true"></i>
             <div>
               <h4>Coming Up Next: Topic 05</h4>
-              <p>Python Operators — arithmetic, relational, and logical operators for building expressions.</p>
+              <p>Python String Formatting — build cleaner output with f-strings, .format(), and format specifiers.</p>
             </div>
           </div>
         </div>

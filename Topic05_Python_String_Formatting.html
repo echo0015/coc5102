@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     TOPIC 05 — PYTHON STRING FORMATTING
+     16-slide deck. Shares sidebar, topbar, slide engine, and bottom nav
+     markup conventions with every other Topic##_*.html file so the JS
+     engine in assets/js/script.js works identically across the course.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Topic 05 — Python String Formatting | Programming 1</title>
+<meta name="description" content="Learn to build clean output in Python using f-strings, the .format() method, and format specifiers for precision, width, and alignment." />
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Course topics">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div>
+          <h2 style="margin:0;">Programming 1</h2>
+          <span>Course Topics</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+        <nav class="topic-nav">
+      <a href="Topic00_Course_Introduction.html" class="topic-link">
+        <span class="topic-num">00</span>
+        <span class="topic-text"><span class="topic-title">Course Introduction</span><br><span class="topic-sub">Orientation</span></span>
+      </a>
+      <a href="Topic01_Basic_Computer_Structure.html" class="topic-link">
+        <span class="topic-num">01</span>
+        <span class="topic-text"><span class="topic-title">Basic Computer Structure</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic02_Types_of_Programming_Languages.html" class="topic-link">
+        <span class="topic-num">02</span>
+        <span class="topic-text"><span class="topic-title">Types of Programming Languages</span><br><span class="topic-sub">Foundations</span></span>
+      </a>
+      <a href="Topic03_Basics_of_Python.html" class="topic-link">
+        <span class="topic-num">03</span>
+        <span class="topic-text"><span class="topic-title">Basics of Python</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic04_Data_Types_and_Variables.html" class="topic-link">
+        <span class="topic-num">04</span>
+        <span class="topic-text"><span class="topic-title">Data Types and Variables</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic05_Python_String_Formatting.html" class="topic-link active" aria-current="page">
+        <span class="topic-num">05</span>
+        <span class="topic-text"><span class="topic-title">Python String Formatting</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic06_String_Access_and_Slicing.html" class="topic-link">
+        <span class="topic-num">06</span>
+        <span class="topic-text"><span class="topic-title">String Access &amp; Slicing</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic07_Arithmetic_Operators.html" class="topic-link">
+        <span class="topic-num">07</span>
+        <span class="topic-text"><span class="topic-title">Arithmetic Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic08_Assignment_Operators.html" class="topic-link">
+        <span class="topic-num">08</span>
+        <span class="topic-text"><span class="topic-title">Assignment Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic09_Conditional_Operators.html" class="topic-link">
+        <span class="topic-num">09</span>
+        <span class="topic-text"><span class="topic-title">Conditional Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic10_Logical_Operators.html" class="topic-link">
+        <span class="topic-num">10</span>
+        <span class="topic-text"><span class="topic-title">Logical Operators</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic11_Flowchart_Fundamentals.html" class="topic-link">
+        <span class="topic-num">11</span>
+        <span class="topic-text"><span class="topic-title">Flowchart Fundamentals</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic12_Control_Flow.html" class="topic-link">
+        <span class="topic-num">12</span>
+        <span class="topic-text"><span class="topic-title">Control Flow</span><br><span class="topic-sub">Logic</span></span>
+      </a>
+      <a href="Topic13_Python_Loops.html" class="topic-link">
+        <span class="topic-num">13</span>
+        <span class="topic-text"><span class="topic-title">Python Loops</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic14_Python_Functions.html" class="topic-link">
+        <span class="topic-num">14</span>
+        <span class="topic-text"><span class="topic-title">Python Functions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic15_Python_Lists.html" class="topic-link">
+        <span class="topic-num">15</span>
+        <span class="topic-text"><span class="topic-title">Python Lists</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic16_Python_File_Stream.html" class="topic-link">
+        <span class="topic-num">16</span>
+        <span class="topic-text"><span class="topic-title">Python File Stream</span><br><span class="topic-sub">Python</span></span>
+      </a>
+      <a href="Topic17_Python_Errors_and_Exceptions.html" class="topic-link">
+        <span class="topic-num">17</span>
+        <span class="topic-text"><span class="topic-title">Python Errors &amp; Exceptions</span><br><span class="topic-sub">Python</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-index"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Index</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="icon-btn mobile-sidebar-btn" id="mobileSidebarToggle" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <div class="progress-container" role="progressbar" aria-label="Slide progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 16</span>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="presentToggle" aria-label="Enter presentation mode"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="exportPdfBtn" aria-label="Export to PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></button>
+        <button class="icon-btn" id="fullscreenToggle" aria-label="Toggle fullscreen"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+      </div>
+    </header>
+
+    <button class="icon-btn present-exit-btn" id="presentExitBtn" aria-label="Exit presentation mode"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+
+    <div class="present-zoom-controls" id="presentZoomControls">
+      <div class="zoom-pill">
+        <button class="icon-btn zoom-btn" id="presentZoomOutBtn" aria-label="Zoom out" disabled><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+        <button class="icon-btn zoom-btn" id="presentZoomInBtn" aria-label="Zoom in"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- SLIDE 1 — TITLE -->
+      <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+        <div class="slide-inner title-slide">
+          <span class="course-tag">Programming 1</span>
+          <div class="hero-icon"><i class="fa-solid fa-align-left" aria-hidden="true"></i></div>
+          <h1>Python String Formatting</h1>
+          <p class="topic-label">Topic 05 &middot; Building Cleaner Output From Your Variables</p>
+
+          <div class="objectives-box">
+            <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Objectives</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Combine strings and variables cleanly using f-strings.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Insert values into a string using the .format() method.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Control number precision, width, and alignment with format specifiers.</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Compare f-strings, .format(), and % formatting, and know when to use each.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — WHY FORMAT STRINGS -->
+      <section class="slide" data-slide="2" aria-label="Slide 2: Why Format Strings">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-book" aria-hidden="true"></i> Getting Started</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i></span> Why Do We Need String Formatting?</h2>
+          <p class="slide-subtitle">Joining text and variables directly gets messy fast — formatting keeps it clean.</p>
+
+          <div class="content-grid">
+            <div class="text-col">
+              <ul class="bullet-list">
+                <li><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span><strong>The problem:</strong> Using <code>+</code> to join strings and numbers requires converting every number with <code>str()</code> first, or Python raises a <code>TypeError</code>.</span></li>
+                <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span><strong>The fix:</strong> String formatting lets you drop variables straight into a sentence, no manual conversion needed.</span></li>
+              </ul>
+            </div>
+            <div class="visual-col">
+              <div class="illustration-box">
+                <span class="big-icon"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i></span>
+                <p class="caption">"Hi " + name + "!" needs str(); f"Hi {name}!" just works.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — F-STRINGS -->
+      <section class="slide" data-slide="3" aria-label="Slide 3: f-Strings">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-quote-right" aria-hidden="true"></i></span> f-Strings — The Modern Way</h2>
+          <p class="slide-subtitle">Put an f right before the opening quote, then drop variables inside curly braces.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">fstrings_basics.py</span>
+            </div>
+            <pre><code class="language-python">name = "Jerico"
+age = 21
+print(f"My name is {name} and I am {age} years old.")
+# My name is Jerico and I am 21 years old.</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>f-strings were introduced in Python 3.6 and are now the recommended way to format strings.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — EXPRESSIONS INSIDE F-STRINGS -->
+      <section class="slide" data-slide="4" aria-label="Slide 4: Expressions Inside f-Strings">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span> Expressions Inside f-Strings</h2>
+          <p class="slide-subtitle">You're not limited to plain variables — f-strings can hold any expression, even function calls.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">fstring_expressions.py</span>
+            </div>
+            <pre><code class="language-python">name = "jerico"
+price = 250
+quantity = 3
+
+print(f"Total: {price * quantity}")       # Total: 750
+print(f"Name in caps: {name.upper()}")    # Name in caps: JERICO</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>Anything that evaluates to a value works inside <code>{ }</code> — math, method calls, even function calls.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — THE .format() METHOD -->
+      <section class="slide" data-slide="5" aria-label="Slide 5: The format Method">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Syntax</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-plug" aria-hidden="true"></i></span> The .format() Method</h2>
+          <p class="slide-subtitle">Curly-brace placeholders get filled in by the values passed to .format().</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">format_method.py</span>
+            </div>
+            <pre><code class="language-python">name = "Jerico"
+age = 21
+
+print("My name is {} and I am {} years old.".format(name, age))
+print("My name is {0}. Hi again, {0}!".format(name))</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span>Numbering the braces like <code>{0}</code> lets you reuse or reorder values — plain <code>{}</code> just fills in order.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — % FORMATTING -->
+      <section class="slide" data-slide="6" aria-label="Slide 6: Percent Formatting">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> Legacy Style</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-percent" aria-hidden="true"></i></span> Old-Style % Formatting</h2>
+          <p class="slide-subtitle">You'll still see this in older code — %s for strings, %d for integers, %f for floats.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">percent_formatting.py</span>
+            </div>
+            <pre><code class="language-python">name = "Jerico"
+age = 21
+print("My name is %s and I am %d years old." % (name, age))
+# My name is Jerico and I am 21 years old.</code></pre>
+          </div>
+
+          <div class="info-box important">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+            <div><span class="info-label">Important</span>% formatting still works, but f-strings are easier to read and are preferred in new code.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — DECIMAL PRECISION -->
+      <section class="slide" data-slide="7" aria-label="Slide 7: Decimal Precision">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-ruler" aria-hidden="true"></i> Numbers</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-ruler-horizontal" aria-hidden="true"></i></span> Controlling Decimal Precision</h2>
+          <p class="slide-subtitle">Add :.Nf inside the braces to round a float to N decimal places.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">precision.py</span>
+            </div>
+            <pre><code class="language-python">pi = 3.14159265
+price = 19.9
+
+print(f"Pi rounded: {pi:.2f}")     # Pi rounded: 3.14
+print(f"Price: ${price:.2f}")      # Price: $19.90</code></pre>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span><code>:.2f</code> always shows exactly 2 digits after the decimal point, even if that means adding a zero.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — WIDTH & ALIGNMENT -->
+      <section class="slide" data-slide="8" aria-label="Slide 8: Width and Alignment">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Numbers</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-table-columns" aria-hidden="true"></i></span> Width &amp; Alignment</h2>
+          <p class="slide-subtitle">A width number pads a value with spaces; &lt;, &gt;, and ^ control alignment.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Spec</th><th>Meaning</th><th>Result for 42</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>{:6}</code></td><td>Right-align in a 6-space width (default for numbers)</td><td>"&nbsp;&nbsp;&nbsp;&nbsp;42"</td></tr>
+                <tr><td><code>{:&lt;6}</code></td><td>Left-align in a 6-space width</td><td>"42&nbsp;&nbsp;&nbsp;&nbsp;"</td></tr>
+                <tr><td><code>{:^6}</code></td><td>Center-align in a 6-space width</td><td>"&nbsp;&nbsp;42&nbsp;&nbsp;"</td></tr>
+                <tr><td><code>{:06}</code></td><td>Pad with zeros instead of spaces</td><td>"000042"</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span>Combine width with a fill character, like <code>{:*^10}</code>, to pad with any character you want.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — SEPARATORS & PERCENTAGES -->
+      <section class="slide" data-slide="9" aria-label="Slide 9: Thousands Separators and Percentages">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-code" aria-hidden="true"></i> Numbers</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-money-bill" aria-hidden="true"></i></span> Thousands Separators &amp; Percentages</h2>
+          <p class="slide-subtitle">A comma groups digits by thousands; % turns a decimal into a percentage.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">separators_percent.py</span>
+            </div>
+            <pre><code class="language-python">population = 1234567
+score = 0.842
+
+print(f"Population: {population:,}")   # Population: 1,234,567
+print(f"Score: {score:.1%}")           # Score: 84.2%</code></pre>
+          </div>
+
+          <div class="info-box note">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <div><span class="info-label">Note</span><code>:.1%</code> multiplies by 100, rounds to 1 decimal, and adds the % sign automatically.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — COMPARISON TABLE -->
+      <section class="slide" data-slide="10" aria-label="Slide 10: Choosing a Style">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Reference</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span> f-string vs .format() vs %</h2>
+          <p class="slide-subtitle">All three produce the same output — here's how the syntax compares.</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Style</th><th>Example</th><th>Best For</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>f-string</td><td><code>f"{name} is {age}"</code></td><td>New code — readable, fast, supports expressions</td></tr>
+                <tr><td>.format()</td><td><code>"{} is {}".format(name, age)</code></td><td>Reusing/reordering values, Python &lt; 3.6</td></tr>
+                <tr><td>% formatting</td><td><code>"%s is %d" % (name, age)</code></td><td>Reading legacy/older codebases</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box tip">
+            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            <div><span class="info-label">Tip</span>When writing new code, reach for f-strings first unless you have a specific reason not to.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 — EXAMPLE SCENARIO -->
+      <section class="slide" data-slide="11" aria-label="Slide 11: Example Scenario">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flask" aria-hidden="true"></i> Applied Example</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-receipt" aria-hidden="true"></i></span> Example: Printing a Formatted Receipt</h2>
+          <p class="slide-subtitle">Formatting shines when lining up columns of numbers neatly.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="filename">receipt.py</span>
+            </div>
+            <pre><code class="language-python">items = [("Pen", 2, 15.5), ("Notebook", 1, 45.0), ("Eraser", 3, 5.0)]
+
+for name, qty, price in items:
+    total = qty * price
+    print(f"{name:&lt;10}{qty:&gt;3} x {price:&gt;6.2f} = {total:&gt;8.2f}")
+
+# Pen         2 x  15.50 =    31.00
+# Notebook    1 x  45.00 =    45.00
+# Eraser      3 x   5.00 =    15.00</code></pre>
+          </div>
+
+          <div class="info-box example">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            <div><span class="info-label">Example</span><code>&lt;10</code> left-aligns the name in a 10-character column, keeping every row lined up.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 — SUMMARY -->
+      <section class="slide" data-slide="12" aria-label="Slide 12: Summary">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Recap</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-list" aria-hidden="true"></i></span> Summary — Key Points</h2>
+          <p class="slide-subtitle">Here's everything we covered in this topic, in one glance.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-quote-right" aria-hidden="true"></i><span>f"{ }" inserts variables and expressions directly into a string.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-plug" aria-hidden="true"></i><span>"{}".format(...) fills placeholders, in order or by number.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-percent" aria-hidden="true"></i><span>% formatting is the older style, still seen in legacy code.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-table-columns" aria-hidden="true"></i><span>Format specifiers control precision, width, alignment, and separators.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 — KNOWLEDGE CHECK -->
+      <section class="slide" data-slide="13" aria-label="Slide 13: Knowledge Check">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Assessment</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span> Knowledge Check</h2>
+          <p class="slide-subtitle">Click an answer to see if you're right.</p>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">1</span> Which prefix creates an f-string?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">f"..."</button>
+              <button class="quiz-option" data-correct="false">%s</button>
+              <button class="quiz-option" data-correct="false">.format()</button>
+              <button class="quiz-option" data-correct="false">r"..."</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">2</span> What does <code>f"{3.14159:.2f}"</code> print?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">3.14159</button>
+              <button class="quiz-option" data-correct="false">3.1</button>
+              <button class="quiz-option" data-correct="true">3.14</button>
+              <button class="quiz-option" data-correct="false">3.140</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">3</span> What does <code>"{}-{}".format("A", "B")</code> return?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">A-B</button>
+              <button class="quiz-option" data-correct="false">B-A</button>
+              <button class="quiz-option" data-correct="false">{}-{}</button>
+              <button class="quiz-option" data-correct="false">An error</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">4</span> What does the comma do in <code>f"{1000000:,}"</code>?</h4>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Rounds the number</button>
+              <button class="quiz-option" data-correct="true">Adds thousands separators</button>
+              <button class="quiz-option" data-correct="false">Converts it to a percentage</button>
+              <button class="quiz-option" data-correct="false">Aligns the text</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 — MINI ACTIVITY -->
+      <section class="slide" data-slide="14" aria-label="Slide 14: Mini Activity">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i> Activity</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-align-left" aria-hidden="true"></i></span> Mini Activity — Predict the Output</h2>
+          <p class="slide-subtitle">Given <code>name = "Ana"</code>, <code>score = 0.842</code>, and <code>num = 7</code>, predict each result before revealing the answer.</p>
+
+          <div class="activity-box">
+            <h4><i class="fa-solid fa-list-check" aria-hidden="true"></i> Instructions</h4>
+            <p>Work through the format specifier piece by piece: what comes before the colon, and what comes after it.</p>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">A</span> <code>f"{name}!"</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>Ana!</strong> — no format spec, so the value is inserted as-is.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">B</span> <code>f"{score:.1%}"</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>84.2%</strong> — multiplied by 100, rounded to 1 decimal, with a % sign added.</div>
+          </div>
+
+          <div class="quiz-question">
+            <h4><span class="q-num">C</span> <code>f"{num:03}"</code></h4>
+            <button class="nav-btn secondary reveal-btn" type="button">Reveal Answer</button>
+            <div class="reveal-answer">Answer: <strong>007</strong> — padded with zeros to fill a width of 3.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 — FUN FACTS -->
+      <section class="slide" data-slide="15" aria-label="Slide 15: Fun Facts">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Did You Know?</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span> Fun Facts About String Formatting</h2>
+          <p class="slide-subtitle">A few fun tidbits to impress your friends.</p>
+
+          <div class="facts-grid">
+            <div class="fact-card"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><h4>A Handy Debugging Shortcut</h4><p>Writing f"{value=}" prints both the variable's name and its value, which is great for quick debugging.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i><h4>% Formatting Predates Python Itself</h4><p>The % operator borrows its syntax from C's printf, one of the oldest formatting styles in programming.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i><h4>f-Strings Are the Fastest</h4><p>Because they're evaluated directly by the interpreter, f-strings typically outperform .format() and % formatting.</p></div>
+            <div class="fact-card"><i class="fa-solid fa-table-columns" aria-hidden="true"></i><h4>Format Specs Work Everywhere</h4><p>The same :.2f, :,, and alignment codes work in both f-strings and .format() — only the outer syntax differs.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 — END OF TOPIC -->
+      <section class="slide" data-slide="16" aria-label="Slide 16: End of Topic">
+        <div class="slide-inner">
+          <span class="slide-kicker"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Well Done!</span>
+          <h2 class="slide-title"><span class="title-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span> End of Topic 05</h2>
+          <p class="slide-subtitle">You can now build clean, professional-looking output instead of clunky string concatenation.</p>
+
+          <div class="summary-grid">
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can build strings with f-strings and insert expressions directly.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can use .format() and read legacy % formatting.</span></div>
+            <div class="summary-item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>You can control decimal precision, width, alignment, and separators.</span></div>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <div>
+              <h4>Coming Up Next: Topic 06</h4>
+              <p>String Access &amp; Slicing — access characters by index and extract substrings using Python's slicing syntax.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="bottom-nav">
+      <button class="nav-btn secondary" id="prevBtn"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="label">Previous</span></button>
+      <div class="dots-nav" id="dotsContainer" aria-label="Slide dots"></div>
+      <a href="index.html" class="nav-btn secondary"><i class="fa-solid fa-house" aria-hidden="true"></i> <span class="label">Index</span></a>
+      <button class="nav-btn" id="nextBtn"><span class="label">Next</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

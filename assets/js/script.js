@@ -102,23 +102,53 @@
     const appContainer = document.querySelector('.app-container');
     const presentBtn = document.getElementById('presentToggle');
     const exitBtn = document.getElementById('presentExitBtn');
+    const zoomInBtn = document.getElementById('presentZoomInBtn');
+    const zoomOutBtn = document.getElementById('presentZoomOutBtn');
     if (!appContainer || !presentBtn) return;
+
+    const ZOOM_MIN = 0.7;
+    const ZOOM_MAX = 1.6;
+    const ZOOM_STEP = 0.1;
+    let zoom = 1;
 
     function setIcon(btn, iconClass) {
       const icon = btn.querySelector('i');
       if (icon) icon.className = iconClass;
     }
 
+    function applyZoom() {
+      document.documentElement.style.setProperty('--present-zoom', zoom.toFixed(2));
+      if (zoomInBtn) zoomInBtn.disabled = zoom >= ZOOM_MAX;
+      if (zoomOutBtn) zoomOutBtn.disabled = zoom <= ZOOM_MIN;
+    }
+
+    function resetZoom() {
+      zoom = 1;
+      applyZoom();
+    }
+
+    function zoomIn() {
+      zoom = Math.min(ZOOM_MAX, +(zoom + ZOOM_STEP).toFixed(2));
+      applyZoom();
+    }
+
+    function zoomOut() {
+      zoom = Math.max(ZOOM_MIN, +(zoom - ZOOM_STEP).toFixed(2));
+      applyZoom();
+    }
+
     function enter() {
       appContainer.classList.add('presentation-mode');
       presentBtn.setAttribute('aria-label', 'Exit presentation mode');
       setIcon(presentBtn, 'fa-solid fa-stop');
+      resetZoom();
     }
 
     function exit() {
       appContainer.classList.remove('presentation-mode');
       presentBtn.setAttribute('aria-label', 'Enter presentation mode');
       setIcon(presentBtn, 'fa-solid fa-play');
+      resetZoom();
     }
 
     presentBtn.addEventListener('click', () => {
@@ -126,12 +156,21 @@
     });
 
     if (exitBtn) exitBtn.addEventListener('click', exit);
+    if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && appContainer.classList.contains('presentation-mode')) {
+      if (!appContainer.classList.contains('presentation-mode')) return;
+      if (e.key === 'Escape') {
         exit();
+      } else if (e.key === '+' || e.key === '=') {
+        zoomIn();
+      } else if (e.key === '-' || e.key === '_') {
+        zoomOut();
       }
     });
+
+    applyZoom();
   }
 
   /* -------------------------------------------------------------------

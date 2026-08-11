@@ -903,6 +903,55 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
 
 .presentation-mode .present-exit-btn { display: flex; }
 
+/* Zoom in/out controls (bottom-left, presentation mode only).
+   Hidden by default and revealed on hover/focus so they stay out of the
+   way of the slide content; the outer box keeps a generous hit area so
+   the pill is easy to find with the mouse near that corner. */
+.present-zoom-controls {
+  display: none;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 70;
+  padding: 28px;
+}
+
+.presentation-mode .present-zoom-controls { display: flex; }
+
+.present-zoom-controls .zoom-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface-strong);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  padding: 5px;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(8px) scale(0.94);
+  pointer-events: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.present-zoom-controls:hover .zoom-pill,
+.present-zoom-controls:focus-within .zoom-pill {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.icon-btn.zoom-btn {
+  width: 30px; height: 30px;
+  font-size: 0.8rem;
+}
+
+.presentation-mode .slide-inner {
+  transform: scale(var(--present-zoom, 1));
+  transform-origin: top center;
+  transition: transform var(--transition-fast);
+}
+
 /* PDF export in progress: snap slides and all their contents instantly to
    their final, settled state (no fade/slide transition, no staggered
    bullet-list fade-in, no floating/pulsing keyframe animations) so each
