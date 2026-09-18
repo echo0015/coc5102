@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- =====================================================================
+     PYTHON COMPILER — IN-BROWSER PYTHON PLAYGROUND
+     Runs real Python entirely client-side via Pyodide (WebAssembly),
+     so students can write and run code straight from the course site
+     with no installation and no server. Shares the course's shared
+     stylesheet/theme tokens but is otherwise a self-contained tool.
+     ===================================================================== -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Python Compiler | Programming 1</title>
+<meta name="description" content="Write and run real Python code directly in your browser — no installation required." />
+
+<!-- Enables SharedArrayBuffer (needed for inline console input()) on any
+     http(s) host, even a plain local dev server with no header config.
+     Must load before anything else — it may trigger one silent reload.
+     Lives at the site root (not assets/js/) because a Service Worker's
+     control scope defaults to its own directory and below, and a plain
+     dev server won't send the header needed to widen it. -->
+<script src="coi-serviceworker.js"></script>
+
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- CodeMirror (editor with Python syntax highlighting) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/compiler.css">
+</head>
+<body class="compiler-body">
+
+<div class="compiler-shell">
+
+  <!-- ============================== TOP BAR ============================== -->
+  <header class="compiler-topbar">
+    <div class="compiler-brand">
+      <a href="index.html" class="icon-btn" aria-label="Back to course home"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></a>
+      <div class="brand-icon"><i class="fa-brands fa-python" aria-hidden="true"></i></div>
+      <div>
+        <h2>Python Compiler</h2>
+        <span id="runtimeStatus" class="runtime-status"><i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> Starting Python runtime&hellip;</span>
+      </div>
+    </div>
+    <div class="compiler-actions">
+      <label class="example-picker">
+        <span class="sr-only">Load an example</span>
+        <select id="exampleSelect" aria-label="Load an example">
+          <option value="">Load an example&hellip;</option>
+        </select>
+      </label>
+      <button id="filesBtn" class="icon-btn" aria-label="Manage data files for file handling"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></button>
+      <button id="resetBtn" class="icon-btn" aria-label="Reset code"><i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i></button>
+      <button id="darkModeToggle" class="icon-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+    </div>
+  </header>
+
+  <!-- Mobile-only Code/Output switcher — below ~700px wide, editor and output
+       each take the full pane height one at a time instead of a cramped
+       split, since two side-by-side panes stop being usable that narrow. -->
+  <div class="mobile-tabs" role="tablist">
+    <button type="button" class="mobile-tab active" id="mobileTabEditor" data-tab="editor" role="tab" aria-selected="true">
+      <i class="fa-solid fa-file-code" aria-hidden="true"></i> Code
+    </button>
+    <button type="button" class="mobile-tab" id="mobileTabOutput" data-tab="output" role="tab" aria-selected="false">
+      <i class="fa-solid fa-terminal" aria-hidden="true"></i> Output
+      <span id="outputTabDot" class="tab-dot" hidden></span>
+    </button>
+  </div>
+
+  <!-- ============================== MAIN ============================== -->
+  <main class="compiler-main">
+
+    <section class="editor-pane mobile-active">
+      <div class="pane-header">
+        <span class="pane-title"><i class="fa-solid fa-file-code" aria-hidden="true"></i> <span id="currentFileLabel">main.py</span></span>
+        <div class="pane-header-actions">
+          <input type="file" id="openFileInput" accept=".py,.txt" hidden>
+          <button id="openFileBtn" class="icon-btn small" aria-label="Open a .py file from your computer"><i class="fa-solid fa-folder-open" aria-hidden="true"></i></button>
+          <button id="downloadFileBtn" class="icon-btn small" aria-label="Download this code as a .py file"><i class="fa-solid fa-download" aria-hidden="true"></i></button>
+          <button id="stopBtn" class="btn-stop" hidden>
+            <i class="fa-solid fa-stop" aria-hidden="true"></i>
+            <span>Stop</span>
+          </button>
+          <button id="runBtn" class="btn-run" disabled>
+            <i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i>
+            <span>Loading&hellip;</span>
+          </button>
+        </div>
+      </div>
+      <div id="editor" class="editor-host"></div>
+      <p class="editor-hint"><i class="fa-solid fa-keyboard" aria-hidden="true"></i> Tip: press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> (or <kbd>&#8984;</kbd> + <kbd>Enter</kbd>) to run.</p>
+    </section>
+
+    <section class="output-pane">
+      <div class="pane-header">
+        <span class="pane-title"><i class="fa-solid fa-terminal" aria-hidden="true"></i> Output</span>
+        <button id="clearOutputBtn" class="icon-btn small" aria-label="Clear output"><i class="fa-solid fa-broom" aria-hidden="true"></i></button>
+      </div>
+      <pre id="output" class="output-console" aria-live="polite"><span class="output-placeholder">Your program's output will appear here once you click Run.</span><span id="inputRow" class="input-row" hidden><input type="text" id="inputField" class="input-field" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Program input"></span></pre>
+    </section>
+
+  </main>
+
+  <footer class="compiler-footer">
+    <p>
+      <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+      Code runs entirely inside your browser using
+      <a href="https://pyodide.org" target="_blank" rel="noopener">Pyodide</a> (Python compiled to WebAssembly) — nothing is sent to a server.
+    </p>
+  </footer>
+
+  <!-- Mobile-only floating Run/Stop — stays reachable with one thumb
+       regardless of which tab (Code/Output) is currently showing. -->
+  <div class="mobile-fab">
+    <button id="fabRunBtn" class="fab-btn fab-run" aria-label="Run code" disabled><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+    <button id="fabStopBtn" class="fab-btn fab-stop" aria-label="Stop execution" hidden><i class="fa-solid fa-stop" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ============================== DATA FILES MODAL ==============================
+     Lets students upload real files (.txt, .csv, .json, etc.) so open()-based
+     file-handling code has something to read, and download any file their
+     script writes with open("name", "w") — both backed by Pyodide's in-browser
+     virtual filesystem, so nothing ever leaves the machine. -->
+<div id="filesModalOverlay" class="files-modal-overlay" hidden>
+  <div class="files-modal" role="dialog" aria-modal="true" aria-labelledby="filesModalTitle">
+    <div class="files-modal-header">
+      <h3 id="filesModalTitle"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i> Data Files</h3>
+      <button id="filesModalCloseBtn" class="icon-btn small" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <p class="files-modal-hint">
+      Files listed here live in your program's working folder — open a file by
+      its name (e.g. <code>open("data.txt")</code>) to read it, or write one with
+      <code>open("out.txt", "w")</code> and download it below.
+    </p>
+    <input type="file" id="uploadFileInput" multiple hidden>
+    <button id="uploadFileBtn" class="btn-upload" disabled>
+      <i class="fa-solid fa-upload" aria-hidden="true"></i> Upload File(s)
+    </button>
+    <ul id="fileList" class="file-list">
+      <li class="file-list-empty">No files yet — upload one, or run code that creates one.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Pyodide runtime (loaded from CDN, downloaded once per session) -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.28.3/full/pyodide.js"></script>
+<script src="assets/js/compiler.js"></script>
+</body>
+</html>

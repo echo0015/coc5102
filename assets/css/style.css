@@ -313,6 +313,28 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
 
 .topbar-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
+/* Link to the Python Compiler tool, injected into every topbar */
+.btn-compiler-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.btn-compiler-link:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); color: #fff; }
+.btn-compiler-link i { font-size: 0.9rem; }
+
+.home-topbar-actions { display: flex; align-items: center; gap: 12px; }
+
 .slide-counter {
   font-size: 0.82rem;
   font-weight: 600;
@@ -1106,6 +1128,8 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
   .nav-btn span.label { display: none; }
   .dots-nav { display: none; }
   .board-diagram { grid-template-columns: 1fr 1fr; }
+  .btn-compiler-link span { display: none; }
+  .btn-compiler-link { padding: 8px 12px; }
 }
 
 /* ---------------------------------------------------------------------
